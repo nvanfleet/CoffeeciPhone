@@ -137,7 +137,7 @@ static int connectWithTimeout (int sfd, struct sockaddr *addr, int addrlen, stru
 
 +(DataRequest *) dataRequest
 {
-    DataRequest *dr = [[[DataRequest alloc] init] autorelease];
+    DataRequest *dr = [[DataRequest alloc] init];
     
     return dr;
 }
@@ -150,11 +150,6 @@ static int connectWithTimeout (int sfd, struct sockaddr *addr, int addrlen, stru
     }
     
     return self;
-}
-
--(void) dealloc
-{
-    [super dealloc];
 }
 
 @end

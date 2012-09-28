@@ -27,7 +27,6 @@
 		B52AD82D1614C12200D0939A /* DataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AD82B1614C12200D0939A /* DataRequest.m */; };
 		B52AD8311614C26000D0939A /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AD8301614C26000D0939A /* SettingViewController.m */; };
 		B52AD8371614C40900D0939A /* TempViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AD8361614C40900D0939A /* TempViewController.m */; };
-		B52AD83A1614C59700D0939A /* coffeec.c in Sources */ = {isa = PBXBuildFile; fileRef = B52AD8391614C59700D0939A /* coffeec.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -249,7 +248,6 @@
 				B52AD82D1614C12200D0939A /* DataRequest.m in Sources */,
 				B52AD8311614C26000D0939A /* SettingViewController.m in Sources */,
 				B52AD8371614C40900D0939A /* TempViewController.m in Sources */,
-				B52AD83A1614C59700D0939A /* coffeec.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +363,7 @@
 				B52AD8221614C08800D0939A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
