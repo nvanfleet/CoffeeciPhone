@@ -15,14 +15,14 @@
 
 - (void) dataManagerDidFail:(DataRequest *)nm message:(NSString *)message
 {
-    serverOutput.text = message;
+    _serverOutput.text = message;
 }
 
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
 {
     NSLog(@"%@",(NSString *)object);
     
-    serverOutput.text = (NSString *)object;
+    _serverOutput.text = (NSString *)object;
 }
 
 # pragma  mark - Basic

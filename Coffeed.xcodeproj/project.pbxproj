@@ -27,6 +27,8 @@
 		B52AD82D1614C12200D0939A /* DataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AD82B1614C12200D0939A /* DataRequest.m */; };
 		B52AD8311614C26000D0939A /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AD8301614C26000D0939A /* SettingViewController.m */; };
 		B52AD8371614C40900D0939A /* TempViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AD8361614C40900D0939A /* TempViewController.m */; };
+		B55E0EDA1615F9B900DB2ED3 /* ServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55E0ED91615F9B900DB2ED3 /* ServerViewController.m */; };
+		B55E0EDE1615FAE300DB2ED3 /* ServerSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55E0EDD1615FAE300DB2ED3 /* ServerSettingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,10 @@
 		B52AD8351614C40900D0939A /* TempViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempViewController.h; sourceTree = "<group>"; };
 		B52AD8361614C40900D0939A /* TempViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempViewController.m; sourceTree = "<group>"; };
 		B52AD8391614C59700D0939A /* coffeec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = coffeec.c; sourceTree = "<group>"; };
+		B55E0ED81615F9B900DB2ED3 /* ServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerViewController.h; sourceTree = "<group>"; };
+		B55E0ED91615F9B900DB2ED3 /* ServerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerViewController.m; sourceTree = "<group>"; };
+		B55E0EDC1615FAE300DB2ED3 /* ServerSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerSettingViewController.h; sourceTree = "<group>"; };
+		B55E0EDD1615FAE300DB2ED3 /* ServerSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerSettingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +164,10 @@
 				B52AD8301614C26000D0939A /* SettingViewController.m */,
 				B52AD8351614C40900D0939A /* TempViewController.h */,
 				B52AD8361614C40900D0939A /* TempViewController.m */,
+				B55E0ED81615F9B900DB2ED3 /* ServerViewController.h */,
+				B55E0ED91615F9B900DB2ED3 /* ServerViewController.m */,
+				B55E0EDC1615FAE300DB2ED3 /* ServerSettingViewController.h */,
+				B55E0EDD1615FAE300DB2ED3 /* ServerSettingViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -248,6 +258,8 @@
 				B52AD82D1614C12200D0939A /* DataRequest.m in Sources */,
 				B52AD8311614C26000D0939A /* SettingViewController.m in Sources */,
 				B52AD8371614C40900D0939A /* TempViewController.m in Sources */,
+				B55E0EDA1615F9B900DB2ED3 /* ServerViewController.m in Sources */,
+				B55E0EDE1615FAE300DB2ED3 /* ServerSettingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
