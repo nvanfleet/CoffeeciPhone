@@ -10,7 +10,7 @@
 #import "ServerConfiguration.h"
 
 @interface SavedDataManager ()
-@property (nonatomic) NSMutableDictionary *serverDict;
+@property (nonatomic) NSMutableDictionary *serverConfigurations;
 @end
 
 @implementation SavedDataManager
@@ -30,7 +30,7 @@
 //	[self.serverDict writeToFile:[self savedFilePath] atomically:YES];
 //
 	
-	BOOL success = [NSKeyedArchiver archiveRootObject:self.serverDict toFile:[self savedFilePath]];
+	BOOL success = [NSKeyedArchiver archiveRootObject:self.serverConfigurations toFile:[self savedFilePath]];
 	
 	if(!success)
 		NSLog(@"No success archiving");
@@ -49,38 +49,36 @@
 	//		self.serverDict[d[@"servername"]] = [ServerConfiguration configurationWithDictionary:d];
 	//	}
 	
-	if(_serverDict)
-		self.serverDict = nil;
+	if(_serverConfigurations)
+		self.serverConfigurations = nil;
 	
-	self.serverDict = [NSKeyedUnarchiver unarchiveObjectWithFile:[self savedFilePath]];
+	self.serverConfigurations = [NSKeyedUnarchiver unarchiveObjectWithFile:[self savedFilePath]];
 	
-	if(!_serverDict)
+	if(!_serverConfigurations)
 	{
 		NSLog(@"no archive -- creating blank dictionary");
-		self.serverDict = [NSMutableDictionary dictionary];
+		self.serverConfigurations = [NSMutableDictionary dictionary];
 	}
 }
 
 -(NSMutableDictionary *) serverDict
 {
-	return _serverDict;
+	return _serverConfigurations;
 }
 
 -(void) addServer:(NSDictionary *)dictionary
 {
-	self.serverDict[dictionary[@"servername"]] = [ServerConfiguration configurationWithDictionary:dictionary];
+	self.serverConfigurations[dictionary[@"servername"]] = [ServerConfiguration configurationWithDictionary:dictionary];
 	
 	[self saveServerDict];
 }
 
--(void) deleteServer:(NSDictionary *)dictionary
+-(void) deleteServer:(NSString *)servername
 {
-	[self.serverDict removeObjectForKey:dictionary[@"servername"]];
+	[self.serverConfigurations removeObjectForKey:servername];
 	
 	[self saveServerDict];
 }
-
-
 
 -(id) init
 {

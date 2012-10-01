@@ -8,18 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "DataRequest.h"
+#import "ServerConfiguration.h"
 
 @interface DataRequestManager : NSObject {
     NSMutableArray *dataRequests;
-    
-    NSString *ipaddress;
-    NSNumber *port;
 }
 
-@property (retain,nonatomic) NSNumber *port;
-@property (retain,nonatomic) NSString *ipaddress;
-
 + (id)sharedInstance;
-
 -(void) sendCommand:(NSString *)command callback:(id)cb;
+-(void) setCurrentServer:(ServerConfiguration *)sConf;
 @end

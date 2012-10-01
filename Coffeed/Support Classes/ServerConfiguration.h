@@ -13,6 +13,4 @@
 @property (nonatomic) NSString *address;
 @property (nonatomic) NSString *port;
 +(id) configurationWithDictionary:(NSDictionary *)dictionary;
-+(id) configurationWithName:(NSString*)name address:(NSString*)address port:(NSString *)port;
--(NSDictionary *) configurationDictionary;
 @end

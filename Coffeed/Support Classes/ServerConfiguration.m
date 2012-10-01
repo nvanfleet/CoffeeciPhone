@@ -48,15 +48,4 @@
 	
 	return sConf;
 }
-
--(NSDictionary *) configurationDictionary
-{
-	NSDictionary *dict = @{
-    @"servername" : self.servername,
-    @"address" : self.address,
-    @"port" : self.port
-	};
-	
-	return dict;
-}
 @end

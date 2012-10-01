@@ -12,6 +12,6 @@
 
 -(NSMutableDictionary *) serverDict;
 -(void) addServer:(NSDictionary *)dictionary;
--(void) deleteServer:(NSDictionary *)dictionary;
+-(void) deleteServer:(NSString *)dictionary;
 
 @end

@@ -8,13 +8,21 @@
 
 #import "DataRequestManager.h"
 
+@interface DataRequestManager ()
+@property (strong) ServerConfiguration *serverConf;
+@end
+
+
 static NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
 
 //static DataManager *sharedInstance = nil;
 
 @implementation DataRequestManager
 
-@synthesize port, ipaddress;
+-(void) setCurrentServer:(ServerConfiguration *)sConf
+{
+	self.serverConf = sConf;
+}
 
 #pragma mark - Data Requests
 
@@ -107,6 +115,7 @@ static NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
         self.ipaddress = @"192.168.1.64";
         self.port = [NSNumber numberWithInt:4949];
         dataRequests = [[NSMutableArray alloc] init];
+		_serverConf = nil;
     }
     
     return self;
