@@ -14,6 +14,14 @@
 
 @implementation TempViewController
 
+-(IBAction)stepperChanged:(id)sender
+{
+}
+
+-(IBAction)switchMoved:(id)sender
+{
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

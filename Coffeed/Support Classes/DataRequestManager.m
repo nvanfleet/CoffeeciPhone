@@ -6,13 +6,13 @@
 //  Copyright 2011 Logic Pretzel. All rights reserved.
 //
 
-#import "DataManager.h"
+#import "DataRequestManager.h"
 
 static NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
 
-static DataManager *sharedInstance = nil;
+//static DataManager *sharedInstance = nil;
 
-@implementation DataManager
+@implementation DataRequestManager
 
 @synthesize port, ipaddress;
 
@@ -112,11 +112,11 @@ static DataManager *sharedInstance = nil;
     return self;
 }
 
-+(DataManager *)sharedInstance {
++(DataRequestManager *)sharedInstance {
     static dispatch_once_t pred;
-    static DataManager *shared = nil;
+    static DataRequestManager *shared = nil;
     dispatch_once(&pred, ^{
-        shared = [[DataManager alloc] init];
+        shared = [[DataRequestManager alloc] init];
     });
     return shared;
 }

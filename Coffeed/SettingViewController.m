@@ -7,9 +7,33 @@
 //
 
 #import "SettingViewController.h"
-#import "DataManager.h"
+#import "DataRequestManager.h"
 
 @implementation SettingViewController
+
+# pragma  mark - Actions
+
+-(IBAction)updateButtonPressed:(id)sender
+{
+}
+
+-(IBAction)switchMoved:(UISwitch *)sender
+{
+    NSString *command = nil;
+    
+    if([sender isOn])
+    {
+        command = @"AWAKE";
+    }
+    else
+    {
+        command = @"SLEEP";
+    }
+    
+    NSLog(@"Command %@",command);
+    
+    [[DataRequestManager sharedInstance] sendCommand:command callback:self];
+}
 
 # pragma  mark - DataRequest
 
@@ -33,27 +57,7 @@
     return YES;
 }
 
--(IBAction)updateButtonPressed:(id)sender
-{
-}
 
--(IBAction)switchMoved:(UISwitch *)sender
-{
-    NSString *command = nil;
-    
-    if([sender isOn])
-    {
-        command = @"AWAKE";
-    }
-    else
-    {
-        command = @"SLEEP";
-    }
-    
-    NSLog(@"Command %@",command);
-    
-    [[DataManager sharedInstance] sendCommand:command callback:self];
-}
 
 # pragma  mark - Basic
 

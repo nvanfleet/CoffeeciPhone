@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DataRequest.h"
 
-@interface DataManager : NSObject {
+@interface DataRequestManager : NSObject {
     NSMutableArray *dataRequests;
     
     NSString *ipaddress;

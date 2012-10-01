@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ServerViewController : UIViewController
+@interface ServerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@property (assign) IBOutlet UITableView *tableView;
 
+-(IBAction) addServerEntry:(id)sender;
 @end
