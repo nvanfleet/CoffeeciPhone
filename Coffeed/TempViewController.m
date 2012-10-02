@@ -22,13 +22,14 @@
 {
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+-(void) loadViewData
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+}
+
+
+-(void) viewWillAppear:(BOOL)animated
+{
+	[self loadViewData];
 }
 
 - (void)viewDidLoad

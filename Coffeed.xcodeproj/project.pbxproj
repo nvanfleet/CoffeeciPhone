@@ -23,7 +23,6 @@
 		B52AD82D1614C12200D0939A /* DataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AD82B1614C12200D0939A /* DataRequest.m */; };
 		B52AD8311614C26000D0939A /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AD8301614C26000D0939A /* SettingViewController.m */; };
 		B52AD8371614C40900D0939A /* TempViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AD8361614C40900D0939A /* TempViewController.m */; };
-		B52CED38161B5FD80053F612 /* status-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = B52CED35161B5FD80053F612 /* status-selected.png */; };
 		B52CED39161B5FD80053F612 /* status-unavailable.png in Resources */ = {isa = PBXBuildFile; fileRef = B52CED36161B5FD80053F612 /* status-unavailable.png */; };
 		B52CED3A161B5FD80053F612 /* status-available.png in Resources */ = {isa = PBXBuildFile; fileRef = B52CED37161B5FD80053F612 /* status-available.png */; };
 		B53731871619E78F00CD455D /* SavedDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B53731861619E78F00CD455D /* SavedDataManager.m */; };
@@ -59,7 +58,6 @@
 		B52AD8351614C40900D0939A /* TempViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempViewController.h; sourceTree = "<group>"; };
 		B52AD8361614C40900D0939A /* TempViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempViewController.m; sourceTree = "<group>"; };
 		B52AD8391614C59700D0939A /* coffeec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = coffeec.c; sourceTree = "<group>"; };
-		B52CED35161B5FD80053F612 /* status-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-selected.png"; sourceTree = "<group>"; };
 		B52CED36161B5FD80053F612 /* status-unavailable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-unavailable.png"; sourceTree = "<group>"; };
 		B52CED37161B5FD80053F612 /* status-available.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-available.png"; sourceTree = "<group>"; };
 		B53731851619E78F00CD455D /* SavedDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedDataManager.h; sourceTree = "<group>"; };
@@ -134,7 +132,6 @@
 		B52AD7FC1614C08800D0939A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B52CED35161B5FD80053F612 /* status-selected.png */,
 				B52CED36161B5FD80053F612 /* status-unavailable.png */,
 				B52CED37161B5FD80053F612 /* status-available.png */,
 				B52AD7FD1614C08800D0939A /* Coffeed-Info.plist */,
@@ -246,7 +243,6 @@
 				B52AD80F1614C08800D0939A /* MainStoryboard.storyboard in Resources */,
 				B52AD8141614C08800D0939A /* first.png in Resources */,
 				B52AD8161614C08800D0939A /* first@2x.png in Resources */,
-				B52CED38161B5FD80053F612 /* status-selected.png in Resources */,
 				B52CED39161B5FD80053F612 /* status-unavailable.png in Resources */,
 				B52CED3A161B5FD80053F612 /* status-available.png in Resources */,
 			);

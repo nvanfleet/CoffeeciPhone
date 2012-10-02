@@ -138,6 +138,10 @@
 	[self.tableView selectRowAtIndexPath:index animated:YES scrollPosition:UITableViewScrollPositionMiddle];
 }
 
+-(void) loadViewData
+{
+}
+
 -(void) viewWillAppear:(BOOL)animated
 {
 	self.serverConfigurations = [[[DataRequestManager sharedInstance] savedDataManager] configurations];
@@ -145,6 +149,8 @@
 	[self setActiveServer];							 
 
 	[self.tableView reloadData];
+	
+	[self loadViewData];
 }
 
 - (void)viewDidLoad
