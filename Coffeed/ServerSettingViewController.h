@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ServerSettingViewController : UIViewController
+@interface ServerSettingViewController : UIViewController <UITextFieldDelegate>
 @property (assign) IBOutlet UITextField *serverName;
 @property (assign) IBOutlet UITextField *address;
 @property (assign) IBOutlet UITextField *port;
 -(IBAction) okayButtonPushed:(id)sender;
+-(IBAction) cancelButtonPushed:(id)sender;
 @end

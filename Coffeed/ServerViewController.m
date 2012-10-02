@@ -54,8 +54,8 @@
         cell = [self createNewCell];
     }
     
-	cell.title = sConfig.servername;
-	cell.address = [NSString stringWithFormat:@"%@:%@",sConfig.address,sConfig.port];
+	cell.title.text = sConfig.servername;
+	cell.address.text = [NSString stringWithFormat:@"%@:%@",sConfig.address,sConfig.port];
     
     return cell;
 }

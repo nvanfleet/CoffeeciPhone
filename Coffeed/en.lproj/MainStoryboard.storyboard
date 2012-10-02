@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="11G56" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
@@ -256,16 +256,25 @@
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uIf-l8-527">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                <connections>
+                                    <outlet property="delegate" destination="leq-8N-Nek" id="7dF-Zi-8Lw"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Server Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Rf-7a-WWL">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="158" id="Vt4-Sa-t1u"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vCi-8K-dwC">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                <connections>
+                                    <outlet property="delegate" destination="leq-8N-Nek" id="XqH-Fo-zGW"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Server Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ayh-PL-twQ">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -274,7 +283,10 @@
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B3W-4w-zQp">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="leq-8N-Nek" id="Ev8-38-6tJ"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Server Port" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5A-Xe-Opo">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -282,6 +294,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wL1-cR-Mw1">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="D17-rX-pZI"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Okay">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -294,26 +309,47 @@
                                     <action selector="okayButtonPushed:" destination="leq-8N-Nek" eventType="touchUpInside" id="B7j-ZT-h8L"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TQ3-YB-f3a">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="8lu-Hg-zTP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButtonPushed:" destination="leq-8N-Nek" eventType="touchUpInside" id="z5o-Mc-1d5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7Rf-7a-WWL" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="73p-Fm-uZY"/>
                             <constraint firstItem="B3W-4w-zQp" firstAttribute="top" secondItem="q5A-Xe-Opo" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="E7k-Br-6Ad"/>
                             <constraint firstItem="uIf-l8-527" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="GkR-V6-CXI"/>
-                            <constraint firstAttribute="trailing" secondItem="wL1-cR-Mw1" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Hzi-pH-c4m"/>
+                            <constraint firstItem="wL1-cR-Mw1" firstAttribute="bottom" secondItem="TQ3-YB-f3a" secondAttribute="bottom" type="user" id="Kmr-Xd-5m7"/>
                             <constraint firstItem="vCi-8K-dwC" firstAttribute="top" secondItem="Ayh-PL-twQ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="NIU-cn-cig"/>
-                            <constraint firstItem="wL1-cR-Mw1" firstAttribute="top" secondItem="B3W-4w-zQp" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="OEY-4t-uMV"/>
                             <constraint firstItem="q5A-Xe-Opo" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="QVg-2O-dsw"/>
                             <constraint firstItem="B3W-4w-zQp" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="R2s-RO-iF5"/>
-                            <constraint firstItem="Ayh-PL-twQ" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="bd2-qm-Kt4"/>
+                            <constraint firstItem="Ayh-PL-twQ" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="user" id="bd2-qm-Kt4"/>
                             <constraint firstItem="q5A-Xe-Opo" firstAttribute="top" secondItem="vCi-8K-dwC" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="btt-hn-XTE"/>
+                            <constraint firstItem="TQ3-YB-f3a" firstAttribute="top" secondItem="B3W-4w-zQp" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="cPB-2R-kZW"/>
+                            <constraint firstItem="TQ3-YB-f3a" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="cfg-TZ-NHl"/>
                             <constraint firstAttribute="trailing" secondItem="B3W-4w-zQp" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="f6k-ti-i67"/>
                             <constraint firstItem="vCi-8K-dwC" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="gpN-Eh-FWC"/>
+                            <constraint firstItem="7Rf-7a-WWL" firstAttribute="trailing" secondItem="Ayh-PL-twQ" secondAttribute="trailing" type="default" id="hzb-XE-Rqt"/>
                             <constraint firstItem="uIf-l8-527" firstAttribute="top" secondItem="7Rf-7a-WWL" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="jsV-4Q-FUo"/>
+                            <constraint firstItem="wL1-cR-Mw1" firstAttribute="baseline" secondItem="TQ3-YB-f3a" secondAttribute="baseline" type="default" id="jtt-8C-Uk7"/>
                             <constraint firstAttribute="trailing" secondItem="vCi-8K-dwC" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="kHy-tM-HFF"/>
                             <constraint firstItem="7Rf-7a-WWL" firstAttribute="top" secondItem="9Pm-ZE-kgg" secondAttribute="top" constant="20" symbolic="YES" type="default" id="lVB-IF-v6V"/>
                             <constraint firstAttribute="trailing" secondItem="uIf-l8-527" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="lad-Yb-ikT"/>
+                            <constraint firstItem="q5A-Xe-Opo" firstAttribute="trailing" secondItem="Ayh-PL-twQ" secondAttribute="trailing" type="default" id="nI8-C1-0ub"/>
                             <constraint firstItem="Ayh-PL-twQ" firstAttribute="top" secondItem="uIf-l8-527" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="vjh-0Y-5wE"/>
+                            <constraint firstAttribute="trailing" secondItem="wL1-cR-Mw1" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="xxk-4A-yrv"/>
                         </constraints>
                     </view>
                     <connections>
@@ -426,61 +462,6 @@
         <image name="first" width="16" height="16"/>
         <image name="second" width="16" height="16"/>
     </resources>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ServerConfigurationCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ServerConfigurationCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="address" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="image" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="title" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ServerSettingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ServerSettingViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="okayButtonPushed:"/>
-                <relationship kind="outlet" name="address" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="port" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="serverName" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="ServerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ServerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addServerEntry:"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="SettingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="switchMoved:"/>
-                <relationship kind="action" name="updateButtonPressed:"/>
-                <relationship kind="outlet" name="activeSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="dgainField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="igainField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="pgainField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="serverOutput" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="setpointField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="updateButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="TempViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TempViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="stepperChanged:"/>
-                <relationship kind="action" name="switchMoved:"/>
-                <relationship kind="outlet" name="activeSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="serverOutput" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="setLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tempLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tempStepper" candidateClass="UIStepper"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
