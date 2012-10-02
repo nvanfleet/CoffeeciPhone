@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "DataRequest.h"
 #import "ServerConfiguration.h"
+#import "SavedDataManager.h"
 
 @interface DataRequestManager : NSObject
-
+@property (strong) SavedDataManager *savedDataManager;
 +(id) sharedInstance;
 -(void) sendCommand:(NSString *)command callback:(id)cb;
 -(void) setCurrentServer:(ServerConfiguration *)sConf;

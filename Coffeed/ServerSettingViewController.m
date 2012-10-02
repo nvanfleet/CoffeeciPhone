@@ -7,7 +7,7 @@
 //
 
 #import "ServerSettingViewController.h"
-#import "SavedDataManager.h"
+#import "DataRequestManager.h"
 
 @interface ServerSettingViewController ()
 
@@ -84,9 +84,12 @@
 		@"port":number 
 		};
 		
-		SavedDataManager *sdm = [[SavedDataManager alloc] init];
+		// Save what is in the text boxes
+		[[[DataRequestManager sharedInstance] savedDataManager] addServer:dictionary];
 		
-		[sdm addServer:dictionary];
+		// Delete the duplicate (happens only if the name changes)
+		if(self.configuration && ![self.configuration.servername isEqualToString:self.serverName.text])
+			[[[DataRequestManager sharedInstance] savedDataManager] deleteServer:self.configuration.servername];
 	}
 	else
 	{
@@ -96,7 +99,14 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
-	self.port.text = @"4949";
+	if(self.configuration)
+	{
+		self.serverName.text = self.configuration.servername;
+		self.address.text = self.configuration.address;
+		self.port.text = [self.configuration.port stringValue];
+	}
+	else
+		self.port.text = @"4949";
 }
 
 - (void)viewDidLoad

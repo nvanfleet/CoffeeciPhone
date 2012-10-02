@@ -7,10 +7,11 @@
 //
 
 #import "SavedDataManager.h"
-#import "ServerConfiguration.h"
+
 
 @interface SavedDataManager ()
 @property (nonatomic) NSMutableDictionary *serverConfigurations;
+@property (nonatomic) NSString *selectedServerString;
 @end
 
 @implementation SavedDataManager
@@ -20,39 +21,63 @@
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
 
-- (NSString *) savedFilePath
+- (NSString *) savedFilePath:(NSString *)fileElement
 {
-	return [[self applicationDocumentsDirectory] stringByAppendingPathComponent:@"ServerList"];
+	return [[self applicationDocumentsDirectory] stringByAppendingPathComponent:fileElement];
 }
 
--(void) saveServerDict
+-(void) saveConfigurations
 {
-//	[self.serverDict writeToFile:[self savedFilePath] atomically:YES];
-//
-	
-	BOOL success = [NSKeyedArchiver archiveRootObject:self.serverConfigurations toFile:[self savedFilePath]];
+	BOOL success = [NSKeyedArchiver archiveRootObject:self.serverConfigurations toFile:[self savedFilePath:@"ServerList"]];
 	
 	if(!success)
 		NSLog(@"No success archiving");
 }
 
--(void) loadServerDict
+#pragma mark Selected Server
+
+-(ServerConfiguration *) selectedServer
 {
-	//	NSDictionary *savedServerDictionary = [NSMutableDictionary dictionaryWithContentsOfFile:[self savedFilePath]];
-	//	NSArray *allValues = [savedServerDictionary allValues];
-	//
-	//	self.serverDict = [NSMutableDictionary dictionary];
-	//
-	//	for(int i=0; i<[allValues count]; i++)
-	//	{
-	//		NSDictionary *d = allValues[i];
-	//		self.serverDict[d[@"servername"]] = [ServerConfiguration configurationWithDictionary:d];
-	//	}
+	return self.configurations[[self selectedServerName]];
+}
+
+-(void) setSelectedServer:(ServerConfiguration *)server
+{
+	[self setSelectedServerName:server.servername];
+}
+
+-(NSString *) selectedServerName
+{
+	// Already loaded
+	if(_selectedServerString)
+		return _selectedServerString;
 	
+	// Loading
+	NSString *server = [NSString stringWithContentsOfFile:[self savedFilePath:@"SelectedServer"] encoding:NSStringEncodingConversionAllowLossy error:nil];
+	
+	// Default selected server if none is selected
+	if(server == nil && [self.configurations count] > 0)
+		server = [[self.configurations allValues] objectAtIndex:0];
+	
+	self.selectedServerString = server;
+	
+	return server;
+}
+
+-(void) setSelectedServerName:(NSString *)servername
+{
+	self.selectedServerString = servername;
+	[servername writeToFile:[self savedFilePath:@"SelectedServer"] atomically:YES encoding:NSStringEncodingConversionAllowLossy error:nil];
+}
+
+#pragma mark Server Dict
+
+-(void) loadConfigurations
+{
 	if(_serverConfigurations)
 		self.serverConfigurations = nil;
 	
-	self.serverConfigurations = [NSKeyedUnarchiver unarchiveObjectWithFile:[self savedFilePath]];
+	self.serverConfigurations = [NSKeyedUnarchiver unarchiveObjectWithFile:[self savedFilePath:@"ServerList"]];
 	
 	if(!_serverConfigurations)
 	{
@@ -61,7 +86,7 @@
 	}
 }
 
--(NSMutableDictionary *) serverDict
+-(NSMutableDictionary *) configurations
 {
 	return _serverConfigurations;
 }
@@ -70,21 +95,22 @@
 {
 	self.serverConfigurations[dictionary[@"servername"]] = [ServerConfiguration configurationWithDictionary:dictionary];
 	
-	[self saveServerDict];
+	[self saveConfigurations];
 }
 
 -(void) deleteServer:(NSString *)servername
 {
 	[self.serverConfigurations removeObjectForKey:servername];
 	
-	[self saveServerDict];
+	[self saveConfigurations];
 }
 
 -(id) init
 {
 	if((self = [super init]))
 	{
-		[self loadServerDict];
+		_selectedServerString = nil;
+		[self loadConfigurations];
 	}
 	
 	return self;

@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ServerConfiguration.h"
 
 @interface SavedDataManager : NSObject
 
--(NSMutableDictionary *) serverDict;
+-(NSMutableDictionary *) configurations;
 -(void) addServer:(NSDictionary *)dictionary;
 -(void) deleteServer:(NSString *)dictionary;
 
+-(ServerConfiguration *) selectedServer;
+-(void) setSelectedServer:(ServerConfiguration *)server;
 @end

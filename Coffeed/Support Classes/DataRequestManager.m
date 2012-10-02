@@ -8,14 +8,14 @@
 
 #import "DataRequestManager.h"
 
+
 @interface DataRequestManager ()
 @property (strong) ServerConfiguration *serverConf;
 @property (strong) NSMutableArray *dataRequests;
+
 @end
 
 static NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
-
-//static DataManager *sharedInstance = nil;
 
 @implementation DataRequestManager
 
@@ -120,6 +120,10 @@ static NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
     {
         self.dataRequests = [[NSMutableArray alloc] init];
 		_serverConf = nil;
+		self.savedDataManager = [[SavedDataManager alloc] init];
+		
+		// Placeholder for now
+		self.serverConf = [self.savedDataManager selectedServer];
     }
     
     return self;
