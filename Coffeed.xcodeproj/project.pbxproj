@@ -17,12 +17,8 @@
 		B52AD80A1614C08800D0939A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B52AD8091614C08800D0939A /* Default@2x.png */; };
 		B52AD80C1614C08800D0939A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B52AD80B1614C08800D0939A /* Default-568h@2x.png */; };
 		B52AD80F1614C08800D0939A /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B52AD80D1614C08800D0939A /* MainStoryboard.storyboard */; };
-		B52AD8121614C08800D0939A /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AD8111614C08800D0939A /* FirstViewController.m */; };
 		B52AD8141614C08800D0939A /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = B52AD8131614C08800D0939A /* first.png */; };
 		B52AD8161614C08800D0939A /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B52AD8151614C08800D0939A /* first@2x.png */; };
-		B52AD8191614C08800D0939A /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AD8181614C08800D0939A /* SecondViewController.m */; };
-		B52AD81B1614C08800D0939A /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = B52AD81A1614C08800D0939A /* second.png */; };
-		B52AD81D1614C08800D0939A /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B52AD81C1614C08800D0939A /* second@2x.png */; };
 		B52AD82C1614C12200D0939A /* DataRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AD8291614C12200D0939A /* DataRequestManager.m */; };
 		B52AD82D1614C12200D0939A /* DataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AD82B1614C12200D0939A /* DataRequest.m */; };
 		B52AD8311614C26000D0939A /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AD8301614C26000D0939A /* SettingViewController.m */; };
@@ -52,14 +48,8 @@
 		B52AD8091614C08800D0939A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		B52AD80B1614C08800D0939A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		B52AD80E1614C08800D0939A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		B52AD8101614C08800D0939A /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		B52AD8111614C08800D0939A /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		B52AD8131614C08800D0939A /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		B52AD8151614C08800D0939A /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		B52AD8171614C08800D0939A /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		B52AD8181614C08800D0939A /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		B52AD81A1614C08800D0939A /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
-		B52AD81C1614C08800D0939A /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		B52AD8281614C12200D0939A /* DataRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataRequestManager.h; sourceTree = "<group>"; };
 		B52AD8291614C12200D0939A /* DataRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataRequestManager.m; sourceTree = "<group>"; };
 		B52AD82A1614C12200D0939A /* DataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataRequest.h; sourceTree = "<group>"; };
@@ -134,14 +124,8 @@
 				B52AD8041614C08800D0939A /* AppDelegate.h */,
 				B52AD8051614C08800D0939A /* AppDelegate.m */,
 				B52AD80D1614C08800D0939A /* MainStoryboard.storyboard */,
-				B52AD8101614C08800D0939A /* FirstViewController.h */,
-				B52AD8111614C08800D0939A /* FirstViewController.m */,
 				B52AD8131614C08800D0939A /* first.png */,
 				B52AD8151614C08800D0939A /* first@2x.png */,
-				B52AD8171614C08800D0939A /* SecondViewController.h */,
-				B52AD8181614C08800D0939A /* SecondViewController.m */,
-				B52AD81A1614C08800D0939A /* second.png */,
-				B52AD81C1614C08800D0939A /* second@2x.png */,
 				B52AD7FC1614C08800D0939A /* Supporting Files */,
 			);
 			path = Coffeed;
@@ -262,8 +246,6 @@
 				B52AD80F1614C08800D0939A /* MainStoryboard.storyboard in Resources */,
 				B52AD8141614C08800D0939A /* first.png in Resources */,
 				B52AD8161614C08800D0939A /* first@2x.png in Resources */,
-				B52AD81B1614C08800D0939A /* second.png in Resources */,
-				B52AD81D1614C08800D0939A /* second@2x.png in Resources */,
 				B52CED38161B5FD80053F612 /* status-selected.png in Resources */,
 				B52CED39161B5FD80053F612 /* status-unavailable.png in Resources */,
 				B52CED3A161B5FD80053F612 /* status-available.png in Resources */,
@@ -279,8 +261,6 @@
 			files = (
 				B52AD8021614C08800D0939A /* main.m in Sources */,
 				B52AD8061614C08800D0939A /* AppDelegate.m in Sources */,
-				B52AD8121614C08800D0939A /* FirstViewController.m in Sources */,
-				B52AD8191614C08800D0939A /* SecondViewController.m in Sources */,
 				B52AD82C1614C12200D0939A /* DataRequestManager.m in Sources */,
 				B52AD82D1614C12200D0939A /* DataRequest.m in Sources */,
 				B52AD8311614C26000D0939A /* SettingViewController.m in Sources */,

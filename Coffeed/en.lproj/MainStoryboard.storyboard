@@ -136,7 +136,7 @@
                             <constraint firstItem="NFt-Ku-LN9" firstAttribute="trailing" secondItem="26j-Or-SqQ" secondAttribute="trailing" type="default" id="zMs-Dw-yo5"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Configuration" image="first" id="7"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="first" id="7"/>
                     <connections>
                         <outlet property="activeSwitch" destination="vXL-6Z-NMf" id="UnI-Sd-1BQ"/>
                         <outlet property="dgainField" destination="26j-Or-SqQ" id="VHl-nO-mTO"/>
@@ -151,7 +151,7 @@
             </objects>
             <point key="canvasLocation" x="653" y="498"/>
         </scene>
-        <!--Server View Controller - Server Settings-->
+        <!--Server View Controller - Servers-->
         <scene sceneID="8Zo-Vp-eCk">
             <objects>
                 <viewController id="j2Q-Yg-5OR" customClass="ServerViewController" sceneMemberID="viewController">
@@ -239,7 +239,7 @@
                             <constraint firstItem="wpz-Si-Qwh" firstAttribute="top" secondItem="Rj9-tr-jam" secondAttribute="top" type="default" id="jw0-OF-R8n"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Server Settings" id="pLI-0g-Im9"/>
+                    <tabBarItem key="tabBarItem" title="Servers" image="first" id="pLI-0g-Im9"/>
                     <navigationItem key="navigationItem" id="KFT-kj-w0c"/>
                     <connections>
                         <outlet property="tableView" destination="wpz-Si-Qwh" id="1Sb-yD-DQS"/>
@@ -428,7 +428,7 @@
                             <constraint firstItem="agE-Az-zQV" firstAttribute="leading" secondItem="pL9-FQ-0Vi" secondAttribute="leading" type="default" id="vAk-jc-UEN"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Temperature" image="second" id="6"/>
+                    <tabBarItem key="tabBarItem" title="Temperature" image="first" id="6"/>
                     <connections>
                         <outlet property="activeSwitch" destination="Udb-9s-yLF" id="WKq-81-ifz"/>
                         <outlet property="serverOutput" destination="BZH-kt-jgQ" id="FrU-d2-P3G"/>
@@ -464,7 +464,6 @@
     </scenes>
     <resources>
         <image name="first" width="16" height="16"/>
-        <image name="second" width="16" height="16"/>
     </resources>
     <classes>
         <class className="NSLayoutConstraint" superclassName="NSObject">
