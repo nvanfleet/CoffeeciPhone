@@ -10,11 +10,10 @@
 #import "DataRequest.h"
 #import "ServerConfiguration.h"
 
-@interface DataRequestManager : NSObject {
-    NSMutableArray *dataRequests;
-}
+@interface DataRequestManager : NSObject
 
-+ (id)sharedInstance;
++(id) sharedInstance;
 -(void) sendCommand:(NSString *)command callback:(id)cb;
 -(void) setCurrentServer:(ServerConfiguration *)sConf;
+
 @end

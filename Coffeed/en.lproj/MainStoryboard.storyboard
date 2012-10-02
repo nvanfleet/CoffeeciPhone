@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="11G56" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
@@ -159,8 +159,54 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wpz-Si-Qwh">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="62" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wpz-Si-Qwh">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="ServerCell" rowHeight="62" id="lNY-pP-OVt" customClass="ServerConfigurationCell">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="62"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="61"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqw-av-2al">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="22" id="S2m-8q-sYG"/>
+                                                        <constraint firstAttribute="height" constant="22" id="jrB-At-iYk"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BvE-mA-fSe">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="265" id="5bl-9x-p9T"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S06-75-4xV">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.67042012117346939" green="0.67042012117346939" blue="0.67042012117346939" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="rqw-av-2al" firstAttribute="centerY" secondItem="lNY-pP-OVt" secondAttribute="centerY" type="default" id="O55-lU-Ttd"/>
+                                            <constraint firstItem="S06-75-4xV" firstAttribute="leading" secondItem="rqw-av-2al" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="X7N-f2-eYX"/>
+                                            <constraint firstAttribute="trailing" secondItem="S06-75-4xV" secondAttribute="trailing" constant="20" type="default" id="bc3-t0-uGf"/>
+                                            <constraint firstAttribute="trailing" secondItem="BvE-mA-fSe" secondAttribute="trailing" constant="20" type="default" id="idI-Jq-aD8"/>
+                                            <constraint firstItem="BvE-mA-fSe" firstAttribute="top" secondItem="lNY-pP-OVt" secondAttribute="top" constant="4" id="iol-MI-cJ7"/>
+                                            <constraint firstItem="S06-75-4xV" firstAttribute="top" secondItem="BvE-mA-fSe" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ken-P1-vOo"/>
+                                            <constraint firstItem="BvE-mA-fSe" firstAttribute="leading" secondItem="rqw-av-2al" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="zw0-b9-eDQ"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="address" destination="S06-75-4xV" id="f7x-Tn-SQv"/>
+                                            <outlet property="image" destination="rqw-av-2al" id="JbB-KE-WgZ"/>
+                                            <outlet property="title" destination="BvE-mA-fSe" id="heT-GS-9rN"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rB9-e7-Px8">
                                 <constraints>
@@ -182,10 +228,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wpz-Si-Qwh" firstAttribute="leading" secondItem="Rj9-tr-jam" secondAttribute="leading" type="default" id="9SA-iE-MBj"/>
-                            <constraint firstItem="rB9-e7-Px8" firstAttribute="top" secondItem="Rj9-tr-jam" secondAttribute="top" constant="7" id="OiZ-0m-n3y"/>
+                            <constraint firstAttribute="bottom" secondItem="rB9-e7-Px8" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="DgR-dP-LKC"/>
                             <constraint firstItem="wpz-Si-Qwh" firstAttribute="trailing" secondItem="Rj9-tr-jam" secondAttribute="trailing" type="default" id="a7E-Yh-gRw"/>
                             <constraint firstItem="wpz-Si-Qwh" firstAttribute="bottom" secondItem="Rj9-tr-jam" secondAttribute="bottom" type="default" id="cIb-Cy-fH3"/>
-                            <constraint firstAttribute="trailing" secondItem="rB9-e7-Px8" secondAttribute="trailing" constant="8" id="g9D-nx-EE3"/>
+                            <constraint firstAttribute="trailing" secondItem="rB9-e7-Px8" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="eBb-dc-aJl"/>
                             <constraint firstItem="wpz-Si-Qwh" firstAttribute="top" secondItem="Rj9-tr-jam" secondAttribute="top" type="default" id="jw0-OF-R8n"/>
                         </constraints>
                     </view>
@@ -193,7 +239,7 @@
                     <navigationItem key="navigationItem" id="KFT-kj-w0c"/>
                     <connections>
                         <outlet property="tableView" destination="wpz-Si-Qwh" id="1Sb-yD-DQS"/>
-                        <segue destination="leq-8N-Nek" kind="custom" id="N03-vL-ctO"/>
+                        <segue destination="leq-8N-Nek" kind="modal" identifier="AddServerIdentifier" modalTransitionStyle="coverVertical" id="N03-vL-ctO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ezY-zp-c2z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -244,6 +290,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="okayButtonPushed:" destination="leq-8N-Nek" eventType="touchUpInside" id="B7j-ZT-h8L"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -267,6 +316,12 @@
                             <constraint firstItem="Ayh-PL-twQ" firstAttribute="top" secondItem="uIf-l8-527" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="vjh-0Y-5wE"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="address" destination="vCi-8K-dwC" id="F7O-2T-1EH"/>
+                        <outlet property="port" destination="B3W-4w-zQp" id="bxB-c4-9Wh"/>
+                        <outlet property="serverName" destination="uIf-l8-527" id="PFT-0r-WWy"/>
+                        <outlet property="view" destination="9Pm-ZE-kgg" id="tw9-iu-iKQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4J-5g-dMf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -375,8 +430,22 @@
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
+        <class className="ServerConfigurationCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ServerConfigurationCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="address" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="image" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="title" candidateClass="UILabel"/>
+            </relationships>
+        </class>
         <class className="ServerSettingViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ServerSettingViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="okayButtonPushed:"/>
+                <relationship kind="outlet" name="address" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="port" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="serverName" candidateClass="UITextField"/>
+            </relationships>
         </class>
         <class className="ServerViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ServerViewController.h"/>

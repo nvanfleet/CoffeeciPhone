@@ -7,30 +7,64 @@
 //
 
 #import "ServerViewController.h"
+#import "SavedDataManager.h"
+#import "ServerConfiguration.h"
+#import "ServerConfigurationCell.h"
 
 @interface ServerViewController ()
-
+@property (strong) NSDictionary *serverConfigurations;
 @end
 
 @implementation ServerViewController
 
 #pragma mark TableView Delegate and Datasource
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+	return [_serverConfigurations count];
+}
+
+-(ServerConfigurationCell *) createNewCell
+{
+    ServerConfigurationCell *cell = nil;
+    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ServerConfigurationCell" owner:nil options:nil];
+    
+    for(id currentObject in topLevelObjects)
+    {
+        if([currentObject isKindOfClass:[ServerConfigurationCell class]])
+        {
+            cell = (ServerConfigurationCell *)currentObject;
+            break;
+        }
+    }
+    
+    return cell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	NSArray *keys = [_serverConfigurations allKeys];
+	
+	ServerConfiguration *sConfig = [_serverConfigurations objectForKey:keys[[indexPath row]]];
+	
+    ServerConfigurationCell *cell = (ServerConfigurationCell *) [tableView dequeueReusableCellWithIdentifier:@"ServerConfigurationCell"];
+    
+    if (cell == nil)
+    {
+        cell = [self createNewCell];
+    }
+    
+	cell.title = sConfig.servername;
+	cell.address = [NSString stringWithFormat:@"%@:%@",sConfig.address,sConfig.port];
+    
+    return cell;
 }
 
 #pragma mark Actions
 
 -(IBAction) addServerEntry:(id)sender
 {
+	[self performSegueWithIdentifier:@"AddServerIdentifier" sender:sender];
 }
 
 #pragma mark Basic
@@ -40,6 +74,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+		self.serverConfigurations = [[[SavedDataManager alloc] init] serverDict];
+		
     }
     return self;
 }

@@ -11,6 +11,6 @@
 @interface ServerConfiguration : NSObject <NSCoding>
 @property (nonatomic) NSString *servername;
 @property (nonatomic) NSString *address;
-@property (nonatomic) NSString *port;
+@property (nonatomic) NSNumber *port;
 +(id) configurationWithDictionary:(NSDictionary *)dictionary;
 @end

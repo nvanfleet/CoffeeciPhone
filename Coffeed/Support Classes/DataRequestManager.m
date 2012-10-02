@@ -10,8 +10,8 @@
 
 @interface DataRequestManager ()
 @property (strong) ServerConfiguration *serverConf;
+@property (strong) NSMutableArray *dataRequests;
 @end
-
 
 static NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
 
@@ -30,9 +30,9 @@ static NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
 {
     DataRequest *dr = nil;
     
-    for(int i=0; i<[dataRequests count]; i++)
+    for(int i=0; i<[_dataRequests count]; i++)
     {
-        dr = [dataRequests objectAtIndex:i];
+        dr = [_dataRequests objectAtIndex:i];
         
         if(![dr active])
         {
@@ -41,7 +41,7 @@ static NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
     }
     
     dr = [DataRequest dataRequest];
-    [dataRequests addObject:dr];
+    [_dataRequests addObject:dr];
     
     return dr;
 }
@@ -101,8 +101,14 @@ static NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
 
 -(void) sendCommand:(NSString *)command callback:(id)cb
 {
-    DataRequest *dr = [self freeDataRequest];
-    [dr sendCommand:command address:ipaddress port:port callback:cb];
+	if(!_serverConf)
+	{
+		NSLog(@"no configuration so no sending request");
+		return;
+	}
+	
+	DataRequest *dr = [self freeDataRequest];
+    [dr sendCommand:command address:_serverConf.address port:_serverConf.port callback:cb];
 }
 
 #pragma mark - Singleton
@@ -112,9 +118,7 @@ static NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
 {
     if((self = [super init]))
     {
-        self.ipaddress = @"192.168.1.64";
-        self.port = [NSNumber numberWithInt:4949];
-        dataRequests = [[NSMutableArray alloc] init];
+        self.dataRequests = [[NSMutableArray alloc] init];
 		_serverConf = nil;
     }
     
@@ -130,42 +134,4 @@ static NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
     return shared;
 }
 
-//+ (DataManager*) sharedInstance 
-//{
-//    if (sharedInstance == nil) {
-//        sharedInstance = [[super allocWithZone:NULL] init];
-//    }
-//    
-//    return sharedInstance;
-//}
-//
-//// We don't want to allocate a new instance, so return the current one.
-//+ (id)allocWithZone:(NSZone*)zone {
-//    return [[self sharedInstance] retain];
-//}
-//
-//// Equally, we don't want to generate multiple copies of the singleton.
-//- (id)copyWithZone:(NSZone *)zone {
-//    return self;
-//}
-//
-//// Once again - do nothing, as we don't have a retain counter for this object.
-//- (id)retain {
-//    return self;
-//}
-//
-//// Replace the retain counter so we can never release this object.
-//- (NSUInteger)retainCount {
-//    return NSUIntegerMax;
-//}
-//
-//// This function is empty, as we don't want to let the user release this object.
-//- (oneway void)release {
-//    
-//}
-//
-////Do nothing, other than return the shared instance - as this is expected from autorelease.
-//- (id)autorelease {
-//    return self;
-//}
 @end

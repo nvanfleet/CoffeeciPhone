@@ -31,6 +31,7 @@
 		B537318A1619E7B400CD455D /* ServerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = B53731891619E7B400CD455D /* ServerConfiguration.m */; };
 		B55E0EDA1615F9B900DB2ED3 /* ServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55E0ED91615F9B900DB2ED3 /* ServerViewController.m */; };
 		B55E0EDE1615FAE300DB2ED3 /* ServerSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55E0EDD1615FAE300DB2ED3 /* ServerSettingViewController.m */; };
+		B56824E2161A8B5700D6FE0F /* ServerConfigurationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B56824E1161A8B5700D6FE0F /* ServerConfigurationCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,8 @@
 		B55E0ED91615F9B900DB2ED3 /* ServerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerViewController.m; sourceTree = "<group>"; };
 		B55E0EDC1615FAE300DB2ED3 /* ServerSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerSettingViewController.h; sourceTree = "<group>"; };
 		B55E0EDD1615FAE300DB2ED3 /* ServerSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerSettingViewController.m; sourceTree = "<group>"; };
+		B56824E0161A8B5700D6FE0F /* ServerConfigurationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConfigurationCell.h; sourceTree = "<group>"; };
+		B56824E1161A8B5700D6FE0F /* ServerConfigurationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConfigurationCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +181,8 @@
 				B55E0ED91615F9B900DB2ED3 /* ServerViewController.m */,
 				B55E0EDC1615FAE300DB2ED3 /* ServerSettingViewController.h */,
 				B55E0EDD1615FAE300DB2ED3 /* ServerSettingViewController.m */,
+				B56824E0161A8B5700D6FE0F /* ServerConfigurationCell.h */,
+				B56824E1161A8B5700D6FE0F /* ServerConfigurationCell.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 				B55E0EDE1615FAE300DB2ED3 /* ServerSettingViewController.m in Sources */,
 				B53731871619E78F00CD455D /* SavedDataManager.m in Sources */,
 				B537318A1619E7B400CD455D /* ServerConfiguration.m in Sources */,
+				B56824E2161A8B5700D6FE0F /* ServerConfigurationCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -38,7 +38,7 @@
 	return [ServerConfiguration configurationWithName:dict[@"servername"] address:dict[@"address"] port:dict[@"port"]];
 }
 
-+(id) configurationWithName:(NSString*)name address:(NSString*)address port:(NSString *)port
++(id) configurationWithName:(NSString*)name address:(NSString*)address port:(NSNumber *)port
 {
 	ServerConfiguration *sConf = [[ServerConfiguration alloc] init];
 	
