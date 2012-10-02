@@ -14,7 +14,5 @@
 @interface DataRequestManager : NSObject
 @property (strong) SavedDataManager *savedDataManager;
 +(id) sharedInstance;
--(void) sendCommand:(NSString *)command callback:(id)cb;
--(void) setCurrentServer:(ServerConfiguration *)sConf;
-
+-(void) sendCommand:(NSString *)command caller:(id)caller key:(NSString *)key;
 @end

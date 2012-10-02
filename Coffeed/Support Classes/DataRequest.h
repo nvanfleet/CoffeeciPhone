@@ -14,13 +14,13 @@
 @interface DataRequest : NSObject {
     BOOL active;
     int com_socket;
-    id callback;
 }
 @property BOOL active;
-@property (retain,nonatomic) id callback;
+@property (retain,nonatomic) id caller;
+@property (nonatomic) NSString *key;
 
 + (DataRequest *) dataRequest;
--(void) sendCommand:(NSString *)command address:(NSString *)address port:(NSNumber *)port callback:(id)cb;
+-(void) sendCommand:(NSString *)command address:(NSString *)address port:(NSNumber *)port caller:(id)caller key:(NSString *)key;
 @end
 
 

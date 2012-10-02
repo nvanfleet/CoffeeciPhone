@@ -10,7 +10,6 @@
 
 
 @interface DataRequestManager ()
-@property (strong) ServerConfiguration *serverConf;
 @property (strong) NSMutableArray *dataRequests;
 
 @end
@@ -18,11 +17,6 @@
 static NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
 
 @implementation DataRequestManager
-
--(void) setCurrentServer:(ServerConfiguration *)sConf
-{
-	self.serverConf = sConf;
-}
 
 #pragma mark - Data Requests
 
@@ -99,19 +93,25 @@ static NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
 
 #pragma mark Coffee
 
--(void) sendCommand:(NSString *)command callback:(id)cb
+-(void) sendCommand:(NSString *)command caller:(id)caller key:(NSString *)key
 {
-	if(!_serverConf)
+	if(![self activeServer])
 	{
 		NSLog(@"no configuration so no sending request");
 		return;
 	}
 	
-	DataRequest *dr = [self freeDataRequest];
-    [dr sendCommand:command address:_serverConf.address port:_serverConf.port callback:cb];
+	ServerConfiguration *as = [self activeServer];
+	DataRequest *request = [self freeDataRequest];
+    [request sendCommand:command address:as.address port:as.port caller:caller key:key];
 }
 
 #pragma mark - Singleton
+
+-(ServerConfiguration *) activeServer
+{
+	return [self.savedDataManager selectedServer];
+}
 
 // Get the shared instance and create it if necessary.
 -(id) init
@@ -119,11 +119,7 @@ static NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
     if((self = [super init]))
     {
         self.dataRequests = [[NSMutableArray alloc] init];
-		_serverConf = nil;
 		self.savedDataManager = [[SavedDataManager alloc] init];
-		
-		// Placeholder for now
-		self.serverConf = [self.savedDataManager selectedServer];
     }
     
     return self;

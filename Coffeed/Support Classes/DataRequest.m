@@ -42,12 +42,12 @@ static int connectWithTimeout (int sfd, struct sockaddr *addr, int addrlen, stru
 }
 
 @implementation DataRequest
-@synthesize callback,active;
+@synthesize active;
 
 -(void) failed:(NSString *)message
 {
     NSLog(@"%@",message);
-    [callback dataManagerDidFail:self message:message];
+    [self.caller dataManagerDidFail:self message:message];
 }
 
 -(BOOL) opencom_socketToAddress:(NSString *)address port:(NSNumber *)port
@@ -117,14 +117,15 @@ static int connectWithTimeout (int sfd, struct sockaddr *addr, int addrlen, stru
     
     dtbuf[z] = 0;
     
-    [callback dataManagerDidSucceed:self withObject:[NSString stringWithCString:(const char *) dtbuf encoding:NSUTF8StringEncoding]];
+    [self.caller dataManagerDidSucceed:self withObject:[NSString stringWithCString:(const char *) dtbuf encoding:NSUTF8StringEncoding]];
 }
 
--(void) sendCommand:(NSString *)command address:(NSString *)address port:(NSNumber *)port callback:(id)cb
+-(void) sendCommand:(NSString *)command address:(NSString *)address port:(NSNumber *)port caller:(id)caller key:(NSString *)key
 {
     active = YES;
-    self.callback = cb;
-    
+    self.caller = caller;
+    self.key = key;
+	
     if([self opencom_socketToAddress:address port:port])
     {
         [self sendCommand:command];
