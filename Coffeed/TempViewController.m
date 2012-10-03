@@ -14,6 +14,18 @@
 
 @implementation TempViewController
 
+#pragma mark Request Delegate
+
+- (void) dataManagerDidFail:(DataRequest *)nm message:(NSString *)message
+{
+}
+
+- (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
+{
+}
+
+#pragma mark Actions
+
 -(IBAction)stepperChanged:(id)sender
 {
 }
@@ -22,14 +34,14 @@
 {
 }
 
--(void) loadViewData
+-(void) updateViewData
 {
 }
 
 
 -(void) viewWillAppear:(BOOL)animated
 {
-	[self loadViewData];
+	[self updateViewData];
 }
 
 - (void)viewDidLoad

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataRequestManager.h"
 
-@interface SettingViewController : UIViewController <UITextFieldDelegate>
+@interface SettingViewController : UIViewController <UITextFieldDelegate,DataRequestDelegate>
 
 @property (assign) IBOutlet UITextField *setpointField;
 @property (assign) IBOutlet UITextField *pgainField;

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataRequestManager.h"
 
-@interface ServerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface ServerViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, DataRequestDelegate>
 @property (assign) IBOutlet UITableView *tableView;
 
 -(IBAction) addServerEntry:(id)sender;

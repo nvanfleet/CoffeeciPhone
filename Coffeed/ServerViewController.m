@@ -11,13 +11,28 @@
 #import "ServerConfiguration.h"
 #import "ServerConfigurationCell.h"
 #import "ServerSettingViewController.h"
-#import "DataRequestManager.h"
 
 @interface ServerViewController ()
 @property (assign) NSDictionary *serverConfigurations;
 @end
 
 @implementation ServerViewController
+
+#pragma mark Request Delegate
+
+- (void) dataManagerDidFail:(DataRequest *)nm message:(NSString *)message
+{
+	NSLog(@"failure %@",message);
+	
+	NSLog(@"key %@",[nm key]);
+}
+
+- (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
+{
+	NSLog(@"success %@",message);
+	
+	NSLog(@"key %@",[nm key]);
+}
 
 #pragma mark TableView Delegate and Datasource
 
@@ -138,8 +153,15 @@
 	[self.tableView selectRowAtIndexPath:index animated:YES scrollPosition:UITableViewScrollPositionMiddle];
 }
 
--(void) loadViewData
+-(void) updateViewData
 {
+	// Send off commands
+	for(int i=0; i < [self.serverConfigurations count]; i++)
+	{
+		ServerConfiguration *sc = [[self.serverConfigurations allValues] objectAtIndex:i];
+		
+		[[DataRequestManager sharedInstance] checkServerOnline:sc key:[NSString stringWithFormat:@"%d",i] caller:self];
+	}
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -150,7 +172,7 @@
 
 	[self.tableView reloadData];
 	
-	[self loadViewData];
+	[self updateViewData];
 }
 
 - (void)viewDidLoad

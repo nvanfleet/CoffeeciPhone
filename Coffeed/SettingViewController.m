@@ -7,11 +7,20 @@
 //
 
 #import "SettingViewController.h"
-#import "DataRequestManager.h"
 
 @implementation SettingViewController
 
-# pragma  mark - Actions
+#pragma mark Request Delegate
+
+- (void) dataManagerDidFail:(DataRequest *)nm message:(NSString *)message
+{
+}
+
+- (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
+{
+}
+
+#pragma  mark - Actions
 
 -(IBAction)updateButtonPressed:(id)sender
 {
@@ -61,14 +70,14 @@
 
 # pragma  mark - Basic
 
--(void) loadViewData
+-(void) updateViewData
 {
 }
 
 
 -(void) viewWillAppear:(BOOL)animated
 {
-	[self loadViewData];
+	[self updateViewData];
 }
 
 - (void)didReceiveMemoryWarning

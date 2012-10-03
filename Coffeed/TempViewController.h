@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataRequestManager.h"
 
-@interface TempViewController : UIViewController
+@interface TempViewController : UIViewController <DataRequestDelegate>
 
 @property (assign) IBOutlet UILabel *setLabel;
 @property (assign) IBOutlet UILabel *tempLabel;
