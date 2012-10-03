@@ -14,5 +14,6 @@
 @interface DataRequestManager : NSObject
 @property (strong) SavedDataManager *savedDataManager;
 +(id) sharedInstance;
--(void) sendCommand:(NSString *)command caller:(id)caller key:(NSString *)key;
+-(void) queueCommand:(NSString *)command caller:(id)caller key:(NSString *)key;
+-(void) removeRequestFromQueue:(DataRequest *)request;
 @end

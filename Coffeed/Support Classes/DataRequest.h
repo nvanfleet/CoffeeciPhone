@@ -12,15 +12,18 @@
 @protocol DataRequestDelegate;
 
 @interface DataRequest : NSObject {
-    BOOL active;
     int com_socket;
 }
 @property BOOL active;
 @property (retain,nonatomic) id caller;
 @property (nonatomic) NSString *key;
+@property (nonatomic) NSString *command;
+@property (nonatomic) NSString *address;
+@property (nonatomic) NSNumber *port;
 
 + (DataRequest *) dataRequest;
--(void) sendCommand:(NSString *)command address:(NSString *)address port:(NSNumber *)port caller:(id)caller key:(NSString *)key;
+-(void) setupCommand:(NSString *)command address:(NSString *)address port:(NSNumber *)port caller:(id)caller key:(NSString *)key;
+-(void) sendCommand;
 @end
 
 

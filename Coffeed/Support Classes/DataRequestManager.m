@@ -11,10 +11,8 @@
 
 @interface DataRequestManager ()
 @property (strong) NSMutableArray *dataRequests;
-
+@property (strong) NSMutableArray *queuedRequests;
 @end
-
-static NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
 
 @implementation DataRequestManager
 
@@ -91,9 +89,21 @@ static NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
 }
 */
 
+-(void) removeRequestFromQueue:(DataRequest *)request
+{
+	NSLog(@"remove request");
+	[self.dataRequests removeObject:request];
+	
+	// If there are anymore than send another command
+	if([self.queuedRequests count] > 0)
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[[self.queuedRequests objectAtIndex:0] sendCommand];
+		});
+}
+
 #pragma mark Coffee
 
--(void) sendCommand:(NSString *)command caller:(id)caller key:(NSString *)key
+-(void) queueCommand:(NSString *)command caller:(id)caller key:(NSString *)key
 {
 	if(![self activeServer])
 	{
@@ -103,7 +113,18 @@ static NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
 	
 	ServerConfiguration *as = [self activeServer];
 	DataRequest *request = [self freeDataRequest];
-    [request sendCommand:command address:as.address port:as.port caller:caller key:key];
+	[request setupCommand:command address:as.address port:as.port caller:caller key:key];
+	
+	int queuedRequests = [self.queuedRequests count];
+	
+	// Queue request
+	[self.queuedRequests addObject:request];
+	
+	// If it's the only object then run it immediately
+	if(queuedRequests == 0)
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[request sendCommand];
+		});
 }
 
 #pragma mark - Singleton
@@ -118,6 +139,7 @@ static NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
 {
     if((self = [super init]))
     {
+		self.queuedRequests = [[NSMutableArray alloc] init];
         self.dataRequests = [[NSMutableArray alloc] init];
 		self.savedDataManager = [[SavedDataManager alloc] init];
     }

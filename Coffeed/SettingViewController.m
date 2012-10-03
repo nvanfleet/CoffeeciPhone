@@ -32,7 +32,7 @@
     
     NSLog(@"Command %@",command);
     
-    [[DataRequestManager sharedInstance] sendCommand:command callback:self];
+    [[DataRequestManager sharedInstance] queueCommand:command caller:self key:@"nokey"];
 }
 
 # pragma  mark - DataRequest

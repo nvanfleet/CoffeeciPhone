@@ -7,6 +7,7 @@
 //
 
 #import "DataRequest.h"
+#import "DataRequestManager.h"
 
 #include <stdio.h>
 #include <sys/time.h>
@@ -46,8 +47,13 @@ static int connectWithTimeout (int sfd, struct sockaddr *addr, int addrlen, stru
 
 -(void) failed:(NSString *)message
 {
-    NSLog(@"%@",message);
+    NSLog(@"FAILURE %@",message);
     [self.caller dataManagerDidFail:self message:message];
+	
+	// Remove from queue
+	[[DataRequestManager sharedInstance] removeRequestFromQueue:self];
+	
+	self.active = NO;
 }
 
 -(BOOL) opencom_socketToAddress:(NSString *)address port:(NSNumber *)port
@@ -117,18 +123,32 @@ static int connectWithTimeout (int sfd, struct sockaddr *addr, int addrlen, stru
     
     dtbuf[z] = 0;
     
+	// Message caller
     [self.caller dataManagerDidSucceed:self withObject:[NSString stringWithCString:(const char *) dtbuf encoding:NSUTF8StringEncoding]];
+	
+	// Remove from queue
+	[[DataRequestManager sharedInstance] removeRequestFromQueue:self];
+	
+	self.active = NO;
 }
 
--(void) sendCommand:(NSString *)command address:(NSString *)address port:(NSNumber *)port caller:(id)caller key:(NSString *)key
+#pragma mark Command Wrangling
+
+-(void) setupCommand:(NSString *)command address:(NSString *)address port:(NSNumber *)port caller:(id)caller key:(NSString *)key
 {
-    active = YES;
+	active = YES;
     self.caller = caller;
     self.key = key;
-	
-    if([self opencom_socketToAddress:address port:port])
+	self.command = command;
+	self.address = address;
+	self.port = port;
+}
+
+-(void) sendCommand
+{
+	if([self opencom_socketToAddress:self.address port:self.port])
     {
-        [self sendCommand:command];
+        [self sendCommand:self.command];
         [self readOutput];
         close(com_socket);
     }
