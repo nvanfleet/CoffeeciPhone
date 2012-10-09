@@ -16,27 +16,7 @@
 
 @implementation DataRequestManager
 
-#pragma mark - Data Requests
 
--(DataRequest *) freeDataRequest
-{
-    DataRequest *dr = nil;
-    
-    for(int i=0; i<[_dataRequests count]; i++)
-    {
-        dr = [_dataRequests objectAtIndex:i];
-        
-        if(![dr active])
-        {
-            return dr;
-        }
-    }
-    
-    dr = [DataRequest dataRequest];
-    [_dataRequests addObject:dr];
-    
-    return dr;
-}
 
 #pragma mark - Data Cache
 
@@ -89,10 +69,34 @@
 }
 */
 
+-(DataRequest *) freeDataRequest
+{
+    DataRequest *dr = nil;
+    
+    for(int i=0; i<[_dataRequests count]; i++)
+    {
+        dr = [_dataRequests objectAtIndex:i];
+        
+        if(![dr active])
+        {
+			dr.active = YES;
+            return dr;
+        }
+    }
+    
+    dr = [DataRequest dataRequest];
+    [_dataRequests addObject:dr];
+	dr.active = YES;
+    
+    return dr;
+}
+
 -(void) removeRequestFromQueue:(DataRequest *)request
 {
 	NSLog(@"remove request");
-	[self.dataRequests removeObject:request];
+	[self.queuedRequests removeObject:request];
+	
+	request.active = NO;
 	
 	// If there are anymore than send another command
 	if([self.queuedRequests count] > 0)
@@ -105,15 +109,14 @@
 
 -(void) queueCommand:(NSString *)command caller:(id)caller key:(NSString *)key configuration:(ServerConfiguration *)configuration
 {
-	if(![self activeServer])
+	if(!configuration)
 	{
 		NSLog(@"no configuration so no sending request");
 		return;
 	}
 	
-	ServerConfiguration *as = [self activeServer];
 	DataRequest *request = [self freeDataRequest];
-	[request setupCommand:command address:as.address port:as.port caller:caller key:key];
+	[request setupCommand:command address:configuration.address port:configuration.port caller:caller key:key];
 	
 	int queuedRequests = [self.queuedRequests count];
 	

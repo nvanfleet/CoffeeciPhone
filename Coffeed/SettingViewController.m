@@ -12,9 +12,9 @@
 
 # pragma  mark - DataRequest
 
-- (void) dataManagerDidFail:(DataRequest *)nm message:(NSString *)message
+- (void) dataManagerDidFail:(DataRequest *)nm withObject:(id)object
 {
-    _serverOutput.text = message;
+    _serverOutput.text = object;
 }
 
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object

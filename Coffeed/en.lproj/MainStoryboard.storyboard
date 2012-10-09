@@ -193,10 +193,11 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="62" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wpz-Si-Qwh">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="62" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wpz-Si-Qwh">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.50196081399917603" green="0.25098040699958801" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="ServerCell" rowHeight="62" id="lNY-pP-OVt" customClass="ServerConfigurationCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="ServerCell" rowHeight="62" id="lNY-pP-OVt" customClass="ServerConfigurationCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="62"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -205,8 +206,8 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqw-av-2al">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="17a-ZU-Lwq"/>
-                                                        <constraint firstAttribute="height" constant="50" id="9c4-cj-gWl"/>
+                                                        <constraint firstAttribute="width" constant="22" id="8N1-VC-Z2M"/>
+                                                        <constraint firstAttribute="height" constant="24" id="RIi-2i-Cyo"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BvE-mA-fSe">
@@ -226,17 +227,17 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="S06-75-4xV" firstAttribute="leading" secondItem="rqw-av-2al" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="8Ug-FG-ogo"/>
-                                            <constraint firstItem="BvE-mA-fSe" firstAttribute="leading" secondItem="rqw-av-2al" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Vix-yW-PHK"/>
+                                            <constraint firstItem="rqw-av-2al" firstAttribute="centerY" secondItem="lNY-pP-OVt" secondAttribute="centerY" type="default" id="7i7-mI-g03"/>
+                                            <constraint firstItem="BvE-mA-fSe" firstAttribute="leading" secondItem="S06-75-4xV" secondAttribute="leading" type="default" id="PLc-aT-ppb"/>
                                             <constraint firstAttribute="trailing" secondItem="S06-75-4xV" secondAttribute="trailing" constant="20" type="default" id="bc3-t0-uGf"/>
                                             <constraint firstAttribute="trailing" secondItem="BvE-mA-fSe" secondAttribute="trailing" constant="20" type="default" id="idI-Jq-aD8"/>
-                                            <constraint firstItem="rqw-av-2al" firstAttribute="centerY" secondItem="lNY-pP-OVt" secondAttribute="centerY" type="default" id="jAc-kb-sky"/>
                                             <constraint firstItem="S06-75-4xV" firstAttribute="top" secondItem="BvE-mA-fSe" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ken-P1-vOo"/>
+                                            <constraint firstItem="rqw-av-2al" firstAttribute="leading" secondItem="lNY-pP-OVt" secondAttribute="leading" constant="12" id="xjV-Vu-Msc"/>
                                             <constraint firstItem="BvE-mA-fSe" firstAttribute="top" secondItem="lNY-pP-OVt" secondAttribute="top" constant="4" id="ydj-6j-rBn"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="address" destination="S06-75-4xV" id="f7x-Tn-SQv"/>
-                                            <outlet property="image" destination="rqw-av-2al" id="JbB-KE-WgZ"/>
+                                            <outlet property="statusImage" destination="rqw-av-2al" id="PhV-bf-EWq"/>
                                             <outlet property="title" destination="BvE-mA-fSe" id="heT-GS-9rN"/>
                                         </connections>
                                     </tableViewCell>
@@ -534,7 +535,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ServerConfigurationCell.h"/>
             <relationships>
                 <relationship kind="outlet" name="address" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="image" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="statusImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="title" candidateClass="UILabel"/>
             </relationships>
         </class>

@@ -18,22 +18,6 @@
 
 @implementation ServerViewController
 
-#pragma mark Request Delegate
-
-- (void) dataManagerDidFail:(DataRequest *)nm message:(NSString *)message
-{
-	NSLog(@"failure %@",message);
-	
-	NSLog(@"key %@",[nm key]);
-}
-
-- (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
-{
-//	NSLog(@"success %@",message);
-	
-	NSLog(@"key %@",[nm key]);
-}
-
 #pragma mark TableView Delegate and Datasource
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -122,6 +106,31 @@
 	[self performSegueWithIdentifier:@"AddServerIdentifier" sender:nil];
 }
 
+
+#pragma mark Request Delegate
+
+- (void) dataManagerDidFail:(DataRequest *)nm withObject:(id)object
+{
+	NSLog(@"failure message %@ key %@",object,[nm key]);
+	
+	int keyIndex = [[nm key]integerValue];
+	NSIndexPath *index = [NSIndexPath indexPathForRow:keyIndex inSection:0];
+	ServerConfigurationCell *cell = (ServerConfigurationCell *) [self.tableView cellForRowAtIndexPath:index];
+	
+	cell.statusImage.image = [UIImage imageNamed:@"21-skull"];
+}
+
+- (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
+{
+	NSLog(@"success message %@ key %@",object,[nm key]);
+	
+	int keyIndex = [[nm key]integerValue];
+	NSIndexPath *index = [NSIndexPath indexPathForRow:keyIndex inSection:0];
+	ServerConfigurationCell *cell = (ServerConfigurationCell *) [self.tableView cellForRowAtIndexPath:index];
+	
+	cell.statusImage.image = [UIImage imageNamed:@"13-target"];
+}
+
 #pragma mark Basic
 
 -(void) setActiveServer
@@ -158,6 +167,7 @@
 	// Send off commands
 	for(int i=0; i < [self.serverConfigurations count]; i++)
 	{
+		NSLog(@"send request");
 		ServerConfiguration *sc = [[self.serverConfigurations allValues] objectAtIndex:i];
 		
 		[[DataRequestManager sharedInstance] checkServerOnline:sc key:[NSString stringWithFormat:@"%d",i] caller:self];

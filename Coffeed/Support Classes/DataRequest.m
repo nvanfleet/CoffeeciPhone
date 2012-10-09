@@ -48,12 +48,10 @@ static int connectWithTimeout (int sfd, struct sockaddr *addr, int addrlen, stru
 -(void) failed:(NSString *)message
 {
     NSLog(@"FAILURE %@",message);
-    [self.caller dataManagerDidFail:self message:message];
+    [self.caller dataManagerDidFail:self withObject:message];
 	
 	// Remove from queue
 	[[DataRequestManager sharedInstance] removeRequestFromQueue:self];
-	
-	self.active = NO;
 }
 
 -(BOOL) opencom_socketToAddress:(NSString *)address port:(NSNumber *)port
@@ -73,6 +71,8 @@ static int connectWithTimeout (int sfd, struct sockaddr *addr, int addrlen, stru
     server_addr.sin_port =  htons([port intValue]);
     server_addr.sin_addr.s_addr = inet_addr([address cStringUsingEncoding:NSUTF8StringEncoding]);
 
+	NSLog(@"address %@", address);
+	
     if ( server_addr.sin_addr.s_addr == INADDR_NONE )
     {
         [self failed:@"bad address."];
@@ -128,15 +128,12 @@ static int connectWithTimeout (int sfd, struct sockaddr *addr, int addrlen, stru
 	
 	// Remove from queue
 	[[DataRequestManager sharedInstance] removeRequestFromQueue:self];
-	
-	self.active = NO;
 }
 
 #pragma mark Command Wrangling
 
 -(void) setupCommand:(NSString *)command address:(NSString *)address port:(NSNumber *)port caller:(id)caller key:(NSString *)key
 {
-	active = YES;
     self.caller = caller;
     self.key = key;
 	self.command = command;
@@ -167,7 +164,7 @@ static int connectWithTimeout (int sfd, struct sockaddr *addr, int addrlen, stru
 {
     if((self = [super init]))
     {
-        active = YES;
+        self.active = NO;
     }
     
     return self;

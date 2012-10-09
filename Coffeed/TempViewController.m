@@ -16,7 +16,7 @@
 
 #pragma mark Request Delegate
 
-- (void) dataManagerDidFail:(DataRequest *)nm message:(NSString *)message
+- (void) dataManagerDidFail:(DataRequest *)nm withObject:(id)object
 {
 }
 
