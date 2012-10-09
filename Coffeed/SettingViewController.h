@@ -17,7 +17,6 @@
 @property (assign) IBOutlet UITextField *dgainField;
 
 @property (assign) IBOutlet UIButton *updateButton;
-@property (assign) IBOutlet UISwitch *activeSwitch;
     
 @property (assign) IBOutlet UITextView *serverOutput;
 
