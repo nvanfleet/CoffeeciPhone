@@ -10,40 +10,6 @@
 
 @implementation SettingViewController
 
-#pragma mark Request Delegate
-
-- (void) dataManagerDidFail:(DataRequest *)nm message:(NSString *)message
-{
-}
-
-- (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
-{
-}
-
-#pragma  mark - Actions
-
--(IBAction)updateButtonPressed:(id)sender
-{
-}
-
--(IBAction)switchMoved:(UISwitch *)sender
-{
-    NSString *command = nil;
-    
-    if([sender isOn])
-    {
-        command = @"AWAKE";
-    }
-    else
-    {
-        command = @"SLEEP";
-    }
-    
-    NSLog(@"Command %@",command);
-    
-    [[DataRequestManager sharedInstance] queueCommand:command caller:self key:@"nokey"];
-}
-
 # pragma  mark - DataRequest
 
 - (void) dataManagerDidFail:(DataRequest *)nm message:(NSString *)message
@@ -57,6 +23,30 @@
     
     _serverOutput.text = (NSString *)object;
 }
+
+#pragma  mark - Actions
+
+-(IBAction)shutdownSystem:(id)sender
+{
+}
+
+//-(IBAction)switchMoved:(UISwitch *)sender
+//{
+//    NSString *command = nil;
+//    
+//    if([sender isOn])
+//    {
+//        command = @"AWAKE";
+//    }
+//    else
+//    {
+//        command = @"SLEEP";
+//    }
+//    
+//    NSLog(@"Command %@",command);
+//    
+//    [[DataRequestManager sharedInstance] queueCommand:command caller:self key:@"nokey"];
+//}
 
 # pragma  mark - Basic
 

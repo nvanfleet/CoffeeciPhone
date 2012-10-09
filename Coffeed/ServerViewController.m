@@ -29,7 +29,7 @@
 
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
 {
-	NSLog(@"success %@",message);
+//	NSLog(@"success %@",message);
 	
 	NSLog(@"key %@",[nm key]);
 }

@@ -30,14 +30,19 @@
 {
 }
 
--(IBAction)switchMoved:(id)sender
+-(IBAction)sleepSwitchChanged:(id)sender
 {
 }
+
+-(IBAction)steamSwitchChanged:(id)sender
+{
+}
+
+#pragma mark Basic
 
 -(void) updateViewData
 {
 }
-
 
 -(void) viewWillAppear:(BOOL)animated
 {
