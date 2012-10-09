@@ -137,6 +137,11 @@
 	[self queueCommand:command caller:caller key:key configuration:as];
 }
 
+-(void) queueCommand:(NSString *)command caller:(id)caller
+{
+	[self queueCommand:command caller:caller key:command];
+}
+
 -(void) checkServerOnline:(ServerConfiguration *)serverConfiguration key:(NSString *)key caller:(id)caller
 {
 	[self queueCommand:@"VERSION" caller:caller key:key configuration:serverConfiguration];

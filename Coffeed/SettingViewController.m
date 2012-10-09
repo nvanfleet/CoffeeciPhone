@@ -14,12 +14,14 @@
 
 - (void) dataManagerDidFail:(DataRequest *)nm withObject:(id)object
 {
+	NSLog(@"failure message %@ key %@",object,[nm key]);
+	
     _serverOutput.text = object;
 }
 
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
 {
-    NSLog(@"%@",(NSString *)object);
+   NSLog(@"success message %@ key %@",object,[nm key]);
     
     _serverOutput.text = (NSString *)object;
 }
@@ -30,24 +32,6 @@
 {
 }
 
-//-(IBAction)switchMoved:(UISwitch *)sender
-//{
-//    NSString *command = nil;
-//    
-//    if([sender isOn])
-//    {
-//        command = @"AWAKE";
-//    }
-//    else
-//    {
-//        command = @"SLEEP";
-//    }
-//    
-//    NSLog(@"Command %@",command);
-//    
-//    [[DataRequestManager sharedInstance] queueCommand:command caller:self key:@"nokey"];
-//}
-
 # pragma  mark - Basic
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField
@@ -56,14 +40,12 @@
     return YES;
 }
 
-
-
 # pragma  mark - Basic
 
 -(void) updateViewData
 {
+	[[DataRequestManager sharedInstance] queueCommand:@"BPOINT,SPOINT,PGAIN,IGAIN,DGAIN,TOFFSET,OFFSET" caller:self key:@"config"];
 }
-
 
 -(void) viewWillAppear:(BOOL)animated
 {
@@ -79,13 +61,6 @@
 }
 
 #pragma mark - View lifecycle
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad

@@ -18,10 +18,12 @@
 
 - (void) dataManagerDidFail:(DataRequest *)nm withObject:(id)object
 {
+	NSLog(@"failure message %@ key %@",object,[nm key]);
 }
 
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
 {
+	NSLog(@"success message %@ key %@",object,[nm key]);
 }
 
 #pragma mark Actions
@@ -30,18 +32,35 @@
 {
 }
 
--(IBAction)sleepSwitchChanged:(id)sender
+-(IBAction)sleepSwitchChanged:(UISwitch *)sender
 {
+	NSString *command;
+	
+	if([sender isOn])
+		command = [NSString stringWithFormat:@"SLEEP=TRUE"];
+	else
+		command = [NSString stringWithFormat:@"BMODE=FALSE"];
+	
+	[[DataRequestManager sharedInstance] queueCommand:command caller:self key:@"SLEEP"];
 }
 
--(IBAction)steamSwitchChanged:(id)sender
+-(IBAction)steamSwitchChanged:(UISwitch *)sender
 {
+	NSString *command;
+	
+	if(![sender isOn])
+		command = [NSString stringWithFormat:@"BMODE=TRUE"];
+	else
+		command = [NSString stringWithFormat:@"BMODE=FALSE"];
+	
+	[[DataRequestManager sharedInstance] queueCommand:command caller:self key:@"BMODE"];
 }
 
 #pragma mark Basic
 
 -(void) updateViewData
 {
+	[[DataRequestManager sharedInstance] queueCommand:@"SPOINT,TPOINT,BMODE,SLEEP" caller:self key:@"CONFIG"];
 }
 
 -(void) viewWillAppear:(BOOL)animated
