@@ -27,6 +27,7 @@
 		B52CED3A161B5FD80053F612 /* status-available.png in Resources */ = {isa = PBXBuildFile; fileRef = B52CED37161B5FD80053F612 /* status-available.png */; };
 		B53731871619E78F00CD455D /* SavedDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B53731861619E78F00CD455D /* SavedDataManager.m */; };
 		B537318A1619E7B400CD455D /* ServerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = B53731891619E7B400CD455D /* ServerConfiguration.m */; };
+		B55C34781625088500BD4C06 /* coffeec.c in Sources */ = {isa = PBXBuildFile; fileRef = B55C34771625088500BD4C06 /* coffeec.c */; };
 		B55E0EDA1615F9B900DB2ED3 /* ServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55E0ED91615F9B900DB2ED3 /* ServerViewController.m */; };
 		B55E0EDE1615FAE300DB2ED3 /* ServerSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55E0EDD1615FAE300DB2ED3 /* ServerSettingViewController.m */; };
 		B56824E2161A8B5700D6FE0F /* ServerConfigurationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B56824E1161A8B5700D6FE0F /* ServerConfigurationCell.m */; };
@@ -57,13 +58,14 @@
 		B52AD8301614C26000D0939A /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		B52AD8351614C40900D0939A /* TempViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempViewController.h; sourceTree = "<group>"; };
 		B52AD8361614C40900D0939A /* TempViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempViewController.m; sourceTree = "<group>"; };
-		B52AD8391614C59700D0939A /* coffeec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = coffeec.c; sourceTree = "<group>"; };
 		B52CED36161B5FD80053F612 /* status-unavailable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-unavailable.png"; sourceTree = "<group>"; };
 		B52CED37161B5FD80053F612 /* status-available.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "status-available.png"; sourceTree = "<group>"; };
 		B53731851619E78F00CD455D /* SavedDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedDataManager.h; sourceTree = "<group>"; };
 		B53731861619E78F00CD455D /* SavedDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedDataManager.m; sourceTree = "<group>"; };
 		B53731881619E7B300CD455D /* ServerConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConfiguration.h; sourceTree = "<group>"; };
 		B53731891619E7B400CD455D /* ServerConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConfiguration.m; sourceTree = "<group>"; };
+		B55C34771625088500BD4C06 /* coffeec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = coffeec.c; sourceTree = "<group>"; };
+		B55C34791625089E00BD4C06 /* coffeec.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = coffeec.h; sourceTree = "<group>"; };
 		B55E0ED81615F9B900DB2ED3 /* ServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerViewController.h; sourceTree = "<group>"; };
 		B55E0ED91615F9B900DB2ED3 /* ServerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerViewController.m; sourceTree = "<group>"; };
 		B55E0EDC1615FAE300DB2ED3 /* ServerSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerSettingViewController.h; sourceTree = "<group>"; };
@@ -180,7 +182,8 @@
 		B52AD8381614C42400D0939A /* CoffeeC */ = {
 			isa = PBXGroup;
 			children = (
-				B52AD8391614C59700D0939A /* coffeec.c */,
+				B55C34791625089E00BD4C06 /* coffeec.h */,
+				B55C34771625088500BD4C06 /* coffeec.c */,
 			);
 			name = CoffeeC;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				B53731871619E78F00CD455D /* SavedDataManager.m in Sources */,
 				B537318A1619E7B400CD455D /* ServerConfiguration.m in Sources */,
 				B56824E2161A8B5700D6FE0F /* ServerConfigurationCell.m in Sources */,
+				B55C34781625088500BD4C06 /* coffeec.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
