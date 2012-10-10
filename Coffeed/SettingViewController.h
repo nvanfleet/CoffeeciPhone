@@ -11,16 +11,16 @@
 
 @interface SettingViewController : UIViewController <UITextFieldDelegate,DataRequestDelegate>
 
-@property (assign) IBOutlet UITextField *setpointField;
+@property (assign) IBOutlet UITextField *brewPointField;
+@property (assign) IBOutlet UITextField *steamPointField;
 @property (assign) IBOutlet UITextField *pgainField;
 @property (assign) IBOutlet UITextField *igainField;
 @property (assign) IBOutlet UITextField *dgainField;
-
-@property (assign) IBOutlet UIButton *updateButton;
+@property (assign) IBOutlet UITextField *boilerOffset;
+@property (assign) IBOutlet UITextField *tempOffset;
     
 @property (assign) IBOutlet UITextView *serverOutput;
 
--(IBAction)updateButtonPressed:(id)sender;
--(IBAction)switchMoved:(id)sender;
+-(IBAction)shutdownSystem:(id)sender;
 
 @end

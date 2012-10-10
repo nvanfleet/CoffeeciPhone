@@ -10,52 +10,26 @@
 
 @implementation SettingViewController
 
-#pragma mark Request Delegate
+# pragma  mark - DataRequest
 
-- (void) dataManagerDidFail:(DataRequest *)nm message:(NSString *)message
+- (void) dataManagerDidFail:(DataRequest *)nm withObject:(id)object
 {
+	NSLog(@"failure message %@ key %@",object,[nm key]);
+	
+    _serverOutput.text = object;
 }
 
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
 {
+   NSLog(@"success message %@ key %@",object,[nm key]);
+    
+    _serverOutput.text = (NSString *)object;
 }
 
 #pragma  mark - Actions
 
--(IBAction)updateButtonPressed:(id)sender
+-(IBAction)shutdownSystem:(id)sender
 {
-}
-
--(IBAction)switchMoved:(UISwitch *)sender
-{
-    NSString *command = nil;
-    
-    if([sender isOn])
-    {
-        command = @"AWAKE";
-    }
-    else
-    {
-        command = @"SLEEP";
-    }
-    
-    NSLog(@"Command %@",command);
-    
-    [[DataRequestManager sharedInstance] queueCommand:command caller:self key:@"nokey"];
-}
-
-# pragma  mark - DataRequest
-
-- (void) dataManagerDidFail:(DataRequest *)nm message:(NSString *)message
-{
-    _serverOutput.text = message;
-}
-
-- (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
-{
-    NSLog(@"%@",(NSString *)object);
-    
-    _serverOutput.text = (NSString *)object;
 }
 
 # pragma  mark - Basic
@@ -66,14 +40,12 @@
     return YES;
 }
 
-
-
 # pragma  mark - Basic
 
 -(void) updateViewData
 {
+	[[DataRequestManager sharedInstance] queueCommand:@"BPOINT,SPOINT,PGAIN,IGAIN,DGAIN,TOFFSET,OFFSET" caller:self key:@"config"];
 }
-
 
 -(void) viewWillAppear:(BOOL)animated
 {
@@ -89,13 +61,6 @@
 }
 
 #pragma mark - View lifecycle
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad

@@ -15,11 +15,10 @@
 @property (assign) IBOutlet UILabel *tempLabel;
 @property (assign) IBOutlet UIStepper *tempStepper;
 
-@property (assign) IBOutlet UISwitch *activeSwitch;
-
 @property (assign) IBOutlet UITextView *serverOutput;
 
 -(IBAction)stepperChanged:(id)sender;
--(IBAction)switchMoved:(id)sender;
+-(IBAction)sleepSwitchChanged:(id)sender;
+-(IBAction)steamSwitchChanged:(id)sender;
 
 @end

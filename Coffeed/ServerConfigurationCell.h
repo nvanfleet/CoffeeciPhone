@@ -11,5 +11,5 @@
 @interface ServerConfigurationCell : UITableViewCell
 @property (assign) IBOutlet UILabel *title;
 @property (assign) IBOutlet UILabel *address;
-@property (assign) IBOutlet UIImageView *image;
+@property (assign) IBOutlet UIImageView *statusImage;
 @end
