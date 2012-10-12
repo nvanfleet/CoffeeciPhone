@@ -27,7 +27,7 @@
 		B537318A1619E7B400CD455D /* ServerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = B53731891619E7B400CD455D /* ServerConfiguration.m */; };
 		B55E0EDA1615F9B900DB2ED3 /* ServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55E0ED91615F9B900DB2ED3 /* ServerViewController.m */; };
 		B55E0EDE1615FAE300DB2ED3 /* ServerSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55E0EDD1615FAE300DB2ED3 /* ServerSettingViewController.m */; };
-		B56439811626466000044A1D /* coffeec.c in Sources */ = {isa = PBXBuildFile; fileRef = B564397F1626466000044A1D /* coffeec.c */; };
+		B55F79B51628C39700F0BA14 /* coffeec.c in Sources */ = {isa = PBXBuildFile; fileRef = B564397F1626466000044A1D /* coffeec.c */; };
 		B56824E2161A8B5700D6FE0F /* ServerConfigurationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B56824E1161A8B5700D6FE0F /* ServerConfigurationCell.m */; };
 		B5764402162463ED00E1B561 /* button-plus-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = B57643FA162463ED00E1B561 /* button-plus-highlighted.png */; };
 		B5764403162463ED00E1B561 /* button-x-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = B57643FB162463ED00E1B561 /* button-x-highlighted.png */; };
@@ -333,6 +333,7 @@
 				B53731871619E78F00CD455D /* SavedDataManager.m in Sources */,
 				B537318A1619E7B400CD455D /* ServerConfiguration.m in Sources */,
 				B56824E2161A8B5700D6FE0F /* ServerConfigurationCell.m in Sources */,
+				B55F79B51628C39700F0BA14 /* coffeec.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
