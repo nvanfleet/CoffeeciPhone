@@ -12,21 +12,26 @@
 
 #include <stdio.h>
 #include <stdarg.h>
+#include <string.h>
+#include <stdint.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
+
 #include <sys/time.h>
+
 #include <sys/poll.h>
 #include <netinet/tcp.h>
-#include <sys/types.h>
 #include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
 #include <errno.h>
-#include <string.h>
 #include <limits.h>
-#include <unistd.h>
+
 #include <fcntl.h>
 #include <errno.h>
-#include <stdlib.h>
-#include <netinet/in.h>
-#include <stdint.h>
-#include <arpa/inet.h>
+
 
 #pragma mark - Setup Code
 
@@ -45,27 +50,6 @@ static int connectWithTimeout (int sfd, struct sockaddr *addr, int addrlen, stru
     ret = connect (sfd, addr, addrlen);
     setsockopt (sfd, SOL_SOCKET, SO_RCVTIMEO, (char *)&sv, sizeof sv);
     return ret;
-}
-
-void printhelp()
-{
-	fprintf(stderr, "-a IPADDRESS -p PORT -c COMMAND\n");
-	printf(
-		"Coffeec Version 2.0"
-		"SETTING\n------------------\n"
-		"VERSION            Get the version of coffeed\n"
-		"SHUTD              Shutdown the system (stops daemon)\n"
-		"BMODE=<TRUE/FALSE> Set to brewmode or steam mode\n"
-		"SLEEP=<TRUE/FALSE> Set to sleep or wake\n"
-		"TPOINT             Get the current temperature (read only)\n"
-		"BPOINT=<float>     Set Brew setpoint\n"
-		"SPOINT=<float>     Set Steam setpoint\n"
-		"PGAIN=<float>      Set PID p-gain\n"
-		"IGAIN=<float>      Set PID i-gain\n"
-		"DGAIN=<float>      Set PID d-gain\n"
-		"TOFFEST=<float>    Set thermocouple accuracy offset\n"
-		"OFFSET=<float>     Set boiler temp offset\n"
-		);
 }
 
 int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
@@ -88,7 +72,6 @@ int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
     if(!abort)
     {
         fprintf(stderr, "No Command given\n");
-		printhelp();
         exit(0);
     }
     else
@@ -168,45 +151,3 @@ int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
 	
 	return 1;
 }
-
-int main(int argc, char **argv)
-{
-	int buffersize = 256;
-	char buffer[buffersize];
-	
-    int opt;
-	int port;
-	int abort = 0;
-	char *command;
-	char *addr;
-	
-    //Defaults
-    addr = "127.0.0.1";
-    port = 4949;
-    
-	//INCLUDED ARGUMENTS FROM CLI
-	while((opt = getopt(argc, argv, "a:p:c:")) > 0) 
-	{
-		switch(opt)
-		{
-            case 'a':
-				addr = (char *)optarg;
-				break;
-            case 'p':
-				port = atoi(optarg);
-                break;
-            case 'c':
-				abort = 1;
-				command = (char *)optarg;
-				break;   
-            default:
-		printhelp();
-		exit(0);
-        }
-    }
-	
-	sendMessage(addr, port, command, buffer, buffersize);
-	    
-    exit(1);
-}
-
