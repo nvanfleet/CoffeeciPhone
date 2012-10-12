@@ -141,8 +141,9 @@ int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
     else
 		printf("Connect Success\n");
 	
-	z = snprintf(buffer, bsize, &command[0]);
+//	z = snprintf(buffer, bsize, &command[0]);
 //	snprintf(&buffer[z], bsize-z, "\0");
+	strncpy(buffer, command, bsize);
 	
     // SEND
     z = send(com_socket, buffer, strlen(buffer), 0);
