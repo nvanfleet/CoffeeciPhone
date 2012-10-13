@@ -2,11 +2,11 @@
 /*       coffeedc -- A PID system for espresso machines                       */
 /* ------------------------------------------------------------------------- */
 
-/*	
-
+/*
+ 
  A PID client for monitoring and controlling the heat of a espresso machine.
-
-*/
+ 
+ */
 
 /* ------------------------------------------------------------------------- */
 
@@ -67,12 +67,15 @@ int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
     server_address.sin_addr.s_addr = address;
 	
     if (server_address.sin_addr.s_addr == INADDR_NONE)
+	{
         fprintf(stderr, "Server address failed\n");
+		return 0;
+	}
 	
     if(!abort)
     {
         fprintf(stderr, "No Command given\n");
-        exit(0);
+        return 0;
     }
     else
     {
@@ -82,7 +85,10 @@ int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
     // Create com_socket
     com_socket = socket(PF_INET, SOCK_STREAM, 0);
     if (com_socket == -1)
+	{
 		fprintf(stderr, "Socket failed\n");
+		return 0;
+	}
 	
     /*
 	 // Client
@@ -120,32 +126,25 @@ int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
         }
         
         fprintf(stderr, "Connect failed\n");
+		
+		return 0;
     }
-    else
-		printf("Connect Success\n");
-	
-//	z = snprintf(buffer, bsize, &command[0]);
-//	snprintf(&buffer[z], bsize-z, "\0");
-	strncpy(buffer, command, bsize);
 	
     // SEND
-    z = send(com_socket, buffer, strlen(buffer), 0);
+    z = send(com_socket, command, strlen(command)+1, 0);
     if (z < 0)
+	{
         fprintf(stderr,"send failure\n");
-    else
-		printf("Send Succeeded\n");
+		return 0;
+	}
     
     // READ
     z = recv(com_socket, buffer, bsize, 0);
     if (z < 0)
+	{
         fprintf(stderr,"receive failure\n");
-    else
-		printf("Receive Succeeded\n");
-    
-//	snprintf(&buffer[z], bsize-z,"\0");
-	
-    // Output
-    printf("Received Response: %s\n", buffer);
+		return 0;
+	}
     
     close(com_socket);
 	
