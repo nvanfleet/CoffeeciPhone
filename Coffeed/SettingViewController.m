@@ -14,22 +14,56 @@
 
 - (void) dataManagerDidFail:(DataRequest *)nm withObject:(id)object
 {
-	NSLog(@"failure message %@ key %@",object,[nm key]);
-	
-    _serverOutput.text = object;
+
 }
 
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
 {
-   NSLog(@"success message %@ key %@",object,[nm key]);
-    
-    _serverOutput.text = (NSString *)object;
+	NSDictionary *rdict = object;
+	
+	if([nm.key isEqualToString:@"config"])
+	{
+		self.brewPointField.text = rdict[@"BPOINT"];
+		self.steamPointField.text = rdict[@"SPOINT"];
+		self.pgainField.text = rdict[@"PGAIN"];
+		self.igainField.text = rdict[@"IGAIN"];
+		self.dgainField.text = rdict[@"DGAIN"];
+		self.boilerOffset.text = rdict[@"OFFSET"];
+		self.tempOffset.text = rdict[@"TOFFSET"];
+		
+		if(rdict[@"CELSIUS"] != nil)
+		{
+			if([rdict[@"CELSIUS"] boolValue])
+				self.celsiusSwitch.on = TRUE;
+			else
+				self.celsiusSwitch.on = FALSE;
+		}
+	}
+	else if([nm.key isEqualToString:@"celcius"])
+	{
+	}
+	else if([nm.key isEqualToString:@"shutdown"])
+	{
+	}
 }
 
 #pragma  mark - Actions
 
+-(IBAction)celsiusSwitchChanged:(id)sender
+{
+	NSString *command;
+	
+	if([sender isOn])
+		command = [NSString stringWithFormat:@"CELSIUS=1"];
+	else
+		command = [NSString stringWithFormat:@"CELSIUS=0"];
+	
+	[[DataRequestManager sharedInstance] queueCommand:command caller:self key:@"celcius"];
+}
+
 -(IBAction)shutdownSystem:(id)sender
 {
+	[[DataRequestManager sharedInstance] queueCommand:@"SHUTD" caller:self key:@"shutdown"];
 }
 
 # pragma  mark - Basic
@@ -44,7 +78,7 @@
 
 -(void) updateViewData
 {
-	[[DataRequestManager sharedInstance] queueCommand:@"BPOINT,SPOINT,PGAIN,IGAIN,DGAIN,TOFFSET,OFFSET" caller:self key:@"config"];
+	[[DataRequestManager sharedInstance] queueCommand:@"BPOINT,SPOINT,PGAIN,IGAIN,DGAIN,OFFSET,TOFFSET,CELSIUS" caller:self key:@"config"];
 }
 
 -(void) viewWillAppear:(BOOL)animated

@@ -14,8 +14,8 @@
 @property (assign) IBOutlet UILabel *setLabel;
 @property (assign) IBOutlet UILabel *tempLabel;
 @property (assign) IBOutlet UIStepper *tempStepper;
-
-@property (assign) IBOutlet UITextView *serverOutput;
+@property (assign) IBOutlet UISwitch *activeSwitch;
+@property (assign) IBOutlet UISwitch *steamSwitch;
 
 -(IBAction)stepperChanged:(id)sender;
 -(IBAction)sleepSwitchChanged:(id)sender;

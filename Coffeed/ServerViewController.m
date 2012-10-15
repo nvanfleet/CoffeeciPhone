@@ -177,10 +177,10 @@
 -(void) viewWillAppear:(BOOL)animated
 {
 	self.serverConfigurations = [[[DataRequestManager sharedInstance] savedDataManager] configurations];
-	
-	[self setActiveServer];							 
 
 	[self.tableView reloadData];
+	
+	[self setActiveServer];
 	
 	[self updateViewData];
 }

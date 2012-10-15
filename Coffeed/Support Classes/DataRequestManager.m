@@ -93,7 +93,6 @@
 
 -(void) removeRequestFromQueue:(DataRequest *)request
 {
-	NSLog(@"remove request");
 	[self.queuedRequests removeObject:request];
 	
 	request.active = NO;
