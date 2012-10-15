@@ -52,6 +52,29 @@ static int connectWithTimeout (int sfd, struct sockaddr *addr, int addrlen, stru
     return ret;
 }
 
+int checkForDNSTranslation()
+{
+	int status;
+	struct addrinfo hints;
+	struct addrinfo *servinfo;  // will point to the results
+	
+	memset(&hints, 0, sizeof hints); // make sure the struct is empty
+	hints.ai_family = AF_UNSPEC;     // don't care IPv4 or IPv6
+	hints.ai_socktype = SOCK_STREAM; // TCP stream sockets
+	hints.ai_flags = AI_PASSIVE;     // fill in my IP for me
+	
+	if ((status = getaddrinfo(NULL, "3490", &hints, &servinfo)) != 0) {
+		fprintf(stderr, "getaddrinfo error: %s\n", gai_strerror(status));
+		exit(1);
+	}
+	
+	// servinfo now points to a linked list of 1 or more struct addrinfos
+	
+	// ... do everything until you don't need servinfo anymore ....
+	
+	freeaddrinfo(servinfo); // free the linked-list
+}
+
 int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
 {
     ssize_t z;
@@ -66,6 +89,7 @@ int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
     server_address.sin_port = htons(port);
     server_address.sin_addr.s_addr = address;
 	
+	// Bad IP or possibly a DNS address
     if (server_address.sin_addr.s_addr == INADDR_NONE)
 	{
         fprintf(stderr, "Server address failed\n");
@@ -76,10 +100,6 @@ int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
     {
         fprintf(stderr, "No Command given\n");
         return 0;
-    }
-    else
-    {
-    	printf("Address %s Port %d\n", inet_ntoa(server_address.sin_addr), port);
     }
 	
     // Create com_socket
