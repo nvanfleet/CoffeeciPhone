@@ -25,6 +25,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <netdb.h>
 
 #include <errno.h>
 #include <limits.h>
@@ -52,8 +53,11 @@ static int connectWithTimeout (int sfd, struct sockaddr *addr, int addrlen, stru
     return ret;
 }
 
-int checkForDNSTranslation()
+int checkDNSTranslation(char *address, int port)
 {
+	char portstr[10];
+	sprintf(portstr, "%d", port);
+	
 	int status;
 	struct addrinfo hints;
 	struct addrinfo *servinfo;  // will point to the results
@@ -63,9 +67,9 @@ int checkForDNSTranslation()
 	hints.ai_socktype = SOCK_STREAM; // TCP stream sockets
 	hints.ai_flags = AI_PASSIVE;     // fill in my IP for me
 	
-	if ((status = getaddrinfo(NULL, "3490", &hints, &servinfo)) != 0) {
+	if ((status = getaddrinfo(address, portstr, &hints, &servinfo)) != 0) {
 		fprintf(stderr, "getaddrinfo error: %s\n", gai_strerror(status));
-		exit(1);
+		return 0;
 	}
 	
 	// servinfo now points to a linked list of 1 or more struct addrinfos
@@ -73,6 +77,8 @@ int checkForDNSTranslation()
 	// ... do everything until you don't need servinfo anymore ....
 	
 	freeaddrinfo(servinfo); // free the linked-list
+	
+	return 1;
 }
 
 int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
@@ -92,8 +98,13 @@ int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
 	// Bad IP or possibly a DNS address
     if (server_address.sin_addr.s_addr == INADDR_NONE)
 	{
-        fprintf(stderr, "Server address failed\n");
-		return 0;
+        fprintf(stderr, "Server IP address failed\n");
+		
+		if(checkDNSTranslation(addr, port))
+		{
+			fprintf(stderr, "Server DNS address failed\n");
+			return 0;
+		}
 	}
 	
     if(!abort)
