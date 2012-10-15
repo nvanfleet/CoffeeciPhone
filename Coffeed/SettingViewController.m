@@ -8,18 +8,38 @@
 
 #import "SettingViewController.h"
 
+@interface SettingViewController ()
+@property (strong) NSTimer *timer;
+@end
+
 @implementation SettingViewController
 
 # pragma  mark - DataRequest
 
+-(void) enableDisplay:(BOOL)set
+{
+	self.brewPointField.enabled = set;
+	self.steamPointField.enabled = set;
+	self.pgainField.enabled = set;
+	self.igainField.enabled = set;
+	self.dgainField.enabled = set;
+	self.boilerOffset.enabled = set;
+	self.tempOffset.enabled = set;
+	
+	self.celsiusSwitch.enabled = set;
+}
+
 - (void) dataManagerDidFail:(DataRequest *)nm withObject:(id)object
 {
-
+	NSLog(@"failure message %@ key %@",object,[nm key]);
+	[self enableDisplay:FALSE];
 }
 
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
 {
 	NSDictionary *rdict = object;
+	
+	[self enableDisplay:TRUE];
 	
 	if([nm.key isEqualToString:@"config"])
 	{
@@ -84,6 +104,12 @@
 -(void) viewWillAppear:(BOOL)animated
 {
 	[self updateViewData];
+	self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:YES];
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+	[self.timer invalidate];
 }
 
 - (void)didReceiveMemoryWarning
@@ -95,17 +121,6 @@
 }
 
 #pragma mark - View lifecycle
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

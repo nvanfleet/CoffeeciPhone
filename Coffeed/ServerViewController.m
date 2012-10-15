@@ -14,6 +14,7 @@
 
 @interface ServerViewController ()
 @property (assign) NSDictionary *serverConfigurations;
+@property (strong) NSTimer *timer;
 @end
 
 @implementation ServerViewController
@@ -122,8 +123,6 @@
 
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
 {
-	NSLog(@"success message %@ key %@",object,[nm key]);
-	
 	int keyIndex = [[nm key]integerValue];
 	NSIndexPath *index = [NSIndexPath indexPathForRow:keyIndex inSection:0];
 	ServerConfigurationCell *cell = (ServerConfigurationCell *) [self.tableView cellForRowAtIndexPath:index];
@@ -183,12 +182,13 @@
 	[self setActiveServer];
 	
 	[self updateViewData];
+	
+	self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:YES];
 }
 
-- (void)viewDidLoad
+-(void) viewWillDisappear:(BOOL)animated
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	[self.timer invalidate];
 }
 
 - (void)didReceiveMemoryWarning

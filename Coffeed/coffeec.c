@@ -53,34 +53,6 @@ static int connectWithTimeout (int sfd, struct sockaddr *addr, int addrlen, stru
     return ret;
 }
 
-int checkDNSTranslation(char *address, int port)
-{
-	char portstr[10];
-	sprintf(portstr, "%d", port);
-	
-	int status;
-	struct addrinfo hints;
-	struct addrinfo *servinfo;  // will point to the results
-	
-	memset(&hints, 0, sizeof hints); // make sure the struct is empty
-	hints.ai_family = AF_UNSPEC;     // don't care IPv4 or IPv6
-	hints.ai_socktype = SOCK_STREAM; // TCP stream sockets
-	hints.ai_flags = AI_PASSIVE;     // fill in my IP for me
-	
-	if ((status = getaddrinfo(address, portstr, &hints, &servinfo)) != 0) {
-		fprintf(stderr, "getaddrinfo error: %s\n", gai_strerror(status));
-		return 0;
-	}
-	
-	// servinfo now points to a linked list of 1 or more struct addrinfos
-	
-	// ... do everything until you don't need servinfo anymore ....
-	
-	freeaddrinfo(servinfo); // free the linked-list
-	
-	return 1;
-}
-
 int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
 {
     ssize_t z;
@@ -98,11 +70,45 @@ int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
 	// Bad IP or possibly a DNS address
     if (server_address.sin_addr.s_addr == INADDR_NONE)
 	{
-        fprintf(stderr, "Server IP address failed\n");
+        fprintf(stderr, "Server IP address failed trying DNS...\n");
+		// Check DNS
+		char portstr[10];
+		sprintf(portstr, "%d", port);
+	
+		struct addrinfo hints, *p, *servinfo;
 		
-		if(checkDNSTranslation(addr, port))
+		memset(&hints, 0, sizeof hints);
+		hints.ai_family = AF_INET;
+		hints.ai_socktype = SOCK_STREAM;
+		
+		// get ready to connect
+		if ((z = getaddrinfo(addr, portstr, &hints, &servinfo)) != 0) {
+			fprintf(stderr, "getaddrinfo error: %s\n", gai_strerror(z));
+			return 0;
+		}
+		
+		for(p = servinfo;p != NULL; p = p->ai_next)
 		{
-			fprintf(stderr, "Server DNS address failed\n");
+			// get the pointer to the address itself,
+			// different fields in IPv4 and IPv6:
+			if (p->ai_family == AF_INET) { // IPv4
+				struct sockaddr_in *ipv4 = (struct sockaddr_in *)p->ai_addr;
+				server_address.sin_addr = ipv4->sin_addr;
+				z = 1;
+			} else { // IPv6
+				printf("no ipv6 support");
+				//            struct sockaddr_in6 *ipv6 = (struct sockaddr_in6 *)p->ai_addr;
+				//            server_address.sin6_addr = ipv6->sin6_addr;
+				z = 0;
+			}
+		}
+		
+		// servinfo now points to a linked list of 1 or more struct addrinfos
+		freeaddrinfo(servinfo); // free the linked-list
+		
+		if(z == 0)
+		{
+			fprintf(stderr, "No DNS found\n");
 			return 0;
 		}
 	}

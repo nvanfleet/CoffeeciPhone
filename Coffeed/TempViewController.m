@@ -9,19 +9,28 @@
 #import "TempViewController.h"
 
 @interface TempViewController ()
-
+@property (strong) NSTimer *timer;
 @end
 
 @implementation TempViewController
 
 #pragma mark Request Delegate
 
+-(void) enableDisplay:(BOOL)set
+{
+	self.setLabel.text = @"-";
+	self.tempLabel.text = @"-";
+	
+	self.steamSwitch.enabled = set;
+	self.activeSwitch.enabled = set;
+}
+
 - (void) dataManagerDidFail:(DataRequest *)nm withObject:(id)object
 {
 	NSLog(@"failure message %@ key %@",object,[nm key]);
 	if([nm.key isEqualToString:@"config"])
 	{
-		
+		[self enableDisplay:FALSE];
 	}
 	else if([nm.key isEqualToString:@"sleep"])
 	{
@@ -34,6 +43,8 @@
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
 {
 	NSDictionary *rdict = object;
+	
+	[self enableDisplay:TRUE];
 	
 	if(rdict[@"SETPOINT"] != nil)
 		self.setLabel.text = rdict[@"SETPOINT"];
@@ -98,6 +109,12 @@
 -(void) viewWillAppear:(BOOL)animated
 {
 	[self updateViewData];
+	self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:YES];
+}
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+	[self.timer invalidate];
 }
 
 - (void)viewDidLoad
