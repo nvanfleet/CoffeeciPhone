@@ -20,10 +20,10 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SME-st-Ecc">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="SME-st-Ecc">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="UVz-C5-pVp"/>
-                                    <constraint firstAttribute="width" constant="22" id="ihx-Cc-ONo"/>
+                                    <constraint firstAttribute="height" constant="24" id="FMI-UF-pj3"/>
+                                    <constraint firstAttribute="width" constant="24" id="xwG-a0-m0S"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="41y-1Y-XQw">
@@ -227,10 +227,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="61"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqw-av-2al">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqw-av-2al">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="22" id="8N1-VC-Z2M"/>
-                                                        <constraint firstAttribute="height" constant="24" id="RIi-2i-Cyo"/>
+                                                        <constraint firstAttribute="height" constant="24" id="nVP-4z-EeI"/>
+                                                        <constraint firstAttribute="width" constant="24" id="puz-Wo-vay"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BvE-mA-fSe">
@@ -250,8 +250,8 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="rqw-av-2al" firstAttribute="centerY" secondItem="lNY-pP-OVt" secondAttribute="centerY" type="default" id="7i7-mI-g03"/>
                                             <constraint firstItem="BvE-mA-fSe" firstAttribute="leading" secondItem="S06-75-4xV" secondAttribute="leading" type="default" id="PLc-aT-ppb"/>
+                                            <constraint firstItem="rqw-av-2al" firstAttribute="centerY" secondItem="lNY-pP-OVt" secondAttribute="centerY" type="default" id="SYv-ns-sx9"/>
                                             <constraint firstAttribute="trailing" secondItem="S06-75-4xV" secondAttribute="trailing" constant="20" type="default" id="bc3-t0-uGf"/>
                                             <constraint firstAttribute="trailing" secondItem="BvE-mA-fSe" secondAttribute="trailing" constant="20" type="default" id="idI-Jq-aD8"/>
                                             <constraint firstItem="S06-75-4xV" firstAttribute="top" secondItem="BvE-mA-fSe" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ken-P1-vOo"/>
@@ -389,14 +389,13 @@
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="W1o-7c-BZF">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="22" id="aPg-jg-Vcs"/>
+                                    <constraint firstAttribute="width" constant="24" id="yAW-jx-i79"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7Rf-7a-WWL" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="73p-Fm-uZY"/>
-                            <constraint firstItem="7Rf-7a-WWL" firstAttribute="top" secondItem="W1o-7c-BZF" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="7QZ-Lz-RpE"/>
                             <constraint firstItem="B3W-4w-zQp" firstAttribute="top" secondItem="q5A-Xe-Opo" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="E7k-Br-6Ad"/>
                             <constraint firstItem="W1o-7c-BZF" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="GLO-sd-Elx"/>
                             <constraint firstItem="uIf-l8-527" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="GkR-V6-CXI"/>
@@ -409,6 +408,7 @@
                             <constraint firstItem="q5A-Xe-Opo" firstAttribute="top" secondItem="vCi-8K-dwC" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="btt-hn-XTE"/>
                             <constraint firstItem="TQ3-YB-f3a" firstAttribute="top" secondItem="B3W-4w-zQp" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="cPB-2R-kZW"/>
                             <constraint firstItem="TQ3-YB-f3a" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="cfg-TZ-NHl"/>
+                            <constraint firstItem="7Rf-7a-WWL" firstAttribute="top" secondItem="W1o-7c-BZF" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="cos-4n-sIV"/>
                             <constraint firstAttribute="trailing" secondItem="B3W-4w-zQp" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="f6k-ti-i67"/>
                             <constraint firstItem="vCi-8K-dwC" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="gpN-Eh-FWC"/>
                             <constraint firstItem="7Rf-7a-WWL" firstAttribute="trailing" secondItem="Ayh-PL-twQ" secondAttribute="trailing" type="default" id="hzb-XE-Rqt"/>
@@ -498,9 +498,10 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aiH-N3-iLH">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="aiH-N3-iLH">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="22" id="YhP-Ex-S8f"/>
+                                    <constraint firstAttribute="height" constant="24" id="Sjb-mY-HcQ"/>
+                                    <constraint firstAttribute="width" constant="24" id="ibl-qO-p0r"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -513,7 +514,6 @@
                             <constraint firstItem="sQx-3z-1UC" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="9oM-Bg-gGD"/>
                             <constraint firstItem="agE-Az-zQV" firstAttribute="top" secondItem="zVQ-rC-9Wk" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="AcX-8a-S1d"/>
                             <constraint firstAttribute="trailing" secondItem="Udb-9s-yLF" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="D8Q-UE-3FH"/>
-                            <constraint firstItem="sQx-3z-1UC" firstAttribute="top" secondItem="17" secondAttribute="top" constant="52" id="DSx-YY-RCv"/>
                             <constraint firstAttribute="trailing" secondItem="OiK-3j-ybO" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Dp9-4H-dbv"/>
                             <constraint firstItem="zVQ-rC-9Wk" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="GWQ-Fn-6jb"/>
                             <constraint firstAttribute="trailing" secondItem="0jT-54-GDe" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="LJd-VO-7Nk"/>
@@ -521,7 +521,7 @@
                             <constraint firstItem="pL9-FQ-0Vi" firstAttribute="top" secondItem="OiK-3j-ybO" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="RlD-8d-mCh"/>
                             <constraint firstItem="agE-Az-zQV" firstAttribute="leading" secondItem="pL9-FQ-0Vi" secondAttribute="leading" type="default" id="X5a-5N-Ani"/>
                             <constraint firstItem="aiH-N3-iLH" firstAttribute="top" secondItem="17" secondAttribute="top" constant="20" symbolic="YES" type="default" id="bAi-qF-Fpr"/>
-                            <constraint firstItem="sQx-3z-1UC" firstAttribute="top" secondItem="aiH-N3-iLH" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="dZP-fJ-fcB"/>
+                            <constraint firstItem="sQx-3z-1UC" firstAttribute="top" secondItem="aiH-N3-iLH" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="hdS-2P-sUc"/>
                             <constraint firstAttribute="bottom" secondItem="Udb-9s-yLF" secondAttribute="bottom" constant="34" id="lGx-Lw-E2T"/>
                             <constraint firstItem="XH3-wL-eKP" firstAttribute="centerY" secondItem="Udb-9s-yLF" secondAttribute="centerY" type="default" id="mGI-3A-Cyd"/>
                             <constraint firstItem="agE-Az-zQV" firstAttribute="trailing" secondItem="pL9-FQ-0Vi" secondAttribute="trailing" type="default" id="mc0-aj-yCn"/>
