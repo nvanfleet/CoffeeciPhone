@@ -14,6 +14,9 @@
 @property (assign) IBOutlet UITextField *address;
 @property (assign) IBOutlet UITextField *port;
 @property (strong) ServerConfiguration *configuration;
+
+@property (assign) IBOutlet UIImageView *statusImage;
+
 -(IBAction) okayButtonPushed:(id)sender;
 -(IBAction) cancelButtonPushed:(id)sender;
 

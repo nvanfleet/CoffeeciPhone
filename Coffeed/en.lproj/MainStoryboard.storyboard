@@ -396,13 +396,21 @@
                                     <action selector="cancelButtonPushed:" destination="leq-8N-Nek" eventType="touchUpInside" id="z5o-Mc-1d5"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="W1o-7c-BZF">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="22" id="aPg-jg-Vcs"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7Rf-7a-WWL" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="73p-Fm-uZY"/>
+                            <constraint firstItem="7Rf-7a-WWL" firstAttribute="top" secondItem="W1o-7c-BZF" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="7QZ-Lz-RpE"/>
                             <constraint firstItem="B3W-4w-zQp" firstAttribute="top" secondItem="q5A-Xe-Opo" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="E7k-Br-6Ad"/>
+                            <constraint firstItem="W1o-7c-BZF" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="GLO-sd-Elx"/>
                             <constraint firstItem="uIf-l8-527" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="GkR-V6-CXI"/>
                             <constraint firstItem="wL1-cR-Mw1" firstAttribute="bottom" secondItem="TQ3-YB-f3a" secondAttribute="bottom" type="user" id="Kmr-Xd-5m7"/>
+                            <constraint firstItem="B3W-4w-zQp" firstAttribute="centerY" secondItem="9Pm-ZE-kgg" secondAttribute="centerY" type="default" id="MXb-dY-KdQ"/>
                             <constraint firstItem="vCi-8K-dwC" firstAttribute="top" secondItem="Ayh-PL-twQ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="NIU-cn-cig"/>
                             <constraint firstItem="q5A-Xe-Opo" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="QVg-2O-dsw"/>
                             <constraint firstItem="B3W-4w-zQp" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="R2s-RO-iF5"/>
@@ -414,11 +422,10 @@
                             <constraint firstItem="vCi-8K-dwC" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="gpN-Eh-FWC"/>
                             <constraint firstItem="7Rf-7a-WWL" firstAttribute="trailing" secondItem="Ayh-PL-twQ" secondAttribute="trailing" type="default" id="hzb-XE-Rqt"/>
                             <constraint firstItem="uIf-l8-527" firstAttribute="top" secondItem="7Rf-7a-WWL" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="jsV-4Q-FUo"/>
-                            <constraint firstItem="wL1-cR-Mw1" firstAttribute="baseline" secondItem="TQ3-YB-f3a" secondAttribute="baseline" type="default" id="jtt-8C-Uk7"/>
                             <constraint firstAttribute="trailing" secondItem="vCi-8K-dwC" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="kHy-tM-HFF"/>
-                            <constraint firstItem="7Rf-7a-WWL" firstAttribute="top" secondItem="9Pm-ZE-kgg" secondAttribute="top" constant="20" symbolic="YES" type="default" id="lVB-IF-v6V"/>
                             <constraint firstAttribute="trailing" secondItem="uIf-l8-527" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="lad-Yb-ikT"/>
                             <constraint firstItem="q5A-Xe-Opo" firstAttribute="trailing" secondItem="Ayh-PL-twQ" secondAttribute="trailing" type="default" id="nI8-C1-0ub"/>
+                            <constraint firstItem="W1o-7c-BZF" firstAttribute="top" secondItem="9Pm-ZE-kgg" secondAttribute="top" constant="20" symbolic="YES" type="default" id="rWY-hz-9lw"/>
                             <constraint firstItem="Ayh-PL-twQ" firstAttribute="top" secondItem="uIf-l8-527" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="vjh-0Y-5wE"/>
                             <constraint firstAttribute="trailing" secondItem="wL1-cR-Mw1" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="xxk-4A-yrv"/>
                         </constraints>
@@ -427,6 +434,7 @@
                         <outlet property="address" destination="vCi-8K-dwC" id="F7O-2T-1EH"/>
                         <outlet property="port" destination="B3W-4w-zQp" id="bxB-c4-9Wh"/>
                         <outlet property="serverName" destination="uIf-l8-527" id="PFT-0r-WWy"/>
+                        <outlet property="statusImage" destination="W1o-7c-BZF" id="8tO-bV-8dN"/>
                         <outlet property="view" destination="9Pm-ZE-kgg" id="tw9-iu-iKQ"/>
                     </connections>
                 </viewController>
@@ -591,6 +599,7 @@
                 <relationship kind="outlet" name="address" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="port" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="serverName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="statusImage" candidateClass="UIImageView"/>
             </relationships>
         </class>
         <class className="ServerViewController" superclassName="UIViewController">

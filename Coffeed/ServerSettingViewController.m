@@ -15,6 +15,29 @@
 
 @implementation ServerSettingViewController
 
+- (void) dataManagerDidFail:(DataRequest *)nm withObject:(id)object
+{
+	self.statusImage.image = [UIImage imageNamed:@"21-skull"];
+}
+
+- (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
+{
+	self.statusImage.image = [UIImage imageNamed:@"13-target"];
+}
+
+-(void) checkServer
+{
+	ServerConfiguration *tconfig = [[ServerConfiguration alloc] init];
+	
+	tconfig.address = self.address.text;
+
+	NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+	[f setNumberStyle:NSNumberFormatterDecimalStyle];
+	tconfig.port = [f numberFromString:self.port.text];
+	
+	[[DataRequestManager sharedInstance] checkServerOnline:tconfig key:@"x" caller:self];
+}
+
 #pragma mark - Touches
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -38,6 +61,8 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
 	[textField resignFirstResponder];
+	
+	[self checkServer];
 	
 	return YES;
 }
@@ -107,6 +132,8 @@
 	}
 	else
 		self.port.text = @"4949";
+	
+	[self checkServer];
 }
 
 - (void)viewDidLoad

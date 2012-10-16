@@ -16,58 +16,7 @@
 
 @implementation DataRequestManager
 
-
-
-#pragma mark - Data Cache
-
-/*
--(NSString *) cacheFile
-{
-    NSString *fileName = @"CacheFile.plist";
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-	NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *component = [NSString stringWithFormat:@"/Preferences/%@",fileName];
-    
-	return [documentsDirectory stringByAppendingPathComponent:component];
-}
-
--(void) saveCache:(id)object key:(NSString *)key
-{
-    NSString *file = [self cacheFile];
-    
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile:file];
-    
-    if(dict == NULL)
-        dict = [NSMutableDictionary dictionary];
-    
-    if([object isKindOfClass:[NSDictionary class]])
-    {
-        object = [self cleanNullFromDict:(NSDictionary*)object];
-    }
-    
-    [dict setObject:object forKey:key];
-    
-    [dict writeToFile:file atomically:YES];
-}
-
--(void) removeCache:(NSString *)key
-{
-    NSString *file = [self cacheFile];
-    
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile:file];
-    
-    [dict removeObjectForKey:key];
-    
-    [dict writeToFile:file atomically:YES];
-}
-
--(NSObject *) getCache:(NSString *)key
-{
-    NSString *file = [self cacheFile];
-    
-    return [[NSDictionary dictionaryWithContentsOfFile:file] objectForKey:key];
-}
-*/
+#pragma mark - Data Requests
 
 -(DataRequest *) freeDataRequest
 {
