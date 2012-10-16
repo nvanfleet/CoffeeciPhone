@@ -18,6 +18,9 @@
 
 -(void) enableDisplay:(BOOL)set
 {
+	UIColor *color;
+	
+	// Disabled
 	self.brewPointField.enabled = set;
 	self.steamPointField.enabled = set;
 	self.pgainField.enabled = set;
@@ -25,6 +28,20 @@
 	self.dgainField.enabled = set;
 	self.boilerOffset.enabled = set;
 	self.tempOffset.enabled = set;
+	
+	//Color
+	if(set)
+		color = [UIColor blackColor];
+	else
+		color = [UIColor lightGrayColor];
+	
+	self.brewPointField.textColor = color;
+	self.steamPointField.textColor = color;
+	self.pgainField.textColor = color;
+	self.igainField.textColor = color;
+	self.dgainField.textColor = color;
+	self.boilerOffset.textColor = color;
+	self.tempOffset.textColor = color;
 	
 	self.celsiusSwitch.enabled = set;
 }
@@ -43,31 +60,35 @@
 	
 	[self enableDisplay:TRUE];
 	
-	if([nm.key isEqualToString:@"config"])
-	{
+	if(rdict[@"BPOINT"]!=nil)
 		self.brewPointField.text = rdict[@"BPOINT"];
-		self.steamPointField.text = rdict[@"SPOINT"];
-		self.pgainField.text = rdict[@"PGAIN"];
-		self.igainField.text = rdict[@"IGAIN"];
-		self.dgainField.text = rdict[@"DGAIN"];
-		self.boilerOffset.text = rdict[@"OFFSET"];
-		self.tempOffset.text = rdict[@"TOFFSET"];
-		
-		if(rdict[@"CELSIUS"] != nil)
-		{
-			if([rdict[@"CELSIUS"] boolValue])
-				self.celsiusSwitch.on = TRUE;
-			else
-				self.celsiusSwitch.on = FALSE;
-		}
-	}
-	else if([nm.key isEqualToString:@"celcius"])
-	{
-	}
-	else if([nm.key isEqualToString:@"shutdown"])
-	{
-	}
 	
+	if(rdict[@"SPOINT"]!=nil)
+		self.steamPointField.text = rdict[@"SPOINT"];
+	
+	if(rdict[@"PGAIN"]!=nil)
+		self.pgainField.text = rdict[@"PGAIN"];
+	
+	if(rdict[@"IGAIN"]!=nil)
+		self.igainField.text = rdict[@"IGAIN"];
+	
+	if(rdict[@"DGAIN"]!=nil)
+		self.dgainField.text = rdict[@"DGAIN"];
+	
+	if(rdict[@"OFFSET"]!=nil)
+		self.boilerOffset.text = rdict[@"OFFSET"];
+	
+	if(rdict[@"TOFFSET"]!=nil)
+		self.tempOffset.text = rdict[@"TOFFSET"];
+	
+	if(rdict[@"CELSIUS"] != nil)
+	{
+		if([rdict[@"CELSIUS"] boolValue])
+			self.celsiusSwitch.on = TRUE;
+		else
+			self.celsiusSwitch.on = FALSE;
+	}
+
 	self.statusImage.image = [UIImage imageNamed:@"13-target"];
 }
 
@@ -83,6 +104,8 @@
 		command = [NSString stringWithFormat:@"CELSIUS=0"];
 	
 	[[DataRequestManager sharedInstance] queueCommand:command caller:self key:@"celcius"];
+	
+	[self updateViewData];
 }
 
 -(IBAction)shutdownSystem:(id)sender
@@ -92,9 +115,36 @@
 
 # pragma  mark - Basic
 
+-(void) changeSetting:(UITextField *) field
+{
+	NSString *key;
+	
+	if(self.brewPointField == field)
+		key = @"BPOINT";
+	else if(self.steamPointField == field)
+		key = @"SPOINT";
+	else if(self.pgainField == field)
+		key = @"PGAIN";
+	else if(self.igainField == field)
+		key = @"IGAIN";
+	else if(self.dgainField == field)
+		key = @"DGAIN";
+	else if(self.boilerOffset == field)
+		key = @"OFFSET";
+	else if(self.tempOffset == field)
+		key = @"TOFFSET";
+	
+	NSString *comm = [NSString stringWithFormat:@"%@=%@",key,field.text];
+	
+	[[DataRequestManager sharedInstance] queueCommand:comm caller:self key:@"fieldupdate"];
+}
+
 -(BOOL) textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+	
+	[self changeSetting:textField];
+	
     return YES;
 }
 
@@ -108,7 +158,8 @@
 -(void) viewWillAppear:(BOOL)animated
 {
 	[self updateViewData];
-	self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:YES];
+	
+	self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:NO];
 }
 
 -(void) viewWillDisappear:(BOOL)animated

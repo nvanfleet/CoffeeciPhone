@@ -16,6 +16,8 @@
 
 @implementation SavedDataManager
 
+#pragma mark Configuration
+
 - (NSString *)applicationDocumentsDirectory
 {
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];

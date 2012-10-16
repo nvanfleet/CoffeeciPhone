@@ -153,6 +153,7 @@
 				B52AD8381614C42400D0939A /* CoffeeC */,
 				B52AD8271614C12200D0939A /* Support Classes */,
 				B52AD82E1614C24600D0939A /* ViewControllers */,
+				B5B22596162D9DD800AE9A3F /* TableCells */,
 				B52AD8041614C08800D0939A /* AppDelegate.h */,
 				B52AD8051614C08800D0939A /* AppDelegate.m */,
 				B52AD80D1614C08800D0939A /* MainStoryboard.storyboard */,
@@ -221,8 +222,6 @@
 				B55E0ED91615F9B900DB2ED3 /* ServerViewController.m */,
 				B55E0EDC1615FAE300DB2ED3 /* ServerSettingViewController.h */,
 				B55E0EDD1615FAE300DB2ED3 /* ServerSettingViewController.m */,
-				B56824E0161A8B5700D6FE0F /* ServerConfigurationCell.h */,
-				B56824E1161A8B5700D6FE0F /* ServerConfigurationCell.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -234,6 +233,15 @@
 				B56439801626466000044A1D /* coffeec.h */,
 			);
 			name = CoffeeC;
+			sourceTree = "<group>";
+		};
+		B5B22596162D9DD800AE9A3F /* TableCells */ = {
+			isa = PBXGroup;
+			children = (
+				B56824E0161A8B5700D6FE0F /* ServerConfigurationCell.h */,
+				B56824E1161A8B5700D6FE0F /* ServerConfigurationCell.m */,
+			);
+			name = TableCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

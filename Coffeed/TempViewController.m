@@ -26,6 +26,7 @@
 	
 	self.steamSwitch.enabled = set;
 	self.activeSwitch.enabled = set;
+	self.tempStepper.enabled = set;
 }
 
 - (void) dataManagerDidFail:(DataRequest *)nm withObject:(id)object

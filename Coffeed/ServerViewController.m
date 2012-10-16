@@ -112,7 +112,7 @@
 
 - (void) dataManagerDidFail:(DataRequest *)nm withObject:(id)object
 {
-	NSLog(@"failure message %@ key %@",object,[nm key]);
+//	NSLog(@"failure message %@ key %@",object,[nm key]);
 	
 	int keyIndex = [[nm key]integerValue];
 	NSIndexPath *index = [NSIndexPath indexPathForRow:keyIndex inSection:0];
