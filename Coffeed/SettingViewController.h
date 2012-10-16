@@ -20,6 +20,8 @@
 @property (assign) IBOutlet UITextField *tempOffset;
 @property (assign) IBOutlet UISwitch *celsiusSwitch;
 
+@property (assign) IBOutlet UIImageView *statusImage;
+
 -(IBAction)shutdownSystem:(id)sender;
 -(IBAction)celsiusSwitchChanged:(id)sender;
 

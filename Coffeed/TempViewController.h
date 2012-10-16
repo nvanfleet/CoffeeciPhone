@@ -17,6 +17,8 @@
 @property (assign) IBOutlet UISwitch *activeSwitch;
 @property (assign) IBOutlet UISwitch *steamSwitch;
 
+@property (assign) IBOutlet UIImageView *statusImage;
+
 -(IBAction)stepperChanged:(id)sender;
 -(IBAction)sleepSwitchChanged:(id)sender;
 -(IBAction)steamSwitchChanged:(id)sender;

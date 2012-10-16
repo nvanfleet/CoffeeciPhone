@@ -33,6 +33,8 @@
 {
 	NSLog(@"failure message %@ key %@",object,[nm key]);
 	[self enableDisplay:FALSE];
+	
+	self.statusImage.image = [UIImage imageNamed:@"21-skull"];
 }
 
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
@@ -65,6 +67,8 @@
 	else if([nm.key isEqualToString:@"shutdown"])
 	{
 	}
+	
+	self.statusImage.image = [UIImage imageNamed:@"13-target"];
 }
 
 #pragma  mark - Actions

@@ -18,8 +18,11 @@
 
 -(void) enableDisplay:(BOOL)set
 {
-	self.setLabel.text = @"-";
-	self.tempLabel.text = @"-";
+	if(set == FALSE)
+	{
+		self.setLabel.text = @"-";
+		self.tempLabel.text = @"-";
+	}
 	
 	self.steamSwitch.enabled = set;
 	self.activeSwitch.enabled = set;
@@ -38,6 +41,8 @@
 	else if([nm.key isEqualToString:@"smode"])
 	{
 	}
+	
+	self.statusImage.image = [UIImage imageNamed:@"21-skull"];
 }
 
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
@@ -67,12 +72,29 @@
 		else
 			self.activeSwitch.on = FALSE;
 	}
+	
+	self.statusImage.image = [UIImage imageNamed:@"13-target"];
 }
 
 #pragma mark Actions
 
--(IBAction)stepperChanged:(id)sender
+-(IBAction)stepperChanged:(UIStepper *)sender
 {
+	float currentValue = [self.setLabel.text floatValue];
+	
+	NSLog(@"current %f",currentValue);
+	
+	currentValue += (sender.value - 50)/10;
+	
+	NSLog(@"new value %f",currentValue);
+	
+	NSString *command = [NSString stringWithFormat:@"SETPOINT=%f",currentValue];
+	
+	NSLog(@"command %@",command);
+	
+	[[DataRequestManager sharedInstance] queueCommand:command caller:self key:@"sleep"];
+	
+	sender.value = 50;
 }
 
 -(IBAction)sleepSwitchChanged:(UISwitch *)sender
