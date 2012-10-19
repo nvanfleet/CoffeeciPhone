@@ -81,13 +81,13 @@
 	if(rdict[@"TOFFSET"]!=nil)
 		self.tempOffset.text = rdict[@"TOFFSET"];
 	
-	if(rdict[@"CELSIUS"] != nil)
-	{
-		if([rdict[@"CELSIUS"] boolValue])
-			self.celsiusSwitch.on = TRUE;
-		else
-			self.celsiusSwitch.on = FALSE;
-	}
+//	if(rdict[@"CELSIUS"] != nil)
+//	{
+//		if([rdict[@"CELSIUS"] boolValue])
+//			self.celsiusSwitch.on = TRUE;
+//		else
+//			self.celsiusSwitch.on = FALSE;
+//	}
 
 	self.statusImage.image = [UIImage imageNamed:@"13-target"];
 }
@@ -96,16 +96,16 @@
 
 -(IBAction)celsiusSwitchChanged:(id)sender
 {
-	NSString *command;
-	
-	if([sender isOn])
-		command = [NSString stringWithFormat:@"CELSIUS=1"];
-	else
-		command = [NSString stringWithFormat:@"CELSIUS=0"];
-	
-	[[DataRequestManager sharedInstance] queueCommand:command caller:self key:@"celcius"];
-	
-	[self updateViewData];
+//	NSString *command;
+//	
+//	if([sender isOn])
+//		command = [NSString stringWithFormat:@"CELSIUS=1"];
+//	else
+//		command = [NSString stringWithFormat:@"CELSIUS=0"];
+//	
+//	[[DataRequestManager sharedInstance] queueCommand:command caller:self key:@"celcius"];
+//	
+//	[self updateViewData];
 }
 
 -(IBAction)shutdownSystem:(id)sender
@@ -152,7 +152,7 @@
 
 -(void) updateViewData
 {
-	[[DataRequestManager sharedInstance] queueCommand:@"BPOINT,SPOINT,PGAIN,IGAIN,DGAIN,OFFSET,TOFFSET,CELSIUS" caller:self key:@"config"];
+	[[DataRequestManager sharedInstance] queueCommand:@"BPOINT,SPOINT,PGAIN,IGAIN,DGAIN,OFFSET,TOFFSET" caller:self key:@"config"];
 }
 
 -(void) viewWillAppear:(BOOL)animated

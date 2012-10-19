@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
@@ -504,28 +504,46 @@
                                     <constraint firstAttribute="width" constant="24" id="ibl-qO-p0r"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUg-3L-wEX">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="91" id="wJf-DL-AtA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0P-nk-uNb">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="zPh-Jd-dPX" firstAttribute="centerY" secondItem="0jT-54-GDe" secondAttribute="centerY" type="default" id="068-lc-6qm"/>
                             <constraint firstItem="zVQ-rC-9Wk" firstAttribute="top" secondItem="pL9-FQ-0Vi" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="0BC-SR-Tz9"/>
+                            <constraint firstItem="pL9-FQ-0Vi" firstAttribute="centerX" secondItem="17" secondAttribute="centerX" type="default" id="0M6-UO-nzF"/>
                             <constraint firstItem="XH3-wL-eKP" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="3ng-eY-VPS"/>
                             <constraint firstItem="zPh-Jd-dPX" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="6cd-Zu-38m"/>
                             <constraint firstItem="sQx-3z-1UC" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="9oM-Bg-gGD"/>
                             <constraint firstItem="agE-Az-zQV" firstAttribute="top" secondItem="zVQ-rC-9Wk" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="AcX-8a-S1d"/>
                             <constraint firstAttribute="trailing" secondItem="Udb-9s-yLF" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="D8Q-UE-3FH"/>
                             <constraint firstAttribute="trailing" secondItem="OiK-3j-ybO" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Dp9-4H-dbv"/>
+                            <constraint firstItem="bUg-3L-wEX" firstAttribute="top" secondItem="agE-Az-zQV" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Fe1-2y-soy"/>
+                            <constraint firstItem="N0P-nk-uNb" firstAttribute="top" secondItem="bUg-3L-wEX" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="GKX-Wa-SwK"/>
                             <constraint firstItem="zVQ-rC-9Wk" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="GWQ-Fn-6jb"/>
                             <constraint firstAttribute="trailing" secondItem="0jT-54-GDe" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="LJd-VO-7Nk"/>
-                            <constraint firstAttribute="bottom" secondItem="0jT-54-GDe" secondAttribute="bottom" constant="85" id="Qwr-Bf-B4p"/>
+                            <constraint firstItem="bUg-3L-wEX" firstAttribute="trailing" secondItem="N0P-nk-uNb" secondAttribute="trailing" type="default" id="PjD-xK-UMa"/>
+                            <constraint firstItem="zPh-Jd-dPX" firstAttribute="top" secondItem="N0P-nk-uNb" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Qgd-gs-c7C"/>
                             <constraint firstItem="pL9-FQ-0Vi" firstAttribute="top" secondItem="OiK-3j-ybO" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="RlD-8d-mCh"/>
                             <constraint firstItem="agE-Az-zQV" firstAttribute="leading" secondItem="pL9-FQ-0Vi" secondAttribute="leading" type="default" id="X5a-5N-Ani"/>
+                            <constraint firstItem="bUg-3L-wEX" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="XcA-aH-zTt"/>
+                            <constraint firstItem="N0P-nk-uNb" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="aHm-zj-8kA"/>
                             <constraint firstItem="aiH-N3-iLH" firstAttribute="top" secondItem="17" secondAttribute="top" constant="20" symbolic="YES" type="default" id="bAi-qF-Fpr"/>
                             <constraint firstItem="sQx-3z-1UC" firstAttribute="top" secondItem="aiH-N3-iLH" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="hdS-2P-sUc"/>
                             <constraint firstAttribute="bottom" secondItem="Udb-9s-yLF" secondAttribute="bottom" constant="34" id="lGx-Lw-E2T"/>
                             <constraint firstItem="XH3-wL-eKP" firstAttribute="centerY" secondItem="Udb-9s-yLF" secondAttribute="centerY" type="default" id="mGI-3A-Cyd"/>
                             <constraint firstItem="agE-Az-zQV" firstAttribute="trailing" secondItem="pL9-FQ-0Vi" secondAttribute="trailing" type="default" id="mc0-aj-yCn"/>
-                            <constraint firstItem="agE-Az-zQV" firstAttribute="centerX" secondItem="17" secondAttribute="centerX" type="default" id="o6b-uI-g9x"/>
                             <constraint firstItem="OiK-3j-ybO" firstAttribute="top" secondItem="sQx-3z-1UC" secondAttribute="top" type="default" id="o7X-K6-hm5"/>
                             <constraint firstItem="zPh-Jd-dPX" firstAttribute="trailing" secondItem="XH3-wL-eKP" secondAttribute="trailing" type="default" id="rWo-QF-xzm"/>
                             <constraint firstItem="aiH-N3-iLH" firstAttribute="leading" secondItem="17" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="wJ8-r6-8P3"/>
@@ -534,6 +552,8 @@
                     <tabBarItem key="tabBarItem" title="Temperature" image="34-coffee.png" id="6"/>
                     <connections>
                         <outlet property="activeSwitch" destination="Udb-9s-yLF" id="Soi-Fh-Iuq"/>
+                        <outlet property="duty" destination="bUg-3L-wEX" id="OS3-CJ-yis"/>
+                        <outlet property="pid" destination="N0P-nk-uNb" id="dM9-4q-3Kt"/>
                         <outlet property="setLabel" destination="pL9-FQ-0Vi" id="lr0-cx-uwi"/>
                         <outlet property="statusImage" destination="aiH-N3-iLH" id="laV-fD-KvM"/>
                         <outlet property="steamSwitch" destination="0jT-54-GDe" id="zHj-W4-4rF"/>
@@ -625,6 +645,8 @@
                 <relationship kind="action" name="steamSwitchChanged:"/>
                 <relationship kind="action" name="stepperChanged:"/>
                 <relationship kind="outlet" name="activeSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="duty" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="pid" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="setLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="statusImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="steamSwitch" candidateClass="UISwitch"/>
