@@ -58,8 +58,8 @@
 	if(rdict[@"TPOINT"] != nil)
 		self.tempLabel.text = rdict[@"TPOINT"];
 	
-	if(rdict[@"DUTY"] != nil)
-		self.duty.text = rdict[@"DUTY"];
+	if(rdict[@"POW"] != nil)
+		self.power.text = rdict[@"POW"];
 	
 	if(rdict[@"PID"] != nil)
 		self.pid.text = rdict[@"PID"];
@@ -132,7 +132,7 @@
 
 -(void) updateViewData
 {
-	[[DataRequestManager sharedInstance] queueCommand:@"SETPOINT,TPOINT,SMODE,ACTIVE,DUTY,PID" caller:self key:@"config"];
+	[[DataRequestManager sharedInstance] queueCommand:@"SETPOINT,TPOINT,SMODE,ACTIVE,POW,PID" caller:self key:@"config"];
 }
 
 -(void) viewWillAppear:(BOOL)animated

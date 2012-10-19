@@ -17,7 +17,7 @@
 @property (assign) IBOutlet UISwitch *activeSwitch;
 @property (assign) IBOutlet UISwitch *steamSwitch;
 
-@property (assign) IBOutlet UILabel *duty;
+@property (assign) IBOutlet UILabel *power;
 @property (assign) IBOutlet UILabel *pid;
 
 @property (assign) IBOutlet UIImageView *statusImage;

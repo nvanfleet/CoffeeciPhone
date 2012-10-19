@@ -17,12 +17,7 @@
 @property (assign) IBOutlet UITextField *igainField;
 @property (assign) IBOutlet UITextField *dgainField;
 @property (assign) IBOutlet UITextField *boilerOffset;
-@property (assign) IBOutlet UITextField *tempOffset;
-@property (assign) IBOutlet UISwitch *celsiusSwitch;
 
 @property (assign) IBOutlet UIImageView *statusImage;
-
--(IBAction)shutdownSystem:(id)sender;
--(IBAction)celsiusSwitchChanged:(id)sender;
 
 @end

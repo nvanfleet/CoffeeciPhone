@@ -27,7 +27,6 @@
 	self.igainField.enabled = set;
 	self.dgainField.enabled = set;
 	self.boilerOffset.enabled = set;
-	self.tempOffset.enabled = set;
 	
 	//Color
 	if(set)
@@ -41,9 +40,6 @@
 	self.igainField.textColor = color;
 	self.dgainField.textColor = color;
 	self.boilerOffset.textColor = color;
-	self.tempOffset.textColor = color;
-	
-	self.celsiusSwitch.enabled = set;
 }
 
 - (void) dataManagerDidFail:(DataRequest *)nm withObject:(id)object
@@ -78,8 +74,6 @@
 	if(rdict[@"OFFSET"]!=nil)
 		self.boilerOffset.text = rdict[@"OFFSET"];
 	
-	if(rdict[@"TOFFSET"]!=nil)
-		self.tempOffset.text = rdict[@"TOFFSET"];
 	
 //	if(rdict[@"CELSIUS"] != nil)
 //	{
@@ -94,24 +88,7 @@
 
 #pragma  mark - Actions
 
--(IBAction)celsiusSwitchChanged:(id)sender
-{
-//	NSString *command;
-//	
-//	if([sender isOn])
-//		command = [NSString stringWithFormat:@"CELSIUS=1"];
-//	else
-//		command = [NSString stringWithFormat:@"CELSIUS=0"];
-//	
-//	[[DataRequestManager sharedInstance] queueCommand:command caller:self key:@"celcius"];
-//	
-//	[self updateViewData];
-}
 
--(IBAction)shutdownSystem:(id)sender
-{
-	[[DataRequestManager sharedInstance] queueCommand:@"SHUTD" caller:self key:@"shutdown"];
-}
 
 # pragma  mark - Basic
 
@@ -131,12 +108,21 @@
 		key = @"DGAIN";
 	else if(self.boilerOffset == field)
 		key = @"OFFSET";
-	else if(self.tempOffset == field)
-		key = @"TOFFSET";
 	
 	NSString *comm = [NSString stringWithFormat:@"%@=%@",key,field.text];
 	
 	[[DataRequestManager sharedInstance] queueCommand:comm caller:self key:@"fieldupdate"];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+	[self.timer invalidate];
+	self.timer = nil;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+	self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:YES];
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField
@@ -152,19 +138,20 @@
 
 -(void) updateViewData
 {
-	[[DataRequestManager sharedInstance] queueCommand:@"BPOINT,SPOINT,PGAIN,IGAIN,DGAIN,OFFSET,TOFFSET" caller:self key:@"config"];
+	[[DataRequestManager sharedInstance] queueCommand:@"BPOINT,SPOINT,PGAIN,IGAIN,DGAIN,OFFSET" caller:self key:@"config"];
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
 	[self updateViewData];
 	
-	self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:NO];
+	self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:YES];
 }
 
 -(void) viewWillDisappear:(BOOL)animated
 {
 	[self.timer invalidate];
+	self.timer = nil;
 }
 
 - (void)didReceiveMemoryWarning

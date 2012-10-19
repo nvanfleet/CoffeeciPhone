@@ -19,5 +19,5 @@
 
 -(IBAction) okayButtonPushed:(id)sender;
 -(IBAction) cancelButtonPushed:(id)sender;
-
+-(IBAction)shutdownSystem:(id)sender;
 @end

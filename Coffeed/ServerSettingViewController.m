@@ -81,6 +81,11 @@
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(IBAction)shutdownSystem:(id)sender
+{
+	[[DataRequestManager sharedInstance] queueCommand:@"SHUTD" caller:self key:@"shutdown"];
+}
+
 #pragma mark Basic
 
 - (void)updateConfiguration
