@@ -95,30 +95,6 @@
 	[self queueCommand:@"VERSION" caller:caller key:key configuration:serverConfiguration];
 }
 
-//-(void) queueCommand:(NSString *)command caller:(id)caller key:(NSString *)key
-//{
-//	if(![self activeServer])
-//	{
-//		NSLog(@"no configuration so no sending request");
-//		return;
-//	}
-//	
-//	ServerConfiguration *as = [self activeServer];
-//	DataRequest *request = [self freeDataRequest];
-//	[request setupCommand:command address:as.address port:as.port caller:caller key:key];
-//	
-//	int queuedRequests = [self.queuedRequests count];
-//	
-//	// Queue request
-//	[self.queuedRequests addObject:request];
-//	
-//	// If it's the only object then run it immediately
-//	if(queuedRequests == 0)
-//		dispatch_async(dispatch_get_main_queue(), ^{
-//			[request sendCommand];
-//		});
-//}
-
 #pragma mark - Singleton
 
 -(ServerConfiguration *) activeServer

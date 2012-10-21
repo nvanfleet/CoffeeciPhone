@@ -22,6 +22,8 @@
 	{
 		self.setLabel.text = @"-";
 		self.tempLabel.text = @"-";
+		self.power.progress = 0.0f;
+		self.powLabel.text = @"-";
 	}
 	
 	self.steamSwitch.enabled = set;
@@ -59,11 +61,12 @@
 		self.tempLabel.text = rdict[@"TPOINT"];
 	
 	if(rdict[@"POW"] != nil)
-		self.power.text = rdict[@"POW"];
-	
-	if(rdict[@"PID"] != nil)
-		self.pid.text = rdict[@"PID"];
-	
+	{
+		float power = ([rdict[@"POW"] floatValue])/100.0f;
+		self.power.progress = power;
+		self.powLabel.text = rdict[@"POW"];
+	}
+
 	if(rdict[@"SMODE"] != nil)
 	{
 		if([rdict[@"SMODE"] boolValue])
@@ -132,7 +135,7 @@
 
 -(void) updateViewData
 {
-	[[DataRequestManager sharedInstance] queueCommand:@"SETPOINT,TPOINT,SMODE,ACTIVE,POW,PID" caller:self key:@"config"];
+	[[DataRequestManager sharedInstance] queueCommand:@"SETPOINT,TPOINT,SMODE,ACTIVE,POW" caller:self key:@"config"];
 }
 
 -(void) viewWillAppear:(BOOL)animated

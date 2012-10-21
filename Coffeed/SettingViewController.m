@@ -73,15 +73,6 @@
 	
 	if(rdict[@"OFFSET"]!=nil)
 		self.boilerOffset.text = rdict[@"OFFSET"];
-	
-	
-//	if(rdict[@"CELSIUS"] != nil)
-//	{
-//		if([rdict[@"CELSIUS"] boolValue])
-//			self.celsiusSwitch.on = TRUE;
-//		else
-//			self.celsiusSwitch.on = FALSE;
-//	}
 
 	self.statusImage.image = [UIImage imageNamed:@"13-target"];
 }
