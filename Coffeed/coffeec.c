@@ -33,6 +33,30 @@
 #include <fcntl.h>
 #include <errno.h>
 
+/*
+ "Coffeec Version 2.1"
+ "SETTING\n------------------\n"
+ "VERSION             Get the version of coffeed\n"
+ "SLEEP=<TRUE/FALSE>  Set to sleep or wake\n"
+ "ACTIVE=<TRUE/FALSE> Set to sleep or wake (inverse of above)\n"
+ "SHUTD               Shutdown the system (WARNING: stops daemon)\n"
+ "TPOINT              Get the current temperature (read only)\n"
+ "POW                 Get the current heater power\n"
+ "PTERM               Get the current P value\n"
+ "ITERM               Get the current I value\n"
+ "DTERM               Get the current D value\n"
+ "BMODE=<TRUE/FALSE>  Set to brewmode or steam mode\n"
+ "SMODE=<TRUE/FALSE>  Set to brewmode or steam mode (inverse of above)\n"
+ "SETPOINT            Get the current target temperature\n"
+ "BPOINT=<float>      Get/Set Brew setpoint\n"
+ "SPOINT=<float>      Get/Set Steam setpoint\n"
+ "PGAIN=<float>       Get/Set PID p-gain\n"
+ "IGAIN=<float>       Get/Set PID i-gain\n"
+ "DGAIN=<float>       Get/Set PID d-gain\n"
+ "TOFFEST=<float>     Get/Set thermocouple accuracy offset\n"
+ "OFFSET=<float>      Get/Set boiler temp offset\n"
+*/
+
 
 #pragma mark - Setup Code
 
@@ -128,23 +152,6 @@ int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
 		return 0;
 	}
 	
-    /*
-	 // Client
-	 struct sockaddr_in client_address;
-	 memset(&client_address,0,sizeof client_address);
-	 client_address.sin_family = AF_INET;
-	 client_address.sin_port = 0;
-	 client_address.sin_addr.s_addr = ntohl(INADDR_ANY);
-	 
-	 if (client_address.sin_addr.s_addr == INADDR_NONE)
-	 fprintf(stderr, "Client address failed\n");
-	 
-	 // Bind
-	 z= bind(com_socket, (struct sockaddr *)&client_address, sizeof (client_address));
-	 if ( z == -1 )
-	 fprintf(stderr,"Binding port\n");
-	 */
-    
     timeout.tv_sec = 2; /* 2 seconds */
     timeout.tv_usec = 0; /* + 0 usec */
     
