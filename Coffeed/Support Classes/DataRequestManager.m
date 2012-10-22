@@ -48,7 +48,8 @@
 	
 	// If there are anymore than send another command
 	if([self.queuedRequests count] > 0)
-		dispatch_async(dispatch_get_main_queue(), ^{
+//		dispatch_async(dispatch_get_main_queue(), ^{
+		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{		
 			[[self.queuedRequests objectAtIndex:0] sendCommand];
 		});
 }
@@ -73,7 +74,8 @@
 	
 	// If it's the only object then run it immediately
 	if(queuedRequests == 0)
-		dispatch_async(dispatch_get_main_queue(), ^{
+//		dispatch_async(dispatch_get_main_queue(), ^{
+		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 			[request sendCommand];
 		});
 }

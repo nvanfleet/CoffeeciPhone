@@ -74,6 +74,7 @@ static int connectWithTimeout (int sfd, struct sockaddr *addr, int addrlen, stru
         return -1;
     ret = connect (sfd, addr, addrlen);
     setsockopt (sfd, SOL_SOCKET, SO_RCVTIMEO, (char *)&sv, sizeof sv);
+
     return ret;
 }
 
@@ -82,7 +83,7 @@ int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
     ssize_t z;
     int com_socket;
     struct sockaddr_in server_address;
-    struct timeval timeout;
+
 	in_addr_t address = inet_addr(addr);
 	
     // Server
@@ -98,8 +99,8 @@ int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
 		
 		// Check DNS
 		char portstr[10];
-		sprintf(portstr, "%d", port);
-	
+		snprintf(portstr, 10-1, "%d", port);
+		
 		struct addrinfo hints, *p, *servinfo;
 		
 		memset(&hints, 0, sizeof hints);
@@ -152,12 +153,14 @@ int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
 		return 0;
 	}
 	
+	struct timeval timeout;
     timeout.tv_sec = 2; /* 2 seconds */
     timeout.tv_usec = 0; /* + 0 usec */
     
     // Connect
-    //z = connectWithTimeout(com_socket, (struct sockaddr *) &server_address, len_inet, &timeout);
-    z = connect(com_socket, (struct sockaddr *) &server_address, sizeof(server_address));
+    z = connectWithTimeout(com_socket, (struct sockaddr *) &server_address, sizeof(server_address), &timeout);
+//    z = connect(com_socket, (struct sockaddr *) &server_address, sizeof(server_address));
+	
     if(z == -1)
     {
         if(errno == EINPROGRESS)
@@ -175,6 +178,9 @@ int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
 		return 0;
     }
 	
+	// Non blocking
+	fcntl(com_socket, F_SETFL, O_NONBLOCK);
+	
     // SEND
     z = send(com_socket, command, strlen(command)+1, 0);
     if (z < 0)
@@ -183,6 +189,16 @@ int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
 		return 0;
 	}
     
+	// Set a socket timeout
+	struct timeval tv;
+	tv.tv_sec = 90;
+	if (setsockopt(com_socket, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout,  sizeof timeout))
+	{
+		perror("setsockopt");
+		return -1;
+	}
+	
+	
     // READ
     z = recv(com_socket, buffer, bsize, 0);
     if (z < 0)
