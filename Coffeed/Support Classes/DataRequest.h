@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "NetworkClient.h"
 
 @protocol DataRequestDelegate;
 
-@interface DataRequest : NSObject {
+@interface DataRequest : NetworkClient {
     int com_socket;
 }
 @property BOOL active;

@@ -1,14 +1,12 @@
-/* ------------------------------------------------------------------------- */
-/*       coffeedc -- A PID system for espresso machines                       */
-/* ------------------------------------------------------------------------- */
+//
+//  NetworkClient.m
+//  Coffeed
+//
+//  Created by Nathan Van Fleet on 12-10-23.
+//  Copyright (c) 2012 Nathan Van Fleet. All rights reserved.
+//
 
-/*
- 
- A PID client for monitoring and controlling the heat of a espresso machine.
- 
- */
-
-/* ------------------------------------------------------------------------- */
+#import "NetworkClient.h"
 
 #include <stdio.h>
 #include <stdarg.h>
@@ -21,8 +19,6 @@
 #include <sys/time.h>
 
 #include <sys/poll.h>
-#include <netinet/tcp.h>
-#include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <netdb.h>
@@ -32,6 +28,15 @@
 
 #include <fcntl.h>
 #include <errno.h>
+
+
+@interface NetworkClient () {
+	int com_socket;
+	CFSocketRef cfsocket;
+	struct sockaddr_in server_address;
+}
+@property (strong) NSString *domain;
+@end
 
 /*
  "Coffeec Version 2.1"
@@ -55,35 +60,118 @@
  "DGAIN=<float>       Get/Set PID d-gain\n"
  "TOFFEST=<float>     Get/Set thermocouple accuracy offset\n"
  "OFFSET=<float>      Get/Set boiler temp offset\n"
-*/
+ */
 
+@implementation NetworkClient
 
-#pragma mark - Setup Code
+#pragma mark Higher Level
 
-static int connectWithTimeout (int sfd, struct sockaddr *addr, int addrlen, struct timeval *timeout)
+-(NSString *) sendCommand:(NSString *)command domain:(NSString *)domain port:(NSNumber *)port
 {
-    struct timeval sv;
-    socklen_t svlen = sizeof sv;
-    int ret;
-    
-    if (!timeout)
-        return connect (sfd, addr, addrlen);
-    if (getsockopt (sfd, SOL_SOCKET, SO_RCVTIMEO, (char *)&sv, &svlen) < 0)
-        return -1;
-    if (setsockopt (sfd, SOL_SOCKET, SO_RCVTIMEO, (char *)timeout, sizeof *timeout) < 0)
-        return -1;
-    ret = connect (sfd, addr, addrlen);
-    setsockopt (sfd, SOL_SOCKET, SO_RCVTIMEO, (char *)&sv, sizeof sv);
-
-    return ret;
+	int bufsize = 256;
+	char buffer[bufsize];
+	NSString *responseString = nil;
+	
+	if(![self.domain isEqualToString:domain])
+		[self setDomain:domain port:port];
+	
+	[self connect];
+	
+	int ret = [self sendMessage:[command UTF8String] buffer:buffer bufferSize:bufsize];
+	
+	[self closeSocket];
+	
+	if(ret > 0)
+	{
+		responseString = [NSString stringWithCString:(const char *) buffer encoding:NSUTF8StringEncoding];
+	}
+	
+	NSLog(@"string %@",responseString);
+	
+	if([responseString length]==0)
+		return nil;
+	
+	return responseString;
 }
 
-int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
+-(void) setDomain:(NSString *)domain port:(NSNumber *)port
 {
-    ssize_t z;
-    int com_socket;
-    struct sockaddr_in server_address;
+	self.domain = domain;
+	[self setupSocket:[domain UTF8String] port:[port intValue]];
+}
 
+-(void) closeSocket
+{
+	close(com_socket);
+}
+
+#pragma mark Lower Level
+
+-(int) connect
+{
+	int z;
+
+	// Create com_socket
+    com_socket = socket(PF_INET, SOCK_STREAM, 0);
+    if (com_socket == -1)
+	{
+		fprintf(stderr, "Socket failed\n");
+		return 0;
+	}
+	
+//	cfsocket = CFSocketCreateWithNative(kCFAllocatorDefault, com_socket, kCFSocketReadCallBack | kCFSocketAcceptCallBack | kCFSocketDataCallBack | kCFSocketConnectCallBack)
+	
+	
+	// CONNECT
+	z = connect(com_socket, (struct sockaddr *) &server_address, sizeof(server_address));
+	
+	if(z == -1)
+    {
+        if(errno == EINPROGRESS)
+        {
+            fprintf(stderr, "EINPROGRESS non block start\n");
+        }
+        
+        if(errno == EALREADY)
+        {
+            fprintf(stderr, "EALREADY non block subsequent request\n");
+        }
+        
+        fprintf(stderr, "Connect failed\n");
+		
+		return 0;
+    }
+
+	return z;
+}
+
+-(int) sendMessage:(const char *) command buffer:(char *)buffer bufferSize:(int)bsize
+{
+	int z;
+
+    // SEND
+    z = send(com_socket, command, strlen(command)+1, 0);
+    if (z < 0)
+	{
+        fprintf(stderr,"send failure\n");
+		return 0;
+	}
+	
+    // READ
+    z = recv(com_socket, buffer, bsize, 0);
+    if (z < 0)
+	{
+        fprintf(stderr,"receive failure\n");
+		return 0;
+	}
+	
+	return z;
+}
+
+-(int) setupSocket:(const char *)addr port:(int)port
+{
+	int z;
+	
 	in_addr_t address = inet_addr(addr);
 	
     // Server
@@ -95,7 +183,7 @@ int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
 	// Bad IP or possibly a DNS address
     if (server_address.sin_addr.s_addr == INADDR_NONE)
 	{
-//		fprintf(stderr, "Server IP address failed trying DNS...\n");
+		//		fprintf(stderr, "Server IP address failed trying DNS...\n");
 		
 		// Check DNS
 		char portstr[10];
@@ -139,72 +227,7 @@ int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
 		}
 	}
 	
-	if(strlen(command)<=0)
-	{
-		fprintf(stderr, "No command given\n");
-		return 0;
-	}
-	
-    // Create com_socket
-    com_socket = socket(PF_INET, SOCK_STREAM, 0);
-    if (com_socket == -1)
-	{
-		fprintf(stderr, "Socket failed\n");
-		return 0;
-	}
-	
-	struct timeval timeout;
-    timeout.tv_sec = 2; /* 2 seconds */
-    timeout.tv_usec = 0; /* + 0 usec */
-    
-    // Connect
-    z = connectWithTimeout(com_socket, (struct sockaddr *) &server_address, sizeof(server_address), &timeout);
-//    z = connect(com_socket, (struct sockaddr *) &server_address, sizeof(server_address));
-	
-    if(z == -1)
-    {
-        if(errno == EINPROGRESS)
-        {
-            fprintf(stderr, "EINPROGRESS non block start\n");
-        }
-        
-        if(errno == EALREADY)
-        {
-            fprintf(stderr, "EALREADY non block subsequent request\n");
-        }
-        
-        fprintf(stderr, "Connect failed\n");
-		
-		return 0;
-    }
-	
-	// Non blocking
-//	fcntl(com_socket, F_SETFL, O_NONBLOCK);
-	
-    // SEND
-    z = send(com_socket, command, strlen(command)+1, 0);
-    if (z < 0)
-	{
-        fprintf(stderr,"send failure\n");
-		return 0;
-	}
-    
-	// Set a socket timeout
-//	if (setsockopt(com_socket, SOL_SOCKET, SO_RCVTIMEO, (char *)&timeout,  sizeof timeout))
-//	{
-//		perror("setsockopt timeout");
-//		return -1;
-//	}
-	
-    // READ
-    z = recv(com_socket, buffer, bsize, 0);
-    if (z < 0)
-	{
-        fprintf(stderr,"receive failure\n");
-		return 0;
-	}
-    
-    close(com_socket);
-	
-	return 1;
+	return z;
 }
+
+@end

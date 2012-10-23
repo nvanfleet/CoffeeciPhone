@@ -9,16 +9,16 @@
 #import "DataRequest.h"
 #import "DataRequestManager.h"
 
-#import "coffeec.h"
+//#import "coffeec.h"
 
 @implementation DataRequest
 @synthesize active;
 
 #pragma mark decode
 
--(NSDictionary *) decodeMessage:(char *)buffer size:(int) bsize
+-(NSDictionary *) decodeMessage:(char *)buf size:(int) bsize
 {
-	NSString *command = [NSString stringWithCString:(const char *) buffer encoding:NSUTF8StringEncoding];
+	NSString *command = [NSString stringWithCString:(const char *) buf encoding:NSUTF8StringEncoding];
 	NSCharacterSet *delim = [NSCharacterSet characterSetWithCharactersInString:@","];
 	NSArray *options = [command componentsSeparatedByCharactersInSet:delim];
 
@@ -52,16 +52,17 @@
 
 -(void) sendCommand
 {
-	int response;
-	int bsize = 256;
-	char buffer[bsize];
+//	int response;
+//	int bsize = 256;
+//	char buffer[bsize];
 
-	response = sendMessage((char *) [self.address UTF8String], [self.port intValue], (char *) [self.command UTF8String], buffer, bsize);
+//	response = sendMessage((char *) [self.address UTF8String], [self.port intValue], (char *) [self.command UTF8String], buffer, bsize);
+	NSString *response = [self sendCommand:self.command domain:self.address port:self.port];
 	
-	if(response)
+	if(response != nil)
 	{
-		NSDictionary *message = [self decodeMessage:buffer size:bsize];
-		[self.caller dataManagerDidSucceed:self withObject:message];
+//		NSDictionary *message = [self decodeMessage:buffer size:bsize];
+		[self.caller dataManagerDidSucceed:self withObject:response];
 	}
 	else
 		[self.caller dataManagerDidFail:self withObject:nil];
