@@ -29,7 +29,6 @@
 #include <fcntl.h>
 #include <errno.h>
 
-
 @interface NetworkClient () {
 	int com_socket;
 	CFSocketRef cfsocket;
@@ -86,8 +85,6 @@
 		responseString = [NSString stringWithCString:(const char *) buffer encoding:NSUTF8StringEncoding];
 	}
 	
-	NSLog(@"string %@",responseString);
-	
 	if([responseString length]==0)
 		return nil;
 	
@@ -118,9 +115,6 @@
 		fprintf(stderr, "Socket failed\n");
 		return 0;
 	}
-	
-//	cfsocket = CFSocketCreateWithNative(kCFAllocatorDefault, com_socket, kCFSocketReadCallBack | kCFSocketAcceptCallBack | kCFSocketDataCallBack | kCFSocketConnectCallBack)
-	
 	
 	// CONNECT
 	z = connect(com_socket, (struct sockaddr *) &server_address, sizeof(server_address));
@@ -170,7 +164,7 @@
 
 -(int) setupSocket:(const char *)addr port:(int)port
 {
-	int z;
+	int z=1;
 	
 	in_addr_t address = inet_addr(addr);
 	

@@ -52,6 +52,8 @@
 {
 	NSDictionary *rdict = object;
 	
+	NSLog(@"ojb %@",rdict);
+	
 	[self enableDisplay:TRUE];
 	
 	if(rdict[@"SETPOINT"] != nil)

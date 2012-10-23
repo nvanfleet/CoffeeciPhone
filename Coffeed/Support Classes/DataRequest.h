@@ -11,7 +11,7 @@
 
 @protocol DataRequestDelegate;
 
-@interface DataRequest : NetworkClient {
+@interface DataRequest : NSObject {
     int com_socket;
 }
 @property BOOL active;

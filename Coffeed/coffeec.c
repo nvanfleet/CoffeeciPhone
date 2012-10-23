@@ -95,8 +95,6 @@ int sendMessage(char *addr, int port, char *command, char *buffer, int bsize)
 	// Bad IP or possibly a DNS address
     if (server_address.sin_addr.s_addr == INADDR_NONE)
 	{
-//		fprintf(stderr, "Server IP address failed trying DNS...\n");
-		
 		// Check DNS
 		char portstr[10];
 		snprintf(portstr, 10-1, "%d", port);
