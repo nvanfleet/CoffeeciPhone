@@ -592,6 +592,66 @@
         <image name="34-coffee.png" width="24" height="26"/>
         <image name="button-plus.png" width="54" height="55"/>
     </resources>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ServerConfigurationCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ServerConfigurationCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="address" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="statusImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="title" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ServerSettingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ServerSettingViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButtonPushed:"/>
+                <relationship kind="action" name="okayButtonPushed:"/>
+                <relationship kind="action" name="shutdownSystem:"/>
+                <relationship kind="outlet" name="address" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="port" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="serverName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="statusImage" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="ServerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ServerViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addServerEntry:"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SettingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="boilerOffset" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="brewPointField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="dgainField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="igainField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="pgainField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="statusImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="steamPointField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="TempViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TempViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="sleepSwitchChanged:"/>
+                <relationship kind="action" name="steamSwitchChanged:"/>
+                <relationship kind="action" name="stepperChanged:"/>
+                <relationship kind="outlet" name="activeSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="powLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="power" candidateClass="UIProgressView"/>
+                <relationship kind="outlet" name="setLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="statusImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="steamSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="tempLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tempStepper" candidateClass="UIStepper"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
