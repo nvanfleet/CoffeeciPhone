@@ -13,5 +13,5 @@
 
 @interface NetworkClient : NSObject {
 }
--(NSString *) sendCommand:(NSString *)command domain:(NSString *)domain port:(NSNumber *)port;
+-(void) sendCommand:(NSString *)command domain:(NSString *)domain port:(NSNumber *)port;
 @end

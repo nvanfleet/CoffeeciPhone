@@ -30,11 +30,13 @@
 #include <errno.h>
 
 @interface NetworkClient () {
-	int com_socket;
 	CFSocketRef cfsocket;
 	struct sockaddr_in server_address;
+	
 }
 @property (strong) NSString *domain;
+-(void) readData;
+-(void) sendData;
 @end
 
 /*
@@ -61,105 +63,139 @@
  "OFFSET=<float>      Get/Set boiler temp offset\n"
  */
 
+static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef address, const void *data, void *info)
+{
+	NetworkClient *client = (__bridge NetworkClient *) info;
+	
+	NSLog(@"client connected %@",client);
+	
+	if(type == kCFSocketReadCallBack)
+	{
+		NSLog(@"READ client connected %@",client);
+		[client readData];
+
+	}
+	else if(type == kCFSocketWriteCallBack)
+	{
+		NSLog(@"WRITE client connected %@",client);
+//		[client sendData];
+	}
+}
+
 @implementation NetworkClient
 
-#pragma mark Higher Level
+#pragma mark CFSocket
 
--(NSString *) sendCommand:(NSString *)command domain:(NSString *)domain port:(NSNumber *)port
+-(void) readData
 {
-	int bufsize = 256;
-	char buffer[bufsize];
-	NSString *responseString = nil;
+	int z = 0;
+	int com_socket = CFSocketGetNative(cfsocket);
+	int bsize = 256;
+	char buffer[bsize];
 	
-	if(![self.domain isEqualToString:domain])
-		[self setDomain:domain port:port];
-	
-	[self connect];
-	
-	int ret = [self sendMessage:[command UTF8String] buffer:buffer bufferSize:bufsize];
-	
-	[self closeSocket];
-	
-	if(ret > 0)
+	// READ
+	z = recv(com_socket, buffer, bsize, 0);
+	if (z < 0)
 	{
-		responseString = [NSString stringWithCString:(const char *) buffer encoding:NSUTF8StringEncoding];
+		fprintf(stderr,"receive failure\n");
 	}
 	
-	if([responseString length]==0)
-		return nil;
-	
-	return responseString;
 }
+
+-(void) sendData:(NSString *)command
+{
+	int z = 0;
+	int com_socket = CFSocketGetNative(cfsocket);
+
+	const char *cmd = [command UTF8String];
+	
+	// SEND
+	z = send(com_socket, cmd, strlen(cmd)+1, 0);
+	if (z < 0)
+	{
+		fprintf(stderr,"send failure\n");
+	}
+}
+
+
+-(void) createSocket
+{
+	CFRunLoopSourceRef rls;
+	
+	// Create com_socket
+    int com_socket = socket(PF_INET, SOCK_STREAM, 0);
+    if (com_socket == -1)
+	{
+		fprintf(stderr, "Socket failed\n");
+	}
+	
+	CFSocketContext context = {0, (__bridge void *)(self), NULL, NULL, NULL};
+	cfsocket = CFSocketCreateWithNative(NULL, com_socket, kCFSocketReadCallBack | kCFSocketWriteCallBack, socketCallback, &context);
+	
+	// The socket will now take care of cleaning up our file descriptor.
+	
+	assert( CFSocketGetSocketFlags(cfsocket) & kCFSocketCloseOnInvalidate );
+	com_socket = -1;
+	
+	rls = CFSocketCreateRunLoopSource(NULL, cfsocket, 0);
+	assert(rls != NULL);
+	
+	CFRunLoopAddSource(CFRunLoopGetCurrent(), rls, kCFRunLoopDefaultMode);
+	
+	CFRelease(rls);
+}
+
+-(void) connect
+{
+	// CONNECT
+	CFTimeInterval timeout = 2;
+	CFDataRef address = CFDataCreate(NULL, (UInt8 *) &server_address, sizeof(struct sockaddr_in));
+	CFSocketConnectToAddress(cfsocket, address, timeout);
+}
+
+#pragma mark something
+
+-(void) sendCommand:(NSString *)command domain:(NSString *)domain port:(NSNumber *)port
+{
+	
+	
+	[self createSocket];
+	[self connect];
+	[self sendData:command];
+	
+//	
+//	int bufsize = 256;
+//	char buffer[bufsize];
+//	NSString *responseString = nil;
+//	
+//	if(![self.domain isEqualToString:domain])
+//		[self setDomain:domain port:port];
+//	
+//	[self connect];
+//	
+//	int ret = [self sendMessage:[command UTF8String] buffer:buffer bufferSize:bufsize];
+//	
+//	[self closeSocket];
+//	
+//	if(ret > 0)
+//	{
+//		responseString = [NSString stringWithCString:(const char *) buffer encoding:NSUTF8StringEncoding];
+//	}
+//	
+//	if([responseString length]==0)
+//		return nil;
+//	
+//	return responseString;
+}
+
+
+
+#pragma mark Lower Level
 
 -(void) setDomain:(NSString *)domain port:(NSNumber *)port
 {
 	self.domain = domain;
 	[self setupSocket:[domain UTF8String] port:[port intValue]];
-}
-
--(void) closeSocket
-{
-	close(com_socket);
-}
-
-#pragma mark Lower Level
-
--(int) connect
-{
-	int z;
-
-	// Create com_socket
-    com_socket = socket(PF_INET, SOCK_STREAM, 0);
-    if (com_socket == -1)
-	{
-		fprintf(stderr, "Socket failed\n");
-		return 0;
-	}
-	
-	// CONNECT
-	z = connect(com_socket, (struct sockaddr *) &server_address, sizeof(server_address));
-	
-	if(z == -1)
-    {
-        if(errno == EINPROGRESS)
-        {
-            fprintf(stderr, "EINPROGRESS non block start\n");
-        }
-        
-        if(errno == EALREADY)
-        {
-            fprintf(stderr, "EALREADY non block subsequent request\n");
-        }
-        
-        fprintf(stderr, "Connect failed\n");
-		
-		return 0;
-    }
-
-	return z;
-}
-
--(int) sendMessage:(const char *) command buffer:(char *)buffer bufferSize:(int)bsize
-{
-	int z;
-
-    // SEND
-    z = send(com_socket, command, strlen(command)+1, 0);
-    if (z < 0)
-	{
-        fprintf(stderr,"send failure\n");
-		return 0;
-	}
-	
-    // READ
-    z = recv(com_socket, buffer, bsize, 0);
-    if (z < 0)
-	{
-        fprintf(stderr,"receive failure\n");
-		return 0;
-	}
-	
-	return z;
 }
 
 -(int) setupSocket:(const char *)addr port:(int)port
@@ -204,7 +240,7 @@
 				server_address.sin_addr = ipv4->sin_addr;
 				z = 1;
 			} else { // IPv6
-				printf("no ipv6 support");
+				fprintf(stderr, "no ipv6 support");
 				//            struct sockaddr_in6 *ipv6 = (struct sockaddr_in6 *)p->ai_addr;
 				//            server_address.sin6_addr = ipv6->sin6_addr;
 				z = 0;
@@ -220,6 +256,22 @@
 			return 0;
 		}
 	}
+	
+	// Create com_socket
+    com_socket = socket(PF_INET, SOCK_STREAM, 0);
+    if (com_socket == -1)
+	{
+		fprintf(stderr, "Socket failed\n");
+		return 0;
+	}
+	
+	CFSocketContext     context = {0, (__bridge void *)(self), NULL, NULL, NULL};
+	CFSocketRef cfsocket = CFSocketCreateWithNative(kCFAllocatorDefault, com_socket, kCFSocketReadCallBack, (*CFSocketCallBack) socketCallback, &context);
+	
+	// The socket will now take care of cleaning up our file descriptor.
+	
+	assert( CFSocketGetSocketFlags(self->_socket) & kCFSocketCloseOnInvalidate );
+	fd = -1;
 	
 	return z;
 }
