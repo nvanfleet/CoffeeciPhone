@@ -50,6 +50,12 @@
 
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
 {
+	if([nm.key isEqualToString:@"config"])
+	{
+		[self.timer invalidate];
+		self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:NO];
+	}
+	
 	NSDictionary *rdict = object;
 	
 	NSLog(@"ojb %@",rdict);
@@ -137,13 +143,14 @@
 
 -(void) updateViewData
 {
+	NSLog(@"update view data");
 	[[DataRequestManager sharedInstance] queueCommand:@"SETPOINT,TPOINT,SMODE,ACTIVE,POW" caller:self key:@"config"];
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
 	[self updateViewData];
-	self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:YES];
+	self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:NO];
 }
 
 -(void) viewWillDisappear:(BOOL)animated

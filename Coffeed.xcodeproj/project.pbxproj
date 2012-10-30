@@ -46,6 +46,7 @@
 		B576442916249A7100E1B561 /* 21-skull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B576442716249A7100E1B561 /* 21-skull@2x.png */; };
 		B576442D16249AC700E1B561 /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = B576442B16249AC700E1B561 /* 13-target.png */; };
 		B576442E16249AC700E1B561 /* 13-target@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B576442C16249AC700E1B561 /* 13-target@2x.png */; };
+		B5A9DD7616405C4500FA9DB9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A9DD7516405C4500FA9DB9 /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,7 @@
 		B576442716249A7100E1B561 /* 21-skull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "21-skull@2x.png"; sourceTree = "<group>"; };
 		B576442B16249AC700E1B561 /* 13-target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "13-target.png"; sourceTree = "<group>"; };
 		B576442C16249AC700E1B561 /* 13-target@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "13-target@2x.png"; sourceTree = "<group>"; };
+		B5A9DD7516405C4500FA9DB9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5A9DD7616405C4500FA9DB9 /* CFNetwork.framework in Frameworks */,
 				B54C9CE71636DD2C0029D900 /* CoreFoundation.framework in Frameworks */,
 				B52AD7F61614C08800D0939A /* UIKit.framework in Frameworks */,
 				B52AD7F81614C08800D0939A /* Foundation.framework in Frameworks */,
@@ -139,6 +142,7 @@
 		B52AD7F41614C08800D0939A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5A9DD7516405C4500FA9DB9 /* CFNetwork.framework */,
 				B54C9CE61636DD2C0029D900 /* CoreFoundation.framework */,
 				B52AD7F51614C08800D0939A /* UIKit.framework */,
 				B52AD7F71614C08800D0939A /* Foundation.framework */,
