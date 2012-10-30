@@ -23,7 +23,6 @@
 		B52AD8371614C40900D0939A /* TempViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AD8361614C40900D0939A /* TempViewController.m */; };
 		B53731871619E78F00CD455D /* SavedDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B53731861619E78F00CD455D /* SavedDataManager.m */; };
 		B537318A1619E7B400CD455D /* ServerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = B53731891619E7B400CD455D /* ServerConfiguration.m */; };
-		B54C9CE51636DC120029D900 /* NetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B54C9CE41636DC120029D900 /* NetworkClient.m */; };
 		B54C9CE71636DD2C0029D900 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B54C9CE61636DD2C0029D900 /* CoreFoundation.framework */; };
 		B54C9CEC16371E480029D900 /* coffeec.c in Sources */ = {isa = PBXBuildFile; fileRef = B564397F1626466000044A1D /* coffeec.c */; };
 		B55E0EDA1615F9B900DB2ED3 /* ServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55E0ED91615F9B900DB2ED3 /* ServerViewController.m */; };
@@ -76,8 +75,6 @@
 		B53731861619E78F00CD455D /* SavedDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedDataManager.m; sourceTree = "<group>"; };
 		B53731881619E7B300CD455D /* ServerConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConfiguration.h; sourceTree = "<group>"; };
 		B53731891619E7B400CD455D /* ServerConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConfiguration.m; sourceTree = "<group>"; };
-		B54C9CE31636DC120029D900 /* NetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkClient.h; sourceTree = "<group>"; };
-		B54C9CE41636DC120029D900 /* NetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkClient.m; sourceTree = "<group>"; };
 		B54C9CE61636DD2C0029D900 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		B55E0ED81615F9B900DB2ED3 /* ServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerViewController.h; sourceTree = "<group>"; };
 		B55E0ED91615F9B900DB2ED3 /* ServerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerViewController.m; sourceTree = "<group>"; };
@@ -200,8 +197,6 @@
 		B52AD8271614C12200D0939A /* Support Classes */ = {
 			isa = PBXGroup;
 			children = (
-				B54C9CE31636DC120029D900 /* NetworkClient.h */,
-				B54C9CE41636DC120029D900 /* NetworkClient.m */,
 				B53731881619E7B300CD455D /* ServerConfiguration.h */,
 				B53731891619E7B400CD455D /* ServerConfiguration.m */,
 				B53731851619E78F00CD455D /* SavedDataManager.h */,
@@ -343,7 +338,6 @@
 				B53731871619E78F00CD455D /* SavedDataManager.m in Sources */,
 				B537318A1619E7B400CD455D /* ServerConfiguration.m in Sources */,
 				B56824E2161A8B5700D6FE0F /* ServerConfigurationCell.m in Sources */,
-				B54C9CE51636DC120029D900 /* NetworkClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,13 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NetworkClient.h"
 
 @protocol DataRequestDelegate;
 
-@interface DataRequest : NSObject {
-    int com_socket;
-}
+@interface DataRequest : NSObject
 @property BOOL active;
 @property (retain,nonatomic) id caller;
 @property (nonatomic) NSString *key;
@@ -25,7 +22,6 @@
 -(void) setupCommand:(NSString *)command address:(NSString *)address port:(NSNumber *)port caller:(id)caller key:(NSString *)key;
 -(void) sendCommand;
 @end
-
 
 @protocol DataRequestDelegate <NSObject>
 - (void) dataManagerDidFail:(DataRequest *)nm withObject:(id)object;

@@ -166,8 +166,10 @@
 	// Send off commands
 	for(int i=0; i < [self.serverConfigurations count]; i++)
 	{
-		NSLog(@"send request");
+
 		ServerConfiguration *sc = [[self.serverConfigurations allValues] objectAtIndex:i];
+
+		NSLog(@"send request %@",sc.address);
 		
 		[[DataRequestManager sharedInstance] checkServerOnline:sc key:[NSString stringWithFormat:@"%d",i] caller:self];
 	}
