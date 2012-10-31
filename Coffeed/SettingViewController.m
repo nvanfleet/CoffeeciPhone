@@ -44,7 +44,10 @@
 
 - (void) dataManagerDidFail:(DataRequest *)nm withObject:(id)object
 {
-	NSLog(@"failure message %@ key %@",object,[nm key]);
+	if([nm.key isEqualToString:@"updateView"])
+		[self scheduleUpdate];
+	
+	NSLog(@"Failure '%@' key '%@'",object,[nm key]);
 	[self enableDisplay:FALSE];
 	
 	self.statusImage.image = [UIImage imageNamed:@"21-skull"];
@@ -133,9 +136,18 @@
 
 # pragma  mark - Basic
 
+-(void) scheduleUpdate
+{
+	if(self.isViewLoaded)
+	{
+		[self.timer invalidate];
+		self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:NO];
+	}
+}
+
 -(void) updateViewData
 {
-	[[DataRequestManager sharedInstance] queueCommand:@"BPOINT,SPOINT,PGAIN,IGAIN,DGAIN,OFFSET" caller:self key:@"config"];
+	[[DataRequestManager sharedInstance] queueCommand:@"BPOINT,SPOINT,PGAIN,IGAIN,DGAIN,OFFSET" caller:self key:@"updateView"];
 }
 
 -(void) viewWillAppear:(BOOL)animated

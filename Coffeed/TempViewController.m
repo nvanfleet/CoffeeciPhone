@@ -31,10 +31,14 @@
 	self.tempStepper.enabled = set;
 }
 
+
 - (void) dataManagerDidFail:(DataRequest *)nm withObject:(id)object
 {
-	NSLog(@"failure message %@ key %@",object,[nm key]);
-	if([nm.key isEqualToString:@"config"])
+	if([nm.key isEqualToString:@"updateView"])
+		[self scheduleUpdate];
+	
+	NSLog(@"failure message '%@' key '%@'",object,[nm key]);
+	if([nm.key isEqualToString:@"updateView"])
 	{
 		[self enableDisplay:FALSE];
 	}
@@ -50,11 +54,8 @@
 
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
 {
-	if([nm.key isEqualToString:@"config"])
-	{
-		[self.timer invalidate];
-		self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:NO];
-	}
+	if([nm.key isEqualToString:@"updateView"])
+		[self scheduleUpdate];
 	
 	NSDictionary *rdict = object;
 	
@@ -141,16 +142,26 @@
 
 #pragma mark Basic
 
+-(void) scheduleUpdate
+{
+	if(self.isViewLoaded && self.view.window)
+	{
+		[self.timer invalidate];
+		self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:NO];
+	}
+}
+
 -(void) updateViewData
 {
 	NSLog(@"update view data");
-	[[DataRequestManager sharedInstance] queueCommand:@"SETPOINT,TPOINT,SMODE,ACTIVE,POW" caller:self key:@"config"];
+	[[DataRequestManager sharedInstance] queueCommand:@"SETPOINT,TPOINT,SMODE,ACTIVE,POW" caller:self key:@"updateView"];
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
 	[self updateViewData];
-	self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:NO];
+	
+	[self scheduleUpdate];
 }
 
 -(void) viewWillDisappear:(BOOL)animated

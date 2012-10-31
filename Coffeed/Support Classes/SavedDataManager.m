@@ -55,7 +55,7 @@
 		return _selectedServerString;
 	
 	// Loading
-	NSString *server = [NSString stringWithContentsOfFile:[self savedFilePath:@"SelectedServer"] encoding:NSStringEncodingConversionAllowLossy error:nil];
+	NSString *server = [NSString stringWithContentsOfFile:[self savedFilePath:@"SelectedServer"] encoding:NSUTF8StringEncoding error:nil];
 	
 	// Default selected server if none is selected
 	if(server == nil && [self.configurations count] > 0)
@@ -69,7 +69,7 @@
 -(void) setSelectedServerName:(NSString *)servername
 {
 	self.selectedServerString = servername;
-	[servername writeToFile:[self savedFilePath:@"SelectedServer"] atomically:YES encoding:NSStringEncodingConversionAllowLossy error:nil];
+	[servername writeToFile:[self savedFilePath:@"SelectedServer"] atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
 #pragma mark Server Dict

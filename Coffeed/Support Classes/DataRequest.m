@@ -6,10 +6,12 @@
 //  Copyright (c) 2011 Logic Pretzel. All rights reserved.
 //
 
-#import "DataRequest.h"
-#import "DataRequestManager.h"
-
 #import <CoreFoundation/CoreFoundation.h>
+
+#import "DataRequest.h"
+
+#import "ServerConfiguration.h"
+#import "DataRequestManager.h"
 
 #include <netinet/tcp.h>
 #include <sys/socket.h>
@@ -25,9 +27,9 @@
 }
 @property (strong) NSString *domain;
 -(void) sendData;
--(void) decodeData:(const void *)data;
+-(void) decodeData:(NSString *)data;
 -(void) failure:(NSString *)failMessage;
--(void) setServerAddress:(struct sockaddr_in)addr;
+-(void) setServerAddress:(struct in_addr)resolvedaddr;
 @end
 
 static void hostnameCallback(CFHostRef inHostInfo, CFHostInfoType inType, const CFStreamError *inError, void *info)
@@ -41,14 +43,8 @@ static void hostnameCallback(CFHostRef inHostInfo, CFHostInfoType inType, const 
 		CFDataRef address = (__bridge CFDataRef) [addresses objectAtIndex:0];
 		// just grab 1st
 		struct sockaddr_in *addr =(struct sockaddr_in *)CFDataGetBytePtr(address);
-		struct sockaddr_in finalSocketInfo;
 		
-		// copy the address from the retrieved structure, and
-		memset(&finalSocketInfo, 0, sizeof(finalSocketInfo));
-		finalSocketInfo.sin_addr = addr->sin_addr;
-		finalSocketInfo.sin_family = AF_INET;
-		
-		[client setServerAddress:finalSocketInfo];
+		[client setServerAddress:addr->sin_addr];
 	}
 	else
 	{
@@ -62,37 +58,47 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 	DataRequest *client = (__bridge DataRequest *) info;
 
 	if(type == kCFSocketDataCallBack)
-		[client decodeData:data];
+	{
+		NSString *receivedData = [[NSString alloc] initWithData:(__bridge NSData *)data encoding:NSUTF8StringEncoding];
+//		NSLog(@"kCFSocketDataCallBack data %@",ts);
+		[client decodeData:receivedData];
+	}
 	else if(type == kCFSocketConnectCallBack)
+	{
+//		NSLog(@"kCFSocketConnectCallBack");
+	}
+	else if(type == kCFSocketWriteCallBack)
+	{
+//		NSLog(@"kCFSocketWriteCallBack");
 		[client sendData];
+	}
+	else if(type == kCFSocketReadCallBack)
+		NSLog(@"kCFSocketReadCallBack");
+	else if(type == kCFSocketAcceptCallBack)
+		NSLog(@"kCFSocketAcceptCallBack");
 }
 
 @implementation DataRequest
-@synthesize active;
 
 -(void) failure:(NSString *)failMessage
 {
 	[self closeSocket];
-	[self setupSocket];
 	[self.caller dataManagerDidFail:self withObject:failMessage];
 }
 
 #pragma mark CFSocket
 
--(void) decodeData:(const void *)data
+-(void) decodeData:(NSString *)response
 {
-	NSString *response = [[NSString alloc] initWithData:(__bridge NSData *)data encoding:NSUTF8StringEncoding];
-	
 	if(response != nil)
 	{
 		NSDictionary *message = [self decodeMessage:response];
 		[self.caller dataManagerDidSucceed:self withObject:message];
 	}
 	else
-		[self.caller dataManagerDidFail:self withObject:nil];
+		[self.caller dataManagerDidFail:self withObject:@"no response"];
 	
 	[self closeSocket];
-	[self setupSocket];
 	
 	// Remove from queue
 	[[DataRequestManager sharedInstance] removeRequestFromQueue:self];
@@ -103,7 +109,8 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 	CFSocketError error;
 	CFTimeInterval timeout = 5;
 	const char *cmd = [_command UTF8String];
-	CFDataRef data = CFDataCreate(NULL, (UInt8 *) cmd, strlen(cmd));
+	
+	CFDataRef data = CFDataCreate(NULL, (UInt8 *) cmd, strlen(cmd)*sizeof(char)+1);
 	error = CFSocketSendData(cfsocket, NULL, data, timeout);
 	CFRelease(data);
 	
@@ -141,82 +148,22 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 	CFStreamError error = { 0, 0 };
 	CFHostStartInfoResolution(hostRef, kCFHostAddresses, &error);
 	
-//	CFRelease(hostRef);
+	CFRelease(hostRef);
 }
 
--(void) setServerAddress:(struct sockaddr_in)addr
-{
-	int port = [self.port intValue];
-	server_address = addr;
-	server_address.sin_port = htons(port);
+-(void) setServerAddress:(struct in_addr)resolvedaddr
+{	
+	[self setResolvedHost:[NSString stringWithFormat:@"%s",inet_ntoa(resolvedaddr)]];
+}
 
-	NSLog(@"HOST RESOLVED %s %d",inet_ntoa(server_address.sin_addr),port);
+-(void) setResolvedHost:(NSString *)resolved
+{
+	_server.resolvedAddress = resolved;
 	
-	hasHostname = TRUE;
+	server_address.sin_addr.s_addr = inet_addr([resolved UTF8String]);
+	server_address.sin_port = htons([_server.port intValue]);
+	
 	[self checkStatus];
-}
-
--(void) setupAddress:(NSString *)a port:(NSNumber *)p
-{
-	[self resolveHost:a];
-	
-//	const char *addr = [a UTF8String];
-//	int port = [p intValue];
-//	
-//	int z;
-//	in_addr_t address = inet_addr(addr);
-//	
-//    // Server
-//    memset(&server_address, 0, sizeof(server_address));
-//    server_address.sin_family = AF_INET;
-//    server_address.sin_port = htons(port);
-//    server_address.sin_addr.s_addr = address;
-//	
-//	// Bad IP or possibly a DNS address
-//    if (server_address.sin_addr.s_addr == INADDR_NONE)
-//	{
-//		// Check DNS
-//		char portstr[10];
-//		snprintf(portstr, 10-1, "%d", port);
-//		
-//		struct addrinfo hints, *p, *servinfo;
-//		
-//		memset(&hints, 0, sizeof hints);
-//		hints.ai_family = AF_INET;
-//		hints.ai_socktype = SOCK_STREAM;
-//		
-//		// get ready to connect
-//		if ((z = getaddrinfo(addr, portstr, &hints, &servinfo)) != 0) {
-//			fprintf(stderr, "getaddrinfo error: %s\n", gai_strerror(z));
-//		}
-//		
-//		for(p = servinfo;p != NULL; p = p->ai_next)
-//		{
-//			// get the pointer to the address itself,
-//			// different fields in IPv4 and IPv6:
-//			if (p->ai_family == AF_INET) { // IPv4
-//				struct sockaddr_in *ipv4 = (struct sockaddr_in *)p->ai_addr;
-//				server_address.sin_addr = ipv4->sin_addr;
-//				z = 1;
-//			} else { // IPv6
-//				printf("no ipv6 support");
-//				//            struct sockaddr_in6 *ipv6 = (struct sockaddr_in6 *)p->ai_addr;
-//				//            server_address.sin6_addr = ipv6->sin6_addr;
-//				z = 0;
-//			}
-//		}
-//		
-//		// servinfo now points to a linked list of 1 or more struct addrinfos
-//		freeaddrinfo(servinfo); // free the linked-list
-//		
-//		if(z == 0)
-//		{
-//			fprintf(stderr, "No DNS found\n");
-//		}
-//	}
-//	
-//	if(z == 0)
-//		[self failure:@"no address"];
 }
 
 -(void) closeSocket
@@ -234,14 +181,17 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 {
 	CFRunLoopSourceRef rls;
 	CFSocketContext context = {0, (__bridge void *)(self), NULL, NULL, NULL};
-	CFSocketCallBackType callbacks = kCFSocketDataCallBack | kCFSocketConnectCallBack;
+	CFSocketCallBackType callbacks = kCFSocketDataCallBack | kCFSocketWriteCallBack;
+//	CFSocketCallBackType callbacks = kCFSocketDataCallBack | kCFSocketConnectCallBack | kCFSocketWriteCallBack | kCFSocketReadCallBack | kCFSocketAcceptCallBack;
 	cfsocket = CFSocketCreate(kCFAllocatorDefault, AF_INET, SOCK_STREAM, IPPROTO_TCP, callbacks, socketCallback, &context);
 
 	if(cfsocket == NULL)
-		NSLog(@"CFSocket failure");
+		[self failure:@"CFSocket failure"];
 	
 	rls = CFSocketCreateRunLoopSource(NULL, cfsocket, 0);
-	assert(rls != NULL);
+
+	if(rls == NULL)
+		[self failure:@"Runloop failure"];
 	
 	CFRunLoopAddSource(CFRunLoopGetCurrent(), rls, kCFRunLoopDefaultMode);
 	
@@ -274,27 +224,23 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 
 #pragma mark Command Wrangling
 
--(void) setupCommand:(NSString *)command address:(NSString *)address port:(NSNumber *)port caller:(id)caller key:(NSString *)key
+-(void) setupCommand:(NSString *)command configuration:(ServerConfiguration *)config caller:(id)caller key:(NSString *)key
 {
-	canSend = FALSE;
-	hasHostname = FALSE;
+	self.server = config;
     self.caller = caller;
-    self.key = key;
 	self.command = command;
-	self.address = address;
-	self.port = port;
-	[self setupAddress:_address port:_port];
+    self.key = key;
+	
+	if(_server.resolvedAddress)
+		[self setResolvedHost:_server.resolvedAddress];
+	else
+		[self resolveHost:_server.address];
 }
 
 -(void) checkStatus
 {
-	if(hasHostname && canSend)
-	{
-		NSLog(@"SENDING MESSAGE %d %d",hasHostname,canSend);
+	if(_server.resolvedAddress && canSend)
 		[self connect];
-	}
-	else
-		NSLog(@"not yet ready %d %d",hasHostname,canSend);
 }
 
 -(void) sendCommand
@@ -316,8 +262,12 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 {
     if((self = [super init]))
     {
+		memset(&server_address, 0, sizeof(server_address));
+		server_address.sin_family = AF_INET;
+		
 		[self setupSocket];
-        self.active = NO;
+	
+		canSend = FALSE;
     }
     
     return self;

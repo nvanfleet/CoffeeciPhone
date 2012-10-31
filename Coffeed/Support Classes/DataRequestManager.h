@@ -16,6 +16,5 @@
 +(id) sharedInstance;
 -(void) checkServerOnline:(ServerConfiguration *)serverConfiguration key:(NSString *)key caller:(id)caller;
 -(void) queueCommand:(NSString *)command caller:(id)caller key:(NSString *)key;
--(void) queueCommand:(NSString *)command caller:(id)caller;
 -(void) removeRequestFromQueue:(DataRequest *)request;
 @end

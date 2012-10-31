@@ -8,18 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+@class ServerConfiguration;
 @protocol DataRequestDelegate;
 
 @interface DataRequest : NSObject
-@property BOOL active;
 @property (retain,nonatomic) id caller;
 @property (nonatomic) NSString *key;
 @property (nonatomic) NSString *command;
-@property (nonatomic) NSString *address;
-@property (nonatomic) NSNumber *port;
+@property (unsafe_unretained) ServerConfiguration *server;
 
 + (DataRequest *) dataRequest;
--(void) setupCommand:(NSString *)command address:(NSString *)address port:(NSNumber *)port caller:(id)caller key:(NSString *)key;
+-(void) setupCommand:(NSString *)command configuration:(ServerConfiguration *)config caller:(id)caller key:(NSString *)key;
 -(void) sendCommand;
 @end
 
