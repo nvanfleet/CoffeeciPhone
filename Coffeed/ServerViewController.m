@@ -166,7 +166,6 @@
 	// Send off commands
 	for(int i=0; i < [self.serverConfigurations count]; i++)
 	{
-
 		ServerConfiguration *sc = [[self.serverConfigurations allValues] objectAtIndex:i];
 
 		NSLog(@"send request %@",sc.address);
@@ -185,7 +184,7 @@
 	
 	[self updateViewData];
 	
-	self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:YES];
+	self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:YES];
 }
 
 -(void) viewWillDisappear:(BOOL)animated
