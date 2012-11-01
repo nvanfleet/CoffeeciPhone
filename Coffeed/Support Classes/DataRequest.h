@@ -12,7 +12,7 @@
 @protocol DataRequestDelegate;
 
 @interface DataRequest : NSObject
-@property (retain,nonatomic) id caller;
+@property (strong) id caller;
 @property (nonatomic) NSString *key;
 @property (nonatomic) NSString *command;
 @property (unsafe_unretained) ServerConfiguration *server;

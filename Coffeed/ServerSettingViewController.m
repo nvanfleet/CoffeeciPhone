@@ -27,14 +27,22 @@
 
 -(void) checkServer
 {
+	if(self.address.text == nil || [self.address.text isEqualToString:@" "])
+		return;
+	
+	if(self.port.text == nil || [self.port.text isEqualToString:@" "])
+		return;
+	
 	ServerConfiguration *tconfig = [[ServerConfiguration alloc] init];
 	
+	tconfig.servername = @"placeholder";
 	tconfig.address = self.address.text;
 
 	NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
 	[f setNumberStyle:NSNumberFormatterDecimalStyle];
-	tconfig.port = [f numberFromString:self.port.text];
 	
+	tconfig.port = [f numberFromString:self.port.text];
+
 	[[DataRequestManager sharedInstance] checkServerOnline:tconfig key:@"x" caller:self];
 }
 
@@ -137,6 +145,24 @@
 	}
 	else
 		self.port.text = @"4949";
+	
+	// Shiny shutdown image
+	UIImage *shutButtonImage = [UIImage imageNamed:@"CellButtonRed"];
+	shutButtonImage = [shutButtonImage stretchableImageWithLeftCapWidth:floorf(shutButtonImage.size.width/2) topCapHeight:floorf(shutButtonImage.size.height/2)];
+	[self.shutdownButton setBackgroundImage:shutButtonImage forState:UIControlStateNormal];
+	[self.shutdownButton setBackgroundImage:shutButtonImage forState:UIControlStateHighlighted];
+	
+	// Shiny Okay image
+	UIImage *okayImage = [UIImage imageNamed:@"CellButtonBlue"];
+	okayImage = [okayImage stretchableImageWithLeftCapWidth:floorf(okayImage.size.width/2) topCapHeight:floorf(okayImage.size.height/2)];
+	[self.okayButton setBackgroundImage:okayImage forState:UIControlStateNormal];
+	[self.okayButton setBackgroundImage:okayImage forState:UIControlStateHighlighted];
+	
+	// Shiny shutdown image
+	UIImage *cancelImage = [UIImage imageNamed:@"CellButtonGrey"];
+	cancelImage = [cancelImage stretchableImageWithLeftCapWidth:floorf(cancelImage.size.width/2) topCapHeight:floorf(cancelImage.size.height/2)];
+	[self.cancelButton setBackgroundImage:cancelImage forState:UIControlStateNormal];
+	[self.cancelButton setBackgroundImage:cancelImage forState:UIControlStateHighlighted];
 	
 	[self checkServer];
 }

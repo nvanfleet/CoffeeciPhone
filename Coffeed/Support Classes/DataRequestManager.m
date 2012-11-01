@@ -19,7 +19,7 @@
 
 -(void) sendNextRequest
 {
-	NSLog(@"sending request %@",[self.queuedRequests objectAtIndex:0]);
+//	NSLog(@"sending request %@",[self.queuedRequests objectAtIndex:0]);
 	//		dispatch_async(dispatch_get_main_queue(), ^{
 	//		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 	[[self.queuedRequests objectAtIndex:0] sendCommand];
@@ -39,7 +39,6 @@
 
 -(void) queueCommand:(NSString *)command caller:(id)caller key:(NSString *)key configuration:(ServerConfiguration *)configuration
 {
-
 	if(!configuration)
 	{
 		NSLog(@"no configuration so no sending request");
@@ -49,14 +48,13 @@
 	DataRequest *request = [DataRequest dataRequest];
 	[request setupCommand:command configuration:configuration caller:caller key:key];
 	
-	NSLog(@"req %@ queuing command %@ key %@",request, command, key);
-	
+//	NSLog(@"req %@ queuing command %@ key %@",request, command, key);
 	
 	int queuedRequests = [self.queuedRequests count];
 	
 	// Queue request
 	[self.queuedRequests addObject:request];
-	
+
 	// If it's the only object then run it immediately
 	if(queuedRequests == 0)
 		[self sendNextRequest];

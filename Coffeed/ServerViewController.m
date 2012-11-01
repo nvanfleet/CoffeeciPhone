@@ -173,7 +173,7 @@
 	{
 		ServerConfiguration *sc = [[self.serverConfigurations allValues] objectAtIndex:i];
 
-		NSLog(@"send request to %@",sc.resolvedAddress);
+//		NSLog(@"send request to %@",sc.resolvedAddress);
 		
 		[[DataRequestManager sharedInstance] checkServerOnline:sc key:[NSString stringWithFormat:@"%d",i] caller:self];
 	}

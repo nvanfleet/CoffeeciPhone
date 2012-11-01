@@ -47,6 +47,12 @@
 		B576442D16249AC700E1B561 /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = B576442B16249AC700E1B561 /* 13-target.png */; };
 		B576442E16249AC700E1B561 /* 13-target@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B576442C16249AC700E1B561 /* 13-target@2x.png */; };
 		B5A9DD7616405C4500FA9DB9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A9DD7516405C4500FA9DB9 /* CFNetwork.framework */; };
+		B5E06B6616430B6C009D3F8E /* CellButtonRed.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E06B6416430B6C009D3F8E /* CellButtonRed.png */; };
+		B5E06B6716430B6C009D3F8E /* CellButtonRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E06B6516430B6C009D3F8E /* CellButtonRed@2x.png */; };
+		B5E06B6B16430B74009D3F8E /* CellButtonBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E06B6916430B74009D3F8E /* CellButtonBlue.png */; };
+		B5E06B6C16430B74009D3F8E /* CellButtonBlue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E06B6A16430B74009D3F8E /* CellButtonBlue@2x.png */; };
+		B5E06B73164311CD009D3F8E /* CellButtonGrey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E06B71164311CD009D3F8E /* CellButtonGrey@2x.png */; };
+		B5E06B74164311CD009D3F8E /* CellButtonGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E06B72164311CD009D3F8E /* CellButtonGrey.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +110,12 @@
 		B576442B16249AC700E1B561 /* 13-target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "13-target.png"; sourceTree = "<group>"; };
 		B576442C16249AC700E1B561 /* 13-target@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "13-target@2x.png"; sourceTree = "<group>"; };
 		B5A9DD7516405C4500FA9DB9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		B5E06B6416430B6C009D3F8E /* CellButtonRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellButtonRed.png; sourceTree = "<group>"; };
+		B5E06B6516430B6C009D3F8E /* CellButtonRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CellButtonRed@2x.png"; sourceTree = "<group>"; };
+		B5E06B6916430B74009D3F8E /* CellButtonBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellButtonBlue.png; sourceTree = "<group>"; };
+		B5E06B6A16430B74009D3F8E /* CellButtonBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CellButtonBlue@2x.png"; sourceTree = "<group>"; };
+		B5E06B71164311CD009D3F8E /* CellButtonGrey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CellButtonGrey@2x.png"; sourceTree = "<group>"; };
+		B5E06B72164311CD009D3F8E /* CellButtonGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellButtonGrey.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +181,12 @@
 		B52AD7FC1614C08800D0939A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B5E06B71164311CD009D3F8E /* CellButtonGrey@2x.png */,
+				B5E06B72164311CD009D3F8E /* CellButtonGrey.png */,
+				B5E06B6916430B74009D3F8E /* CellButtonBlue.png */,
+				B5E06B6A16430B74009D3F8E /* CellButtonBlue@2x.png */,
+				B5E06B6416430B6C009D3F8E /* CellButtonRed.png */,
+				B5E06B6516430B6C009D3F8E /* CellButtonRed@2x.png */,
 				B576442B16249AC700E1B561 /* 13-target.png */,
 				B576442C16249AC700E1B561 /* 13-target@2x.png */,
 				B576442616249A7100E1B561 /* 21-skull.png */,
@@ -320,6 +338,12 @@
 				B576442916249A7100E1B561 /* 21-skull@2x.png in Resources */,
 				B576442D16249AC700E1B561 /* 13-target.png in Resources */,
 				B576442E16249AC700E1B561 /* 13-target@2x.png in Resources */,
+				B5E06B6616430B6C009D3F8E /* CellButtonRed.png in Resources */,
+				B5E06B6716430B6C009D3F8E /* CellButtonRed@2x.png in Resources */,
+				B5E06B6B16430B74009D3F8E /* CellButtonBlue.png in Resources */,
+				B5E06B6C16430B74009D3F8E /* CellButtonBlue@2x.png in Resources */,
+				B5E06B73164311CD009D3F8E /* CellButtonGrey@2x.png in Resources */,
+				B5E06B74164311CD009D3F8E /* CellButtonGrey.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

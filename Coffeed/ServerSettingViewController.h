@@ -14,6 +14,9 @@
 @property (assign) IBOutlet UITextField *address;
 @property (assign) IBOutlet UITextField *port;
 @property (strong) ServerConfiguration *configuration;
+@property (assign) IBOutlet UIButton *cancelButton;
+@property (assign) IBOutlet UIButton *okayButton;
+@property (assign) IBOutlet UIButton *shutdownButton;
 
 @property (assign) IBOutlet UIImageView *statusImage;
 

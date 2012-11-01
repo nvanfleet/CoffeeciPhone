@@ -163,7 +163,13 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 }
 
 -(void) setServerAddress:(struct in_addr)resolvedaddr
-{	
+{
+	if (resolvedaddr.s_addr == INADDR_NONE)
+	{
+		[self failure:@"bad address"];
+		return;
+	}
+	
 	[self setResolvedHost:[NSString stringWithFormat:@"%s",inet_ntoa(resolvedaddr)]];
 }
 
