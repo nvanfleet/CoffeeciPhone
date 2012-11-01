@@ -71,6 +71,7 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 
 -(void) failure:(NSString *)failMessage
 {
+	NSLog(@"fff");
 	[self.caller dataManagerDidFail:self withObject:failMessage];
 	[[DataRequestManager sharedInstance] removeRequestFromQueue:self];
 }
@@ -103,6 +104,7 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 {
 	if(response != nil)
 	{
+		NSLog(@"ggg %@",response);
 		NSDictionary *message = [self decodeMessageToDict:response];
 		[self.caller dataManagerDidSucceed:self withObject:message];
 		[[DataRequestManager sharedInstance] removeRequestFromQueue:self];
