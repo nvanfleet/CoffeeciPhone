@@ -55,11 +55,10 @@
 
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
 {
-	if([nm.key isEqualToString:@"config"])
-	{
-		[self.timer invalidate];
-		self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:NO];
-	}
+	NSLog(@"succeed %@",object);
+	
+	if([nm.key isEqualToString:@"updateView"])
+		[self scheduleUpdate];
 	
 	NSDictionary *rdict = object;
 	
@@ -141,7 +140,7 @@
 	if(self.isViewLoaded)
 	{
 		[self.timer invalidate];
-		self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:NO];
+		self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:NO];
 	}
 }
 
@@ -154,7 +153,7 @@
 {
 	[self updateViewData];
 	
-	self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:NO];
+	[self scheduleUpdate];
 }
 
 -(void) viewWillDisappear:(BOOL)animated

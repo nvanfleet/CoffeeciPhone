@@ -91,6 +91,7 @@
     
     if (cell == nil)
     {
+		NSLog(@"Create new cell");
         cell = [self createNewCell];
     }
     
@@ -119,6 +120,8 @@
 	ServerConfigurationCell *cell = (ServerConfigurationCell *) [self.tableView cellForRowAtIndexPath:index];
 	
 	cell.statusImage.image = [UIImage imageNamed:@"21-skull"];
+	
+	NSLog(@"fail on %d",keyIndex);
 }
 
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
@@ -128,6 +131,8 @@
 	ServerConfigurationCell *cell = (ServerConfigurationCell *) [self.tableView cellForRowAtIndexPath:index];
 	
 	cell.statusImage.image = [UIImage imageNamed:@"13-target"];
+	
+	NSLog(@"succeed on %d",keyIndex);
 }
 
 #pragma mark Basic
@@ -168,7 +173,7 @@
 	{
 		ServerConfiguration *sc = [[self.serverConfigurations allValues] objectAtIndex:i];
 
-		NSLog(@"send request %@",sc.address);
+		NSLog(@"send request to %@",sc.resolvedAddress);
 		
 		[[DataRequestManager sharedInstance] checkServerOnline:sc key:[NSString stringWithFormat:@"%d",i] caller:self];
 	}
@@ -176,6 +181,7 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
+	NSLog(@"server view");
 	self.serverConfigurations = [[[DataRequestManager sharedInstance] savedDataManager] configurations];
 
 	[self.tableView reloadData];
@@ -184,7 +190,7 @@
 	
 	[self updateViewData];
 	
-	self.timer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:YES];
+	self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:YES];
 }
 
 -(void) viewWillDisappear:(BOOL)animated

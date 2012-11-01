@@ -122,6 +122,8 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 
 -(void) connect
 {
+	NSLog(@"connecting.. %@ (%@)",_server.resolvedAddress,_server.address);
+	
 	CFSocketError error;
 	CFTimeInterval timeout = 5;
 
