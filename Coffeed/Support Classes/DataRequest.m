@@ -35,6 +35,8 @@ static void hostnameCallback(CFHostRef inHostInfo, CFHostInfoType inType, const 
 {
 	DataRequest *client = (__bridge DataRequest *) info;
 	
+	NSLog();
+	
 	if(inError->error == noErr)
 	{
 		DataRequest *client = (__bridge DataRequest *) info;
@@ -71,7 +73,6 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 
 -(void) failure:(NSString *)failMessage
 {
-	NSLog(@"fff");
 	[self.caller dataManagerDidFail:self withObject:failMessage];
 	[[DataRequestManager sharedInstance] removeRequestFromQueue:self];
 }
@@ -104,7 +105,6 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 {
 	if(response != nil)
 	{
-		NSLog(@"ggg %@",response);
 		NSDictionary *message = [self decodeMessageToDict:response];
 		[self.caller dataManagerDidSucceed:self withObject:message];
 		[[DataRequestManager sharedInstance] removeRequestFromQueue:self];
@@ -133,8 +133,6 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 
 -(void) connect
 {
-//	NSLog(@"connecting.. %@ (%@)",_server.resolvedAddress,_server.address);
-	
 	CFSocketError error;
 	CFTimeInterval timeout = 5;
 

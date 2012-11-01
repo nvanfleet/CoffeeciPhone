@@ -188,9 +188,9 @@
 	
 	[self setActiveServer];
 	
-	[self updateViewData];
-	
-	self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:YES];
+//	[self updateViewData];
+//	
+//	self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:YES];
 }
 
 -(void) viewWillDisappear:(BOOL)animated
