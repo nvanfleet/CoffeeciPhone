@@ -25,7 +25,6 @@
 	CFSocketRef cfsocket;
 	struct sockaddr_in server_address;
 }
-@property (strong) NSString *domain;
 -(void) sendData;
 -(void) decodeData:(NSString *)data;
 -(void) failure:(NSString *)failMessage;
@@ -60,49 +59,59 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 	if(type == kCFSocketDataCallBack)
 	{
 		NSString *receivedData = [[NSString alloc] initWithData:(__bridge NSData *)data encoding:NSUTF8StringEncoding];
-//		NSLog(@"kCFSocketDataCallBack data %@",ts);
 		[client decodeData:receivedData];
-	}
-	else if(type == kCFSocketConnectCallBack)
-	{
-//		NSLog(@"kCFSocketConnectCallBack");
 	}
 	else if(type == kCFSocketWriteCallBack)
 	{
-//		NSLog(@"kCFSocketWriteCallBack");
 		[client sendData];
 	}
-	else if(type == kCFSocketReadCallBack)
-		NSLog(@"kCFSocketReadCallBack");
-	else if(type == kCFSocketAcceptCallBack)
-		NSLog(@"kCFSocketAcceptCallBack");
 }
 
 @implementation DataRequest
 
 -(void) failure:(NSString *)failMessage
 {
-	[self closeSocket];
 	[self.caller dataManagerDidFail:self withObject:failMessage];
+	[[DataRequestManager sharedInstance] removeRequestFromQueue:self];
 }
 
-#pragma mark CFSocket
+#pragma mark decode
+
+-(NSDictionary *) decodeMessageToDict:(NSString *)command
+{
+	NSCharacterSet *delim = [NSCharacterSet characterSetWithCharactersInString:@","];
+	NSArray *options = [command componentsSeparatedByCharactersInSet:delim];
+	
+	NSArray *pieces;
+	NSCharacterSet *equal = [NSCharacterSet characterSetWithCharactersInString:@"="];
+	NSMutableDictionary *rdict = [NSMutableDictionary dictionary];
+	
+	for(int i=0; i<[options count]; i++)
+	{
+		pieces = [options[i] componentsSeparatedByCharactersInSet:equal];
+		
+		if([pieces count] == 2)
+		{
+			[rdict setObject:pieces[1] forKey:pieces[0]];
+		}
+	}
+	
+	return rdict;
+}
 
 -(void) decodeData:(NSString *)response
 {
 	if(response != nil)
 	{
-		NSDictionary *message = [self decodeMessage:response];
+		NSDictionary *message = [self decodeMessageToDict:response];
 		[self.caller dataManagerDidSucceed:self withObject:message];
+		[[DataRequestManager sharedInstance] removeRequestFromQueue:self];
 	}
 	else
-		[self.caller dataManagerDidFail:self withObject:@"no response"];
-	
-	[self closeSocket];
-	
-	// Remove from queue
-	[[DataRequestManager sharedInstance] removeRequestFromQueue:self];
+		[self failure:@"no response"];
 }
+
+#pragma mark CFSocket
 
 -(void) sendData
 {
@@ -122,7 +131,7 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 
 -(void) connect
 {
-	NSLog(@"connecting.. %@ (%@)",_server.resolvedAddress,_server.address);
+//	NSLog(@"connecting.. %@ (%@)",_server.resolvedAddress,_server.address);
 	
 	CFSocketError error;
 	CFTimeInterval timeout = 5;
@@ -200,30 +209,6 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 	CFRelease(rls);
 }
 
-#pragma mark decode
-
--(NSDictionary *) decodeMessage:(NSString *)command
-{
-	NSCharacterSet *delim = [NSCharacterSet characterSetWithCharactersInString:@","];
-	NSArray *options = [command componentsSeparatedByCharactersInSet:delim];
-
-	NSArray *pieces;
-	NSCharacterSet *equal = [NSCharacterSet characterSetWithCharactersInString:@"="];
-	NSMutableDictionary *rdict = [NSMutableDictionary dictionary];
-	
-	for(int i=0; i<[options count]; i++)
-	{
-		pieces = [options[i] componentsSeparatedByCharactersInSet:equal];
-
-		if([pieces count] == 2)
-		{
-			[rdict setObject:pieces[1] forKey:pieces[0]];
-		}
-	}
-	
-	return rdict;
-}
-
 #pragma mark Command Wrangling
 
 -(void) setupCommand:(NSString *)command configuration:(ServerConfiguration *)config caller:(id)caller key:(NSString *)key
@@ -242,7 +227,9 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 -(void) checkStatus
 {
 	if(_server.resolvedAddress && canSend)
+	{
 		[self connect];
+	}
 }
 
 -(void) sendCommand
@@ -258,6 +245,11 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
     DataRequest *dr = [[DataRequest alloc] init];
     
     return dr;
+}
+
+-(void) dealloc
+{
+	[self closeSocket];
 }
 
 -(id) init
