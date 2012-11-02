@@ -13,4 +13,6 @@
 @property (assign) IBOutlet UITableView *tableView;
 
 -(IBAction) addServerEntry:(id)sender;
+-(IBAction) accessoryButtonTapped: (UIControl *) button withEvent: (UIEvent *) event;
+
 @end

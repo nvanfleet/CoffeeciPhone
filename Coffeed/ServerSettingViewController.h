@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ServerConfiguration.h"
 
-@interface ServerSettingViewController : UIViewController <UITextFieldDelegate>
+@interface ServerSettingViewController : UIViewController <UITextFieldDelegate,UIAlertViewDelegate>
 @property (assign) IBOutlet UITextField *serverName;
 @property (assign) IBOutlet UITextField *address;
 @property (assign) IBOutlet UITextField *port;

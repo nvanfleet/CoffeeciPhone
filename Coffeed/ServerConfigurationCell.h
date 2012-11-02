@@ -12,4 +12,5 @@
 @property (assign) IBOutlet UILabel *title;
 @property (assign) IBOutlet UILabel *address;
 @property (assign) IBOutlet UIImageView *statusImage;
+@property (assign) IBOutlet UIButton *selectedButton;
 @end

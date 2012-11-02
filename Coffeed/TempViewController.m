@@ -37,7 +37,6 @@
 	if([nm.key isEqualToString:@"updateView"])
 		[self scheduleUpdate];
 	
-	NSLog(@"failure message '%@' key '%@'",object,[nm key]);
 	if([nm.key isEqualToString:@"updateView"])
 	{
 		[self enableDisplay:FALSE];
@@ -77,18 +76,28 @@
 
 	if(rdict[@"SMODE"] != nil)
 	{
-		if([rdict[@"SMODE"] boolValue])
-			self.steamSwitch.on = TRUE;
+		if(!self.steamSwitch.enabled)
+			self.steamSwitch.enabled = TRUE;
 		else
-			self.steamSwitch.on = FALSE;
+		{
+			if([rdict[@"SMODE"] boolValue])
+				[self.steamSwitch setOn:TRUE animated:TRUE];
+			else
+				[self.steamSwitch setOn:FALSE animated:TRUE];
+		}
 	}
 	
 	if(rdict[@"ACTIVE"] != nil)
 	{
-		if([rdict[@"ACTIVE"] boolValue])
-			self.activeSwitch.on = TRUE;
+		if(!self.activeSwitch.enabled)
+			self.activeSwitch.enabled = TRUE;
 		else
-			self.activeSwitch.on = FALSE;
+		{
+			if([rdict[@"ACTIVE"] boolValue])
+				[self.activeSwitch setOn:TRUE animated:TRUE];
+			else
+				[self.activeSwitch setOn:FALSE animated:TRUE];
+		}
 	}
 	
 	self.statusImage.image = [UIImage imageNamed:@"13-target"];
@@ -119,6 +128,8 @@
 {
 	NSString *command;
 	
+	sender.enabled = FALSE;
+	
 	if([sender isOn])
 		command = [NSString stringWithFormat:@"ACTIVE=1,SETPOINT"];
 	else
@@ -130,6 +141,8 @@
 -(IBAction)steamSwitchChanged:(UISwitch *)sender
 {
 	NSString *command;
+	
+	sender.enabled = FALSE;
 	
 	if([sender isOn])
 		command = [NSString stringWithFormat:@"SMODE=1,SETPOINT"];
@@ -146,13 +159,12 @@
 	if(self.isViewLoaded && self.view.window)
 	{
 		[self.timer invalidate];
-		self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:NO];
+		self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:NO];
 	}
 }
 
 -(void) updateViewData
 {
-	NSLog(@"update view data");
 	[[DataRequestManager sharedInstance] queueCommand:@"SETPOINT,TPOINT,SMODE,ACTIVE,POW" caller:self key:@"updateView"];
 }
 

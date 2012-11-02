@@ -81,6 +81,9 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 	NSCharacterSet *delim = [NSCharacterSet characterSetWithCharactersInString:@","];
 	NSArray *options = [command componentsSeparatedByCharactersInSet:delim];
 	
+	if([options count] == 0)
+		return nil;
+	
 	NSArray *pieces;
 	NSCharacterSet *equal = [NSCharacterSet characterSetWithCharactersInString:@"="];
 	NSMutableDictionary *rdict = [NSMutableDictionary dictionary];
@@ -95,6 +98,9 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 		}
 	}
 	
+	if([rdict count] == 0)
+		return nil;
+	
 	return rdict;
 }
 
@@ -103,8 +109,14 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 	if(response != nil)
 	{
 		NSDictionary *message = [self decodeMessageToDict:response];
-		[self.caller dataManagerDidSucceed:self withObject:message];
-		[[DataRequestManager sharedInstance] removeRequestFromQueue:self];
+		if(message != nil)
+		{
+			[self.caller dataManagerDidSucceed:self withObject:message];
+			[[DataRequestManager sharedInstance] removeRequestFromQueue:self];
+		}
+		else
+			[self failure:@"NULL data"];
+
 	}
 	else
 		[self failure:@"no response"];

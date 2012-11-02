@@ -69,9 +69,9 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
 	[textField resignFirstResponder];
-	
+
 	[self checkServer];
-	
+
 	return YES;
 }
 
@@ -89,9 +89,16 @@
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if(buttonIndex != alertView.cancelButtonIndex)
+		[[DataRequestManager sharedInstance] queueCommand:@"SHUTD" caller:self key:@"shutdown"];
+}
+
 -(IBAction)shutdownSystem:(id)sender
 {
-	[[DataRequestManager sharedInstance] queueCommand:@"SHUTD" caller:self key:@"shutdown"];
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm shutdown" message:@"Are you sure you'd like to shut down the coffeed system? You will have to manually restart the daemon on the server if you do." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Shutdown", nil];
+	[alert show];
 }
 
 #pragma mark Basic

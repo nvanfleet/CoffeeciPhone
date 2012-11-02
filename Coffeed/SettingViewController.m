@@ -47,7 +47,6 @@
 	if([nm.key isEqualToString:@"updateView"])
 		[self scheduleUpdate];
 	
-	NSLog(@"Failure '%@' key '%@'",object,[nm key]);
 	[self enableDisplay:FALSE];
 	
 	self.statusImage.image = [UIImage imageNamed:@"21-skull"];
@@ -55,8 +54,6 @@
 
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
 {
-	NSLog(@"succeed %@",object);
-	
 	if([nm.key isEqualToString:@"updateView"])
 		[self scheduleUpdate];
 	
@@ -137,7 +134,7 @@
 
 -(void) scheduleUpdate
 {
-	if(self.isViewLoaded)
+	if(self.isViewLoaded && self.view.window)
 	{
 		[self.timer invalidate];
 		self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:NO];

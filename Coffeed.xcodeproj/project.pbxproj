@@ -21,6 +21,12 @@
 		B52AD82D1614C12200D0939A /* DataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AD82B1614C12200D0939A /* DataRequest.m */; };
 		B52AD8311614C26000D0939A /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AD8301614C26000D0939A /* SettingViewController.m */; };
 		B52AD8371614C40900D0939A /* TempViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AD8361614C40900D0939A /* TempViewController.m */; };
+		B5368A1A164440360080EA38 /* disclosure_indicator_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5368A14164440360080EA38 /* disclosure_indicator_default@2x.png */; };
+		B5368A1B164440360080EA38 /* CTORowNotSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5368A15164440360080EA38 /* CTORowNotSelected@2x.png */; };
+		B5368A1C164440360080EA38 /* CTORowSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5368A16164440360080EA38 /* CTORowSelected@2x.png */; };
+		B5368A1D164440360080EA38 /* disclosure_indicator_default.png in Resources */ = {isa = PBXBuildFile; fileRef = B5368A17164440360080EA38 /* disclosure_indicator_default.png */; };
+		B5368A1E164440360080EA38 /* CTORowNotSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = B5368A18164440360080EA38 /* CTORowNotSelected.png */; };
+		B5368A1F164440360080EA38 /* CTORowSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = B5368A19164440360080EA38 /* CTORowSelected.png */; };
 		B53731871619E78F00CD455D /* SavedDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B53731861619E78F00CD455D /* SavedDataManager.m */; };
 		B537318A1619E7B400CD455D /* ServerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = B53731891619E7B400CD455D /* ServerConfiguration.m */; };
 		B54C9CE71636DD2C0029D900 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B54C9CE61636DD2C0029D900 /* CoreFoundation.framework */; };
@@ -78,6 +84,12 @@
 		B52AD8301614C26000D0939A /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		B52AD8351614C40900D0939A /* TempViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempViewController.h; sourceTree = "<group>"; };
 		B52AD8361614C40900D0939A /* TempViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempViewController.m; sourceTree = "<group>"; };
+		B5368A14164440360080EA38 /* disclosure_indicator_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "disclosure_indicator_default@2x.png"; sourceTree = "<group>"; };
+		B5368A15164440360080EA38 /* CTORowNotSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CTORowNotSelected@2x.png"; sourceTree = "<group>"; };
+		B5368A16164440360080EA38 /* CTORowSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CTORowSelected@2x.png"; sourceTree = "<group>"; };
+		B5368A17164440360080EA38 /* disclosure_indicator_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disclosure_indicator_default.png; sourceTree = "<group>"; };
+		B5368A18164440360080EA38 /* CTORowNotSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CTORowNotSelected.png; sourceTree = "<group>"; };
+		B5368A19164440360080EA38 /* CTORowSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CTORowSelected.png; sourceTree = "<group>"; };
 		B53731851619E78F00CD455D /* SavedDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedDataManager.h; sourceTree = "<group>"; };
 		B53731861619E78F00CD455D /* SavedDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedDataManager.m; sourceTree = "<group>"; };
 		B53731881619E7B300CD455D /* ServerConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConfiguration.h; sourceTree = "<group>"; };
@@ -181,6 +193,12 @@
 		B52AD7FC1614C08800D0939A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B5368A14164440360080EA38 /* disclosure_indicator_default@2x.png */,
+				B5368A17164440360080EA38 /* disclosure_indicator_default.png */,
+				B5368A15164440360080EA38 /* CTORowNotSelected@2x.png */,
+				B5368A16164440360080EA38 /* CTORowSelected@2x.png */,
+				B5368A18164440360080EA38 /* CTORowNotSelected.png */,
+				B5368A19164440360080EA38 /* CTORowSelected.png */,
 				B5E06B71164311CD009D3F8E /* CellButtonGrey@2x.png */,
 				B5E06B72164311CD009D3F8E /* CellButtonGrey.png */,
 				B5E06B6916430B74009D3F8E /* CellButtonBlue.png */,
@@ -344,6 +362,12 @@
 				B5E06B6C16430B74009D3F8E /* CellButtonBlue@2x.png in Resources */,
 				B5E06B73164311CD009D3F8E /* CellButtonGrey@2x.png in Resources */,
 				B5E06B74164311CD009D3F8E /* CellButtonGrey.png in Resources */,
+				B5368A1A164440360080EA38 /* disclosure_indicator_default@2x.png in Resources */,
+				B5368A1B164440360080EA38 /* CTORowNotSelected@2x.png in Resources */,
+				B5368A1C164440360080EA38 /* CTORowSelected@2x.png in Resources */,
+				B5368A1D164440360080EA38 /* disclosure_indicator_default.png in Resources */,
+				B5368A1E164440360080EA38 /* CTORowNotSelected.png in Resources */,
+				B5368A1F164440360080EA38 /* CTORowSelected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

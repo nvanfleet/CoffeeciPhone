@@ -44,8 +44,12 @@
 // Set active configuration
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	// Set Datamanager selected
 	ServerConfiguration *sc = [[self.serverConfigurations allValues] objectAtIndex:[indexPath row]];
 	[[[DataRequestManager sharedInstance] savedDataManager] setSelectedServer:sc];
+	
+	[self.tableView reloadData];
+	[self setActiveServer];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -97,11 +101,25 @@
     
 	cell.title.text = sConfig.servername;
 	cell.address.text = [NSString stringWithFormat:@"%@:%@",sConfig.address,sConfig.port];
-    
+	
+	// Set selected
+	ServerConfiguration *sc = [[[DataRequestManager sharedInstance] savedDataManager] selectedServer];
+	if([sConfig.servername isEqualToString:sc.servername])
+		cell.selectedButton.selected = TRUE;
+	
     return cell;
 }
 
 #pragma mark Actions
+
+- (void) accessoryButtonTapped: (UIControl *) button withEvent: (UIEvent *) event
+{
+    NSIndexPath * indexPath = [self.tableView indexPathForRowAtPoint: [[[event touchesForView: button] anyObject] locationInView: self.tableView]];
+    if ( indexPath == nil )
+        return;
+	
+    [self.tableView.delegate tableView: self.tableView accessoryButtonTappedForRowWithIndexPath: indexPath];
+}
 
 -(IBAction) addServerEntry:(id)sender
 {
@@ -120,8 +138,6 @@
 	ServerConfigurationCell *cell = (ServerConfigurationCell *) [self.tableView cellForRowAtIndexPath:index];
 	
 	cell.statusImage.image = [UIImage imageNamed:@"21-skull"];
-	
-	NSLog(@"fail on %d",keyIndex);
 }
 
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
@@ -131,14 +147,12 @@
 	ServerConfigurationCell *cell = (ServerConfigurationCell *) [self.tableView cellForRowAtIndexPath:index];
 	
 	cell.statusImage.image = [UIImage imageNamed:@"13-target"];
-	
-	NSLog(@"succeed on %d",keyIndex);
 }
 
 #pragma mark Basic
 
 -(void) setActiveServer
-{
+{	
 	if([self.serverConfigurations count] <= 0)
 	{
 		return;
@@ -146,24 +160,27 @@
 	
 	ServerConfiguration *sc = [[[DataRequestManager sharedInstance] savedDataManager] selectedServer];
 	
-	
+	BOOL isSelected;
 	int i =0;
+	NSIndexPath *index;
 	
 	if(sc!=nil)
 	{
 		for(i=0; i < [self.serverConfigurations count]; i++)
 		{
+			isSelected = NO;
 			NSString *c = [[self.serverConfigurations allKeys] objectAtIndex:i];
 			if([c isEqualToString:sc.servername])
 			{
-				break;
+				isSelected = YES;
 			}
+			
+			index = [NSIndexPath indexPathForRow:i inSection:0];
+			
+			ServerConfigurationCell *scc = (ServerConfigurationCell*) [self.tableView cellForRowAtIndexPath:index];
+			scc.selectedButton.selected = isSelected;
 		}
 	}
-	
-	NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:0];
-	
-	[self.tableView selectRowAtIndexPath:index animated:YES scrollPosition:UITableViewScrollPositionMiddle];
 }
 
 -(void) updateViewData
@@ -188,9 +205,9 @@
 	
 	[self setActiveServer];
 	
-//	[self updateViewData];
-//	
-//	self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:YES];
+	[self updateViewData];
+	
+	self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:YES];
 }
 
 -(void) viewWillDisappear:(BOOL)animated
