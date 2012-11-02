@@ -139,8 +139,6 @@
 
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
 {
-	NSLog(@"succ %@ %@",nm.key,object);
-	
 	int keyIndex = [[nm key]integerValue];
 	NSIndexPath *index = [NSIndexPath indexPathForRow:keyIndex inSection:0];
 	ServerConfigurationCell *cell = (ServerConfigurationCell *) [self.tableView cellForRowAtIndexPath:index];
