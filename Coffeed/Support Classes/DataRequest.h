@@ -15,7 +15,7 @@
 @property (strong) id caller;
 @property (nonatomic) NSString *key;
 @property (nonatomic) NSString *command;
-@property (unsafe_unretained) ServerConfiguration *server;
+@property (nonatomic) ServerConfiguration *server;
 
 + (DataRequest *) dataRequest;
 -(void) setupCommand:(NSString *)command configuration:(ServerConfiguration *)config caller:(id)caller key:(NSString *)key;

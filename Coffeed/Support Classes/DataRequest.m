@@ -23,7 +23,6 @@
 	BOOL hasHostname;
 	BOOL canSend;
 	CFSocketRef cfsocket;
-	struct sockaddr_in server_address;
 }
 -(void) sendData;
 -(void) decodeData:(NSString *)data;
@@ -34,8 +33,6 @@
 static void hostnameCallback(CFHostRef inHostInfo, CFHostInfoType inType, const CFStreamError *inError, void *info)
 {
 	DataRequest *client = (__bridge DataRequest *) info;
-	
-	NSLog();
 	
 	if(inError->error == noErr)
 	{
@@ -135,7 +132,13 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 {
 	CFSocketError error;
 	CFTimeInterval timeout = 5;
-
+	struct sockaddr_in server_address;
+	
+	memset(&server_address, 0, sizeof(server_address));
+	server_address.sin_family = AF_INET;
+	server_address.sin_addr.s_addr = inet_addr([_server.resolvedAddress UTF8String]);
+	server_address.sin_port = htons([_server.port intValue]);
+	
 	CFDataRef address = CFDataCreate(NULL, (UInt8 *) &server_address, sizeof(server_address));
 
 	// CONNECT
@@ -170,16 +173,13 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 		return;
 	}
 	
-	[self setResolvedHost:[NSString stringWithFormat:@"%s",inet_ntoa(resolvedaddr)]];
+	NSString *newaddress = [NSString stringWithFormat:@"%s",inet_ntoa(resolvedaddr)];
+	[self setResolvedHost:newaddress];
 }
 
 -(void) setResolvedHost:(NSString *)resolved
 {
 	_server.resolvedAddress = resolved;
-	
-	server_address.sin_addr.s_addr = inet_addr([resolved UTF8String]);
-	server_address.sin_port = htons([_server.port intValue]);
-	
 	[self checkStatus];
 }
 
@@ -261,10 +261,7 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 -(id) init
 {
     if((self = [super init]))
-    {
-		memset(&server_address, 0, sizeof(server_address));
-		server_address.sin_family = AF_INET;
-		
+    {		
 		[self setupSocket];
 	
 		canSend = FALSE;
