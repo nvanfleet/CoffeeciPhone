@@ -27,6 +27,8 @@
 		B5368A1D164440360080EA38 /* disclosure_indicator_default.png in Resources */ = {isa = PBXBuildFile; fileRef = B5368A17164440360080EA38 /* disclosure_indicator_default.png */; };
 		B5368A1E164440360080EA38 /* CTORowNotSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = B5368A18164440360080EA38 /* CTORowNotSelected.png */; };
 		B5368A1F164440360080EA38 /* CTORowSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = B5368A19164440360080EA38 /* CTORowSelected.png */; };
+		B5368A2716444C630080EA38 /* CTORowFakeSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = B5368A2516444C630080EA38 /* CTORowFakeSelected.png */; };
+		B5368A2816444C630080EA38 /* CTORowFakeSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5368A2616444C630080EA38 /* CTORowFakeSelected@2x.png */; };
 		B53731871619E78F00CD455D /* SavedDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B53731861619E78F00CD455D /* SavedDataManager.m */; };
 		B537318A1619E7B400CD455D /* ServerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = B53731891619E7B400CD455D /* ServerConfiguration.m */; };
 		B54C9CE71636DD2C0029D900 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B54C9CE61636DD2C0029D900 /* CoreFoundation.framework */; };
@@ -90,6 +92,8 @@
 		B5368A17164440360080EA38 /* disclosure_indicator_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disclosure_indicator_default.png; sourceTree = "<group>"; };
 		B5368A18164440360080EA38 /* CTORowNotSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CTORowNotSelected.png; sourceTree = "<group>"; };
 		B5368A19164440360080EA38 /* CTORowSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CTORowSelected.png; sourceTree = "<group>"; };
+		B5368A2516444C630080EA38 /* CTORowFakeSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CTORowFakeSelected.png; sourceTree = "<group>"; };
+		B5368A2616444C630080EA38 /* CTORowFakeSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CTORowFakeSelected@2x.png"; sourceTree = "<group>"; };
 		B53731851619E78F00CD455D /* SavedDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedDataManager.h; sourceTree = "<group>"; };
 		B53731861619E78F00CD455D /* SavedDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedDataManager.m; sourceTree = "<group>"; };
 		B53731881619E7B300CD455D /* ServerConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConfiguration.h; sourceTree = "<group>"; };
@@ -195,6 +199,8 @@
 			children = (
 				B5368A14164440360080EA38 /* disclosure_indicator_default@2x.png */,
 				B5368A17164440360080EA38 /* disclosure_indicator_default.png */,
+				B5368A2516444C630080EA38 /* CTORowFakeSelected.png */,
+				B5368A2616444C630080EA38 /* CTORowFakeSelected@2x.png */,
 				B5368A15164440360080EA38 /* CTORowNotSelected@2x.png */,
 				B5368A16164440360080EA38 /* CTORowSelected@2x.png */,
 				B5368A18164440360080EA38 /* CTORowNotSelected.png */,
@@ -368,6 +374,8 @@
 				B5368A1D164440360080EA38 /* disclosure_indicator_default.png in Resources */,
 				B5368A1E164440360080EA38 /* CTORowNotSelected.png in Resources */,
 				B5368A1F164440360080EA38 /* CTORowSelected.png in Resources */,
+				B5368A2716444C630080EA38 /* CTORowFakeSelected.png in Resources */,
+				B5368A2816444C630080EA38 /* CTORowFakeSelected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
