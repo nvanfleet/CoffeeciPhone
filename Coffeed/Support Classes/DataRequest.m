@@ -54,11 +54,12 @@ static void hostnameCallback(CFHostRef inHostInfo, CFHostInfoType inType, const 
 static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef address, const void *data, void *info)
 {
 	DataRequest *client = (__bridge DataRequest *) info;
-
+	
 	if(type == kCFSocketDataCallBack)
 	{
-		NSString *receivedData = [[NSString alloc] initWithData:(__bridge NSData *)data encoding:NSUTF8StringEncoding];
-		[client decodeData:receivedData];
+		NSData *rData = (__bridge NSData *)data;
+		NSString *rString = [[NSString alloc] initWithData:rData encoding:NSUTF8StringEncoding];
+		[client decodeData:rString];
 	}
 	else if(type == kCFSocketWriteCallBack)
 	{
@@ -77,7 +78,7 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 #pragma mark decode
 
 -(NSDictionary *) decodeMessageToDict:(NSString *)command
-{
+{	
 	NSCharacterSet *delim = [NSCharacterSet characterSetWithCharactersInString:@","];
 	NSArray *options = [command componentsSeparatedByCharactersInSet:delim];
 	

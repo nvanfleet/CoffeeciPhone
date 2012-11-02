@@ -87,10 +87,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSArray *keys = [_serverConfigurations allKeys];
-	
-	ServerConfiguration *sConfig = [_serverConfigurations objectForKey:keys[[indexPath row]]];
-	
+	ServerConfiguration *sConfig = [[_serverConfigurations allValues] objectAtIndex:[indexPath row]];
+
     ServerConfigurationCell *cell = (ServerConfigurationCell *) [tableView dequeueReusableCellWithIdentifier:@"ServerCell"];
     
     if (cell == nil)
@@ -136,16 +134,16 @@
 	int keyIndex = [[nm key]integerValue];
 	NSIndexPath *index = [NSIndexPath indexPathForRow:keyIndex inSection:0];
 	ServerConfigurationCell *cell = (ServerConfigurationCell *) [self.tableView cellForRowAtIndexPath:index];
-	
 	cell.statusImage.image = [UIImage imageNamed:@"21-skull"];
 }
 
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
 {
+	NSLog(@"succ %@ %@",nm.key,object);
+	
 	int keyIndex = [[nm key]integerValue];
 	NSIndexPath *index = [NSIndexPath indexPathForRow:keyIndex inSection:0];
 	ServerConfigurationCell *cell = (ServerConfigurationCell *) [self.tableView cellForRowAtIndexPath:index];
-	
 	cell.statusImage.image = [UIImage imageNamed:@"13-target"];
 }
 
@@ -186,21 +184,17 @@
 -(void) updateViewData
 {
 	// Send off commands
-	for(int i=0; i < [self.serverConfigurations count]; i++)
+	for(int i=0; i < [[self.serverConfigurations allValues] count]; i++)
 	{
 		ServerConfiguration *sc = [[self.serverConfigurations allValues] objectAtIndex:i];
-
-//		NSLog(@"send request to %@",sc.resolvedAddress);
-		
 		[[DataRequestManager sharedInstance] checkServerOnline:sc key:[NSString stringWithFormat:@"%d",i] caller:self];
 	}
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
-	NSLog(@"server view");
 	self.serverConfigurations = [[[DataRequestManager sharedInstance] savedDataManager] configurations];
-
+	
 	[self.tableView reloadData];
 	
 	[self setActiveServer];
