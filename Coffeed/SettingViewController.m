@@ -118,7 +118,7 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-	self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:YES];
+	self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:NO];
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField
