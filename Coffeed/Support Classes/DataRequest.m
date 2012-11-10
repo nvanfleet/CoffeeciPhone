@@ -212,7 +212,6 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 	CFRunLoopSourceRef rls;
 	CFSocketContext context = {0, (__bridge void *)(self), NULL, NULL, NULL};
 	CFSocketCallBackType callbacks = kCFSocketDataCallBack | kCFSocketWriteCallBack;
-//	CFSocketCallBackType callbacks = kCFSocketDataCallBack | kCFSocketConnectCallBack | kCFSocketWriteCallBack | kCFSocketReadCallBack | kCFSocketAcceptCallBack;
 	cfsocket = CFSocketCreate(kCFAllocatorDefault, AF_INET, SOCK_STREAM, IPPROTO_TCP, callbacks, socketCallback, &context);
 
 	if(cfsocket == NULL)

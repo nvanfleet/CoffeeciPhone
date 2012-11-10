@@ -114,11 +114,23 @@
 {
 	[self.timer invalidate];
 	self.timer = nil;
+	
+	// Offsets
+	CGPoint location = textField.frame.origin;
+	if(90-location.y < 0)
+	{
+		CGRect newFrame = CGRectMake(0.0f, 100-location.y, self.view.frame.size.width, self.view.frame.size.height);
+		self.view.frame = newFrame;
+	}
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
 	self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:NO];
+	
+	// Offsets
+	CGRect newFrame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height);
+	self.view.frame = newFrame;
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField

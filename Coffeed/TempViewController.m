@@ -111,7 +111,7 @@
 	
 	NSLog(@"current %f",currentValue);
 	
-	currentValue += (sender.value - 50)/10;
+	currentValue += (sender.value - 50)/4;
 	
 	NSLog(@"new value %f",currentValue);
 	
