@@ -395,7 +395,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kcr-c9-LAr">
+                            <switch opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kcr-c9-LAr">
                                 <color key="onTintColor" red="1" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="celsiusSwitchChanged:" destination="2" eventType="valueChanged" id="3Hc-24-kyJ"/>
@@ -426,7 +426,6 @@
                             <constraint firstItem="B3W-4w-zQp" firstAttribute="top" secondItem="q5A-Xe-Opo" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="E7k-Br-6Ad"/>
                             <constraint firstItem="W1o-7c-BZF" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="GLO-sd-Elx"/>
                             <constraint firstItem="uIf-l8-527" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="GkR-V6-CXI"/>
-                            <constraint firstItem="wL1-cR-Mw1" firstAttribute="baseline" secondItem="TQ3-YB-f3a" secondAttribute="baseline" type="default" id="KLj-DW-zS7"/>
                             <constraint firstItem="wL1-cR-Mw1" firstAttribute="bottom" secondItem="TQ3-YB-f3a" secondAttribute="bottom" type="user" id="Kmr-Xd-5m7"/>
                             <constraint firstItem="vCi-8K-dwC" firstAttribute="top" secondItem="Ayh-PL-twQ" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="NIU-cn-cig"/>
                             <constraint firstItem="q5A-Xe-Opo" firstAttribute="leading" secondItem="9Pm-ZE-kgg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="QVg-2O-dsw"/>
@@ -637,6 +636,71 @@
         <image name="button-plus.png" width="54" height="55"/>
         <image name="disclosure_indicator_default.png" width="10" height="13"/>
     </resources>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="ServerConfigurationCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ServerConfigurationCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="address" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="selectedButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="statusImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="title" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ServerSettingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ServerSettingViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButtonPushed:"/>
+                <relationship kind="action" name="okayButtonPushed:"/>
+                <relationship kind="action" name="shutdownSystem:"/>
+                <relationship kind="outlet" name="address" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="okayButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="port" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="serverName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="shutdownButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="statusImage" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="ServerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ServerViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="accessoryButtonTapped:withEvent:" candidateClass="UIControl"/>
+                <relationship kind="action" name="addServerEntry:"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SettingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="boilerOffset" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="brewPointField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="dgainField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="igainField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="pgainField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="statusImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="steamPointField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="TempViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TempViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="sleepSwitchChanged:"/>
+                <relationship kind="action" name="steamSwitchChanged:"/>
+                <relationship kind="action" name="stepperChanged:"/>
+                <relationship kind="outlet" name="activeSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="powLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="power" candidateClass="UIProgressView"/>
+                <relationship kind="outlet" name="setLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="statusImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="steamSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="tempLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tempStepper" candidateClass="UIStepper"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

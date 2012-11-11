@@ -140,9 +140,9 @@
 		B5F79E8E164E9C350000CCF0 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		B5F79E98164E9D0B0000CCF0 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		B5F79E9A164E9D0E0000CCF0 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
-		B5F79E9E164EA0F70000CCF0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		B5F79EA0164EA0FC0000CCF0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		B5F79EA2164EA1000000CCF0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		B5F79E9E164EA0F70000CCF0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		B5F79EA0164EA0FC0000CCF0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		B5F79EA2164EA1000000CCF0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,9 +164,6 @@
 		B52AD7E61614C08800D0939A = {
 			isa = PBXGroup;
 			children = (
-				B5F79EA2164EA1000000CCF0 /* Default-568h@2x.png */,
-				B5F79EA0164EA0FC0000CCF0 /* Default@2x.png */,
-				B5F79E9E164EA0F70000CCF0 /* Default.png */,
 				B52AD7FB1614C08800D0939A /* Coffeed */,
 				B52AD7F41614C08800D0939A /* Frameworks */,
 				B52AD7F21614C08800D0939A /* Products */,
@@ -211,6 +208,9 @@
 		B52AD7FC1614C08800D0939A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B5F79EA2164EA1000000CCF0 /* Default-568h@2x.png */,
+				B5F79EA0164EA0FC0000CCF0 /* Default@2x.png */,
+				B5F79E9E164EA0F70000CCF0 /* Default.png */,
 				B5F79E98164E9D0B0000CCF0 /* Icon.png */,
 				B5F79E9A164E9D0E0000CCF0 /* Icon@2x.png */,
 				B5F79E8B164E9C350000CCF0 /* Icon-72.png */,

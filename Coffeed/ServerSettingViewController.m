@@ -23,6 +23,7 @@
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
 {
 	self.statusImage.image = [UIImage imageNamed:@"13-target"];
+	self.shutdownButton.enabled = TRUE;
 }
 
 -(void) checkServer
@@ -152,6 +153,8 @@
 	}
 	else
 		self.port.text = @"4949";
+	
+	self.shutdownButton.enabled = FALSE;
 	
 	// Shiny shutdown image
 	UIImage *shutButtonImage = [UIImage imageNamed:@"CellButtonRed"];
