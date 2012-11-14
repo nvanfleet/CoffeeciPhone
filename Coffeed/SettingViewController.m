@@ -40,6 +40,9 @@
 	self.igainField.textColor = color;
 	self.dgainField.textColor = color;
 	self.boilerOffset.textColor = color;
+	
+	if(set == FALSE)
+		self.autotuneButton.enabled = FALSE;
 }
 
 - (void) dataManagerDidFail:(DataRequest *)nm withObject:(id)object
@@ -78,13 +81,29 @@
 	
 	if(rdict[@"OFFSET"]!=nil)
 		self.boilerOffset.text = rdict[@"OFFSET"];
+	
+	if(rdict[@"AUTOT"]!=nil)
+	{
+		int status = [rdict[@"AUTOT"] intValue];
+		
+		//If the autotune is in progress the button stays disabled.
+		if(status == 0)
+			self.autotuneButton.enabled = TRUE;
+		else
+			self.autotuneButton.enabled = FALSE;
+	}
+	
 
 	self.statusImage.image = [UIImage imageNamed:@"13-target"];
 }
 
 #pragma  mark - Actions
 
-
+-(IBAction) autotuneButtonPushed:(id)sender
+{
+	self.autotuneButton.enabled = FALSE;
+	[[DataRequestManager sharedInstance] queueCommand:@"AUTOT=1" caller:self key:@"autotune"];
+}
 
 # pragma  mark - Basic
 
@@ -155,7 +174,7 @@
 
 -(void) updateViewData
 {
-	[[DataRequestManager sharedInstance] queueCommand:@"BPOINT,SPOINT,PGAIN,IGAIN,DGAIN,OFFSET" caller:self key:@"updateView"];
+	[[DataRequestManager sharedInstance] queueCommand:@"BPOINT,SPOINT,PGAIN,IGAIN,DGAIN,OFFSET,AUTOT" caller:self key:@"updateView"];
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -163,6 +182,12 @@
 	[self updateViewData];
 	
 	[self scheduleUpdate];
+	
+	// Shiny Okay image
+	UIImage *autoImage = [UIImage imageNamed:@"CellButtonBlue"];
+	autoImage = [autoImage stretchableImageWithLeftCapWidth:floorf(autoImage.size.width/2) topCapHeight:floorf(autoImage.size.height/2)];
+	[self.autotuneButton setBackgroundImage:autoImage forState:UIControlStateNormal];
+	[self.autotuneButton setBackgroundImage:autoImage forState:UIControlStateHighlighted];
 }
 
 -(void) viewWillDisappear:(BOOL)animated

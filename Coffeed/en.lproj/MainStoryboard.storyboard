@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -28,7 +28,7 @@
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="41y-1Y-XQw">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="131" id="uHb-rM-WQo"/>
+                                    <constraint firstAttribute="width" constant="131" id="l1o-ca-AOM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation"/>
@@ -111,50 +111,70 @@
                                     <outlet property="delegate" destination="2" id="THy-n6-4Jl"/>
                                 </connections>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lW6-DP-f6x">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="nbU-bE-AN3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Autotune PID">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="okayButtonPushed:" destination="leq-8N-Nek" eventType="touchUpInside" id="lV0-9z-c2k"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="yxH-V3-JL4" firstAttribute="top" secondItem="DwP-7R-Nyk" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="0vL-E3-1Mv"/>
-                            <constraint firstItem="OcK-RV-1vh" firstAttribute="leading" secondItem="0w0-wg-2uo" secondAttribute="leading" type="default" id="1l9-wS-wJg"/>
                             <constraint firstItem="SME-st-Ecc" firstAttribute="top" secondItem="16" secondAttribute="top" constant="20" symbolic="YES" type="default" id="2fm-5n-Ksp"/>
                             <constraint firstItem="yxH-V3-JL4" firstAttribute="leading" secondItem="4MR-S9-C6a" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="3fY-f6-6eT"/>
+                            <constraint firstItem="dK6-pM-Y66" firstAttribute="top" secondItem="0w0-wg-2uo" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="4pl-bK-ajh"/>
+                            <constraint firstAttribute="trailing" secondItem="OcK-RV-1vh" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="5eL-Yf-epx"/>
                             <constraint firstItem="0w0-wg-2uo" firstAttribute="top" secondItem="41y-1Y-XQw" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="8j9-Uf-UQN"/>
-                            <constraint firstItem="dK6-pM-Y66" firstAttribute="top" secondItem="yxH-V3-JL4" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="9S8-H1-VAy"/>
                             <constraint firstItem="zNK-f5-Bft" firstAttribute="baseline" secondItem="0w0-wg-2uo" secondAttribute="baseline" type="default" id="CNY-ch-fD6"/>
                             <constraint firstItem="OcK-RV-1vh" firstAttribute="leading" secondItem="3Hr-Le-ZFx" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Cea-7b-0ls"/>
-                            <constraint firstItem="dK6-pM-Y66" firstAttribute="leading" secondItem="yxH-V3-JL4" secondAttribute="leading" type="default" id="Ck7-Ln-YwY"/>
                             <constraint firstItem="4MR-S9-C6a" firstAttribute="baseline" secondItem="yxH-V3-JL4" secondAttribute="baseline" type="default" id="Cwu-c3-SY0"/>
                             <constraint firstItem="OcK-RV-1vh" firstAttribute="baseline" secondItem="3Hr-Le-ZFx" secondAttribute="baseline" type="default" id="D8k-5o-4cG"/>
-                            <constraint firstItem="XPh-Aa-PbH" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="F98-WI-tHL"/>
-                            <constraint firstAttribute="trailing" secondItem="dK6-pM-Y66" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Feg-Lc-rqp"/>
+                            <constraint firstItem="OcK-RV-1vh" firstAttribute="top" secondItem="dK6-pM-Y66" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="HZ7-Z5-NoN"/>
                             <constraint firstItem="zNK-f5-Bft" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Jfs-Xk-mV5"/>
                             <constraint firstAttribute="trailing" secondItem="0w0-wg-2uo" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="JvM-HJ-wWK"/>
-                            <constraint firstAttribute="trailing" secondItem="OcK-RV-1vh" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="KLd-L6-bML"/>
+                            <constraint firstAttribute="bottom" secondItem="lW6-DP-f6x" secondAttribute="bottom" constant="71" id="L4O-xv-9Y8"/>
+                            <constraint firstItem="hUz-8f-vfi" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Lk5-xY-VG5"/>
                             <constraint firstItem="DwP-7R-Nyk" firstAttribute="top" secondItem="OcK-RV-1vh" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="NIn-FB-SUt"/>
                             <constraint firstItem="41y-1Y-XQw" firstAttribute="top" secondItem="16" secondAttribute="top" constant="59" id="OCK-o0-KQW"/>
                             <constraint firstAttribute="trailing" secondItem="41y-1Y-XQw" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="QZw-H1-rv8"/>
-                            <constraint firstItem="4MR-S9-C6a" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="RFu-EI-yF5"/>
-                            <constraint firstAttribute="trailing" secondItem="yxH-V3-JL4" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Trh-ME-sTM"/>
-                            <constraint firstAttribute="trailing" secondItem="DwP-7R-Nyk" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="UWc-zj-2IC"/>
                             <constraint firstItem="hUz-8f-vfi" firstAttribute="baseline" secondItem="dK6-pM-Y66" secondAttribute="baseline" type="default" id="Ug8-J6-U6G"/>
+                            <constraint firstItem="XPh-Aa-PbH" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="WZH-EM-jrK"/>
+                            <constraint firstAttribute="trailing" secondItem="yxH-V3-JL4" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Ylq-94-FM5"/>
+                            <constraint firstItem="dK6-pM-Y66" firstAttribute="leading" secondItem="0w0-wg-2uo" secondAttribute="leading" type="default" id="Zri-zg-0z3"/>
+                            <constraint firstAttribute="trailing" secondItem="lW6-DP-f6x" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="cop-MH-Fkg"/>
                             <constraint firstItem="yxH-V3-JL4" firstAttribute="leading" secondItem="DwP-7R-Nyk" secondAttribute="leading" type="default" id="d2P-zc-psV"/>
-                            <constraint firstItem="OcK-RV-1vh" firstAttribute="top" secondItem="0w0-wg-2uo" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="fLl-dG-n5e"/>
+                            <constraint firstAttribute="trailing" secondItem="DwP-7R-Nyk" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="dMh-vv-i5q"/>
+                            <constraint firstAttribute="trailing" secondItem="dK6-pM-Y66" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="fcb-mD-X3m"/>
                             <constraint firstItem="0w0-wg-2uo" firstAttribute="leading" secondItem="41y-1Y-XQw" secondAttribute="leading" type="default" id="fvP-fM-M51"/>
-                            <constraint firstItem="hUz-8f-vfi" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="jlX-lO-jYP"/>
+                            <constraint firstItem="OcK-RV-1vh" firstAttribute="leading" secondItem="dK6-pM-Y66" secondAttribute="leading" type="default" id="jgs-HY-m56"/>
+                            <constraint firstItem="lW6-DP-f6x" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="kly-bv-qWT"/>
                             <constraint firstItem="LPV-2z-2Oc" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="kty-Ot-Qp5"/>
                             <constraint firstItem="SME-st-Ecc" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="lHw-Ln-DiA"/>
                             <constraint firstItem="DwP-7R-Nyk" firstAttribute="leading" secondItem="XPh-Aa-PbH" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="mI3-Kh-BzI"/>
+                            <constraint firstItem="3Hr-Le-ZFx" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="met-uO-C8r"/>
                             <constraint firstItem="DwP-7R-Nyk" firstAttribute="leading" secondItem="OcK-RV-1vh" secondAttribute="leading" type="default" id="o5Y-vg-uRH"/>
                             <constraint firstItem="41y-1Y-XQw" firstAttribute="leading" secondItem="LPV-2z-2Oc" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="ovI-c6-i2f"/>
                             <constraint firstItem="dK6-pM-Y66" firstAttribute="leading" secondItem="hUz-8f-vfi" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="r90-RE-X5o"/>
+                            <constraint firstItem="4MR-S9-C6a" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="sXk-zt-srW"/>
                             <constraint firstItem="DwP-7R-Nyk" firstAttribute="baseline" secondItem="XPh-Aa-PbH" secondAttribute="baseline" type="default" id="v88-Pk-QEj"/>
-                            <constraint firstItem="3Hr-Le-ZFx" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="wz6-pN-1JU"/>
                             <constraint firstItem="0w0-wg-2uo" firstAttribute="leading" secondItem="zNK-f5-Bft" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="zdo-7d-MjI"/>
                             <constraint firstItem="LPV-2z-2Oc" firstAttribute="baseline" secondItem="41y-1Y-XQw" secondAttribute="baseline" type="default" id="zrt-GS-8bI"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="106-sliders.png" id="7"/>
                     <connections>
+                        <outlet property="autotuneButton" destination="lW6-DP-f6x" id="VEd-dB-0FU"/>
                         <outlet property="boilerOffset" destination="dK6-pM-Y66" id="eHV-zt-aI4"/>
                         <outlet property="brewPointField" destination="41y-1Y-XQw" id="FZj-aC-ayB"/>
                         <outlet property="dgainField" destination="yxH-V3-JL4" id="HYO-aB-6Fa"/>
@@ -675,6 +695,8 @@
         <class className="SettingViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingViewController.h"/>
             <relationships>
+                <relationship kind="action" name="autotuneButtonPushed:"/>
+                <relationship kind="outlet" name="autotuneButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="boilerOffset" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="brewPointField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="dgainField" candidateClass="UITextField"/>
