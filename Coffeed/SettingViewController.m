@@ -41,8 +41,7 @@
 	self.dgainField.textColor = color;
 	self.boilerOffset.textColor = color;
 	
-	if(set == FALSE)
-		self.autotuneButton.enabled = FALSE;
+	self.autotuneButton.enabled = set;
 }
 
 - (void) dataManagerDidFail:(DataRequest *)nm withObject:(id)object
@@ -87,13 +86,20 @@
 		int status = [rdict[@"AUTOT"] intValue];
 		
 		//If the autotune is in progress the button stays disabled.
-		if(status == 0)
-			self.autotuneButton.enabled = TRUE;
+		if(status == 1)
+		{
+			[self.autotuneButton setTitle:@"Stop PID Autotune" forState:UIControlStateNormal];
+			[self.autotuneButton setTitle:@"Stop PID Autotune" forState:UIControlStateHighlighted];
+			self.autotuneButton.tag = 0;
+		}
 		else
-			self.autotuneButton.enabled = FALSE;
+		{
+			[self.autotuneButton setTitle:@"Start PID Autotune" forState:UIControlStateNormal];
+			[self.autotuneButton setTitle:@"Start PID Autotune" forState:UIControlStateHighlighted];
+			self.autotuneButton.tag = 1;
+		}
 	}
 	
-
 	self.statusImage.image = [UIImage imageNamed:@"13-target"];
 }
 
@@ -102,7 +108,8 @@
 -(IBAction) autotuneButtonPushed:(id)sender
 {
 	self.autotuneButton.enabled = FALSE;
-	[[DataRequestManager sharedInstance] queueCommand:@"AUTOT=1" caller:self key:@"autotune"];
+	NSString *comm = [NSString stringWithFormat:@"AUTOT=%d",self.autotuneButton.tag];
+	[[DataRequestManager sharedInstance] queueCommand:comm caller:self key:@"autotune"];
 }
 
 # pragma  mark - Basic

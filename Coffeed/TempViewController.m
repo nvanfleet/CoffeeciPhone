@@ -16,6 +16,13 @@
 
 #pragma mark Request Delegate
 
+-(void) setControls:(BOOL)set
+{
+	self.steamSwitch.enabled = set;
+	self.activeSwitch.enabled = set;
+	self.tempStepper.enabled = set;
+}
+
 -(void) enableDisplay:(BOOL)set
 {
 	if(set == FALSE)
@@ -26,9 +33,7 @@
 		self.powLabel.text = @"-";
 	}
 	
-	self.steamSwitch.enabled = set;
-	self.activeSwitch.enabled = set;
-	self.tempStepper.enabled = set;
+	[self setControls:set];
 }
 
 
@@ -100,6 +105,13 @@
 		}
 	}
 	
+	// Disable control surface if auto tuning
+	if(rdict[@"AUTOT"] != nil)
+	{
+		if([rdict[@"AUTOT"] boolValue] == YES)
+			[self setControls:FALSE];
+	}
+	
 	self.statusImage.image = [UIImage imageNamed:@"13-target"];
 }
 
@@ -165,7 +177,7 @@
 
 -(void) updateViewData
 {
-	[[DataRequestManager sharedInstance] queueCommand:@"SETPOINT,TPOINT,SMODE,ACTIVE,POW" caller:self key:@"updateView"];
+	[[DataRequestManager sharedInstance] queueCommand:@"SETPOINT,TPOINT,SMODE,ACTIVE,POW,AUTOT" caller:self key:@"updateView"];
 }
 
 -(void) viewWillAppear:(BOOL)animated

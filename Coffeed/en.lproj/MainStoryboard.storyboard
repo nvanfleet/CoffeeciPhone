@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -111,12 +111,12 @@
                                     <outlet property="delegate" destination="2" id="THy-n6-4Jl"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lW6-DP-f6x">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lW6-DP-f6x">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="nbU-bE-AN3"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Autotune PID">
+                                <state key="normal" title="Start PID Autotune">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -124,6 +124,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="autotuneButtonPushed:" destination="2" eventType="touchUpInside" id="qUd-BF-9vi"/>
                                     <action selector="okayButtonPushed:" destination="leq-8N-Nek" eventType="touchUpInside" id="lV0-9z-c2k"/>
                                 </connections>
                             </button>
@@ -656,73 +657,6 @@
         <image name="button-plus.png" width="54" height="55"/>
         <image name="disclosure_indicator_default.png" width="10" height="13"/>
     </resources>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ServerConfigurationCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ServerConfigurationCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="address" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="selectedButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="statusImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="title" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ServerSettingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ServerSettingViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButtonPushed:"/>
-                <relationship kind="action" name="okayButtonPushed:"/>
-                <relationship kind="action" name="shutdownSystem:"/>
-                <relationship kind="outlet" name="address" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="okayButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="port" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="serverName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="shutdownButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="statusImage" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="ServerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ServerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="accessoryButtonTapped:withEvent:" candidateClass="UIControl"/>
-                <relationship kind="action" name="addServerEntry:"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="SettingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="autotuneButtonPushed:"/>
-                <relationship kind="outlet" name="autotuneButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="boilerOffset" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="brewPointField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="dgainField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="igainField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="pgainField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="statusImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="steamPointField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="TempViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TempViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="sleepSwitchChanged:"/>
-                <relationship kind="action" name="steamSwitchChanged:"/>
-                <relationship kind="action" name="stepperChanged:"/>
-                <relationship kind="outlet" name="activeSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="powLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="power" candidateClass="UIProgressView"/>
-                <relationship kind="outlet" name="setLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="statusImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="steamSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="tempLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tempStepper" candidateClass="UIStepper"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
