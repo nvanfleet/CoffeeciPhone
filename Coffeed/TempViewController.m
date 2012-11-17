@@ -8,7 +8,9 @@
 
 #import "TempViewController.h"
 
-@interface TempViewController ()
+@interface TempViewController () {
+	int lastTemp;
+}
 @property (strong) NSTimer *timer;
 @end
 
@@ -30,7 +32,6 @@
 		self.setLabel.text = @"-";
 		self.tempLabel.text = @"-";
 		self.power.progress = 0.0f;
-		self.powLabel.text = @"-";
 	}
 	
 	[self setControls:set];
@@ -63,20 +64,31 @@
 	
 	NSDictionary *rdict = object;
 	
-	
 	[self enableDisplay:TRUE];
 	
 	if(rdict[@"SETPOINT"] != nil)
 		self.setLabel.text = rdict[@"SETPOINT"];
 	
 	if(rdict[@"TPOINT"] != nil)
+	{
+		int newTemp = (int) [rdict[@"TPOINT"] floatValue] * 10;
+		
 		self.tempLabel.text = rdict[@"TPOINT"];
+	
+		if(newTemp > lastTemp)
+			self.tempLabel.textColor = [UIColor redColor];
+		else if(newTemp < lastTemp)
+			self.tempLabel.textColor = [UIColor blueColor];
+		else
+			self.tempLabel.textColor = [UIColor grayColor];
+		
+		lastTemp = newTemp;
+	}
 	
 	if(rdict[@"POW"] != nil)
 	{
 		float power = ([rdict[@"POW"] floatValue])/100.0f;
 		self.power.progress = power;
-		self.powLabel.text = rdict[@"POW"];
 	}
 
 	if(rdict[@"SMODE"] != nil)
@@ -85,10 +97,15 @@
 			self.steamSwitch.enabled = TRUE;
 		else
 		{
+			BOOL anim = TRUE;
+			BOOL status;
+			
 			if([rdict[@"SMODE"] boolValue])
-				[self.steamSwitch setOn:TRUE animated:TRUE];
+				status = TRUE;
 			else
-				[self.steamSwitch setOn:FALSE animated:TRUE];
+				status = FALSE;
+			
+			[self.steamSwitch setOn:status animated:anim];
 		}
 	}
 	
@@ -98,19 +115,24 @@
 			self.activeSwitch.enabled = TRUE;
 		else
 		{
+			BOOL anim = TRUE;
+			BOOL status;
+			
 			if([rdict[@"ACTIVE"] boolValue])
-				[self.activeSwitch setOn:TRUE animated:TRUE];
+				status = TRUE;
 			else
-				[self.activeSwitch setOn:FALSE animated:TRUE];
+				status = FALSE;
+			
+			[self.activeSwitch setOn:status animated:anim];
 		}
 	}
 	
 	// Disable control surface if auto tuning
-	if(rdict[@"AUTOT"] != nil)
-	{
-		if([rdict[@"AUTOT"] boolValue] == YES)
-			[self setControls:FALSE];
-	}
+//	if(rdict[@"AUTOT"] != nil)
+//	{
+//		if([rdict[@"AUTOT"] boolValue] == YES)
+//			[self setControls:FALSE];
+//	}
 	
 	self.statusImage.image = [UIImage imageNamed:@"13-target"];
 }
@@ -143,9 +165,9 @@
 	sender.enabled = FALSE;
 	
 	if([sender isOn])
-		command = [NSString stringWithFormat:@"ACTIVE=1,SETPOINT"];
+		command = @"ACTIVE=1,SETPOINT";
 	else
-		command = [NSString stringWithFormat:@"ACTIVE=0,SETPOINT"];
+		command = @"ACTIVE=0,SETPOINT";
 	
 	[[DataRequestManager sharedInstance] queueCommand:command caller:self key:@"sleep"];
 }
@@ -157,9 +179,9 @@
 	sender.enabled = FALSE;
 	
 	if([sender isOn])
-		command = [NSString stringWithFormat:@"SMODE=1,SETPOINT"];
+		command = @"SMODE=1,SETPOINT";
 	else
-		command = [NSString stringWithFormat:@"SMODE=0,SETPOINT"];
+		command = @"SMODE=0,SETPOINT";
 	
 	[[DataRequestManager sharedInstance] queueCommand:command caller:self key:@"steam"];
 }
@@ -182,6 +204,7 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
+	lastTemp = 0;
 	[self updateViewData];
 	
 	[self scheduleUpdate];
