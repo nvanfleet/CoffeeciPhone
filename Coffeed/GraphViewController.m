@@ -79,7 +79,7 @@
 //	if(self.isViewLoaded && self.view.window)
 //	{
 		[self.timer invalidate];
-		self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(updateGraphData) userInfo:nil repeats:NO];
+		self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateGraphData) userInfo:nil repeats:NO];
 //	}
 }
 

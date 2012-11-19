@@ -33,7 +33,8 @@
 
 #import "PCLineChartView.h"
 
-#define MAXPOINTS 100
+// 5 minutes
+#define MAXPOINTS 60*5
 
 @implementation PCLineChartViewComponent
 
@@ -43,7 +44,6 @@
     if (self)
     {
 		_shouldLabelValues = NO;
-
         _labelFormat = @"%.0f";
 		_key = @"unknown";
 		self.points = [NSMutableArray array];
