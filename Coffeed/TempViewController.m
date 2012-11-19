@@ -134,7 +134,7 @@
 //			[self setControls:FALSE];
 //	}
 	
-	self.statusImage.image = [UIImage imageNamed:@"13-target"];
+	self.statusImage.image = [UIImage imageNamed:@"23-bird"];
 }
 
 #pragma mark Actions

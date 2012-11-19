@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B515D4B3165927C400FECEBA /* GraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B515D4B2165927C400FECEBA /* GraphViewController.m */; };
+		B515D5101659334900FECEBA /* PCLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B515D50F1659334900FECEBA /* PCLineChartView.m */; };
+		B515D5131659C0E400FECEBA /* 23-bird.png in Resources */ = {isa = PBXBuildFile; fileRef = B515D5111659C0E400FECEBA /* 23-bird.png */; };
+		B515D5141659C0E400FECEBA /* 23-bird@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B515D5121659C0E400FECEBA /* 23-bird@2x.png */; };
+		B515D5171659C0FA00FECEBA /* 19-gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B515D5151659C0FA00FECEBA /* 19-gear@2x.png */; };
+		B515D5181659C0FA00FECEBA /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = B515D5161659C0FA00FECEBA /* 19-gear.png */; };
+		B515D51B1659C1EE00FECEBA /* 02-redo.png in Resources */ = {isa = PBXBuildFile; fileRef = B515D5191659C1ED00FECEBA /* 02-redo.png */; };
+		B515D51C1659C1EE00FECEBA /* 02-redo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B515D51A1659C1ED00FECEBA /* 02-redo@2x.png */; };
 		B52AD7F61614C08800D0939A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B52AD7F51614C08800D0939A /* UIKit.framework */; };
 		B52AD7F81614C08800D0939A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B52AD7F71614C08800D0939A /* Foundation.framework */; };
 		B52AD7FA1614C08800D0939A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B52AD7F91614C08800D0939A /* CoreGraphics.framework */; };
@@ -42,14 +50,10 @@
 		B5764409162463ED00E1B561 /* button-x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5764401162463ED00E1B561 /* button-x@2x.png */; };
 		B5764418162480CA00E1B561 /* 34-coffee.png in Resources */ = {isa = PBXBuildFile; fileRef = B5764416162480CA00E1B561 /* 34-coffee.png */; };
 		B5764419162480CA00E1B561 /* 34-coffee@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5764417162480CA00E1B561 /* 34-coffee@2x.png */; };
-		B576441C162480E000E1B561 /* 106-sliders.png in Resources */ = {isa = PBXBuildFile; fileRef = B576441A162480E000E1B561 /* 106-sliders.png */; };
-		B576441D162480E000E1B561 /* 106-sliders@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B576441B162480E000E1B561 /* 106-sliders@2x.png */; };
 		B5764420162480EE00E1B561 /* 122-stats.png in Resources */ = {isa = PBXBuildFile; fileRef = B576441E162480EE00E1B561 /* 122-stats.png */; };
 		B5764421162480EE00E1B561 /* 122-stats@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B576441F162480EE00E1B561 /* 122-stats@2x.png */; };
 		B576442816249A7100E1B561 /* 21-skull.png in Resources */ = {isa = PBXBuildFile; fileRef = B576442616249A7100E1B561 /* 21-skull.png */; };
 		B576442916249A7100E1B561 /* 21-skull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B576442716249A7100E1B561 /* 21-skull@2x.png */; };
-		B576442D16249AC700E1B561 /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = B576442B16249AC700E1B561 /* 13-target.png */; };
-		B576442E16249AC700E1B561 /* 13-target@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B576442C16249AC700E1B561 /* 13-target@2x.png */; };
 		B5A9DD7616405C4500FA9DB9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A9DD7516405C4500FA9DB9 /* CFNetwork.framework */; };
 		B5E06B6616430B6C009D3F8E /* CellButtonRed.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E06B6416430B6C009D3F8E /* CellButtonRed.png */; };
 		B5E06B6716430B6C009D3F8E /* CellButtonRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E06B6516430B6C009D3F8E /* CellButtonRed@2x.png */; };
@@ -69,6 +73,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B515D4B1165927C400FECEBA /* GraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphViewController.h; sourceTree = "<group>"; };
+		B515D4B2165927C400FECEBA /* GraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphViewController.m; sourceTree = "<group>"; };
+		B515D50E1659334900FECEBA /* PCLineChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCLineChartView.h; sourceTree = "<group>"; };
+		B515D50F1659334900FECEBA /* PCLineChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCLineChartView.m; sourceTree = "<group>"; };
+		B515D5111659C0E400FECEBA /* 23-bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "23-bird.png"; sourceTree = "<group>"; };
+		B515D5121659C0E400FECEBA /* 23-bird@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "23-bird@2x.png"; sourceTree = "<group>"; };
+		B515D5151659C0FA00FECEBA /* 19-gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear@2x.png"; sourceTree = "<group>"; };
+		B515D5161659C0FA00FECEBA /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear.png"; sourceTree = "<group>"; };
+		B515D5191659C1ED00FECEBA /* 02-redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-redo.png"; sourceTree = "<group>"; };
+		B515D51A1659C1ED00FECEBA /* 02-redo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-redo@2x.png"; sourceTree = "<group>"; };
 		B52AD7F11614C08800D0939A /* Coffeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coffeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B52AD7F51614C08800D0939A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B52AD7F71614C08800D0939A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -105,8 +119,6 @@
 		B55E0ED91615F9B900DB2ED3 /* ServerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerViewController.m; sourceTree = "<group>"; };
 		B55E0EDC1615FAE300DB2ED3 /* ServerSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerSettingViewController.h; sourceTree = "<group>"; };
 		B55E0EDD1615FAE300DB2ED3 /* ServerSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerSettingViewController.m; sourceTree = "<group>"; };
-		B564397F1626466000044A1D /* coffeec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = coffeec.c; sourceTree = "<group>"; };
-		B56439801626466000044A1D /* coffeec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coffeec.h; sourceTree = "<group>"; };
 		B56824E0161A8B5700D6FE0F /* ServerConfigurationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerConfigurationCell.h; sourceTree = "<group>"; };
 		B56824E1161A8B5700D6FE0F /* ServerConfigurationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerConfigurationCell.m; sourceTree = "<group>"; };
 		B57643FA162463ED00E1B561 /* button-plus-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-plus-highlighted.png"; sourceTree = "<group>"; };
@@ -119,14 +131,10 @@
 		B5764401162463ED00E1B561 /* button-x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-x@2x.png"; sourceTree = "<group>"; };
 		B5764416162480CA00E1B561 /* 34-coffee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "34-coffee.png"; sourceTree = "<group>"; };
 		B5764417162480CA00E1B561 /* 34-coffee@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "34-coffee@2x.png"; sourceTree = "<group>"; };
-		B576441A162480E000E1B561 /* 106-sliders.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "106-sliders.png"; sourceTree = "<group>"; };
-		B576441B162480E000E1B561 /* 106-sliders@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "106-sliders@2x.png"; sourceTree = "<group>"; };
 		B576441E162480EE00E1B561 /* 122-stats.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "122-stats.png"; sourceTree = "<group>"; };
 		B576441F162480EE00E1B561 /* 122-stats@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "122-stats@2x.png"; sourceTree = "<group>"; };
 		B576442616249A7100E1B561 /* 21-skull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "21-skull.png"; sourceTree = "<group>"; };
 		B576442716249A7100E1B561 /* 21-skull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "21-skull@2x.png"; sourceTree = "<group>"; };
-		B576442B16249AC700E1B561 /* 13-target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "13-target.png"; sourceTree = "<group>"; };
-		B576442C16249AC700E1B561 /* 13-target@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "13-target@2x.png"; sourceTree = "<group>"; };
 		B5A9DD7516405C4500FA9DB9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		B5E06B6416430B6C009D3F8E /* CellButtonRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellButtonRed.png; sourceTree = "<group>"; };
 		B5E06B6516430B6C009D3F8E /* CellButtonRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CellButtonRed@2x.png"; sourceTree = "<group>"; };
@@ -161,6 +169,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B515D50D1659330C00FECEBA /* Line Chart */ = {
+			isa = PBXGroup;
+			children = (
+				B515D50E1659334900FECEBA /* PCLineChartView.h */,
+				B515D50F1659334900FECEBA /* PCLineChartView.m */,
+			);
+			name = "Line Chart";
+			sourceTree = "<group>";
+		};
 		B52AD7E61614C08800D0939A = {
 			isa = PBXGroup;
 			children = (
@@ -193,7 +210,7 @@
 		B52AD7FB1614C08800D0939A /* Coffeed */ = {
 			isa = PBXGroup;
 			children = (
-				B52AD8381614C42400D0939A /* CoffeeC */,
+				B515D50D1659330C00FECEBA /* Line Chart */,
 				B52AD8271614C12200D0939A /* Support Classes */,
 				B52AD82E1614C24600D0939A /* ViewControllers */,
 				B5B22596162D9DD800AE9A3F /* TableCells */,
@@ -231,16 +248,18 @@
 				B5E06B6A16430B74009D3F8E /* CellButtonBlue@2x.png */,
 				B5E06B6416430B6C009D3F8E /* CellButtonRed.png */,
 				B5E06B6516430B6C009D3F8E /* CellButtonRed@2x.png */,
-				B576442B16249AC700E1B561 /* 13-target.png */,
-				B576442C16249AC700E1B561 /* 13-target@2x.png */,
 				B576442616249A7100E1B561 /* 21-skull.png */,
 				B576442716249A7100E1B561 /* 21-skull@2x.png */,
 				B576441E162480EE00E1B561 /* 122-stats.png */,
 				B576441F162480EE00E1B561 /* 122-stats@2x.png */,
-				B576441A162480E000E1B561 /* 106-sliders.png */,
-				B576441B162480E000E1B561 /* 106-sliders@2x.png */,
 				B5764416162480CA00E1B561 /* 34-coffee.png */,
 				B5764417162480CA00E1B561 /* 34-coffee@2x.png */,
+				B515D5161659C0FA00FECEBA /* 19-gear.png */,
+				B515D5151659C0FA00FECEBA /* 19-gear@2x.png */,
+				B515D5111659C0E400FECEBA /* 23-bird.png */,
+				B515D5121659C0E400FECEBA /* 23-bird@2x.png */,
+				B515D5191659C1ED00FECEBA /* 02-redo.png */,
+				B515D51A1659C1ED00FECEBA /* 02-redo@2x.png */,
 				B57643FA162463ED00E1B561 /* button-plus-highlighted.png */,
 				B57643FB162463ED00E1B561 /* button-x-highlighted.png */,
 				B57643FC162463ED00E1B561 /* button-x-highlighted@2x.png */,
@@ -283,17 +302,10 @@
 				B55E0ED91615F9B900DB2ED3 /* ServerViewController.m */,
 				B55E0EDC1615FAE300DB2ED3 /* ServerSettingViewController.h */,
 				B55E0EDD1615FAE300DB2ED3 /* ServerSettingViewController.m */,
+				B515D4B1165927C400FECEBA /* GraphViewController.h */,
+				B515D4B2165927C400FECEBA /* GraphViewController.m */,
 			);
 			name = ViewControllers;
-			sourceTree = "<group>";
-		};
-		B52AD8381614C42400D0939A /* CoffeeC */ = {
-			isa = PBXGroup;
-			children = (
-				B564397F1626466000044A1D /* coffeec.c */,
-				B56439801626466000044A1D /* coffeec.h */,
-			);
-			name = CoffeeC;
 			sourceTree = "<group>";
 		};
 		B5B22596162D9DD800AE9A3F /* TableCells */ = {
@@ -368,14 +380,10 @@
 				B5764409162463ED00E1B561 /* button-x@2x.png in Resources */,
 				B5764418162480CA00E1B561 /* 34-coffee.png in Resources */,
 				B5764419162480CA00E1B561 /* 34-coffee@2x.png in Resources */,
-				B576441C162480E000E1B561 /* 106-sliders.png in Resources */,
-				B576441D162480E000E1B561 /* 106-sliders@2x.png in Resources */,
 				B5764420162480EE00E1B561 /* 122-stats.png in Resources */,
 				B5764421162480EE00E1B561 /* 122-stats@2x.png in Resources */,
 				B576442816249A7100E1B561 /* 21-skull.png in Resources */,
 				B576442916249A7100E1B561 /* 21-skull@2x.png in Resources */,
-				B576442D16249AC700E1B561 /* 13-target.png in Resources */,
-				B576442E16249AC700E1B561 /* 13-target@2x.png in Resources */,
 				B5E06B6616430B6C009D3F8E /* CellButtonRed.png in Resources */,
 				B5E06B6716430B6C009D3F8E /* CellButtonRed@2x.png in Resources */,
 				B5E06B6B16430B74009D3F8E /* CellButtonBlue.png in Resources */,
@@ -399,6 +407,12 @@
 				B5F79E9F164EA0F70000CCF0 /* Default.png in Resources */,
 				B5F79EA1164EA0FC0000CCF0 /* Default@2x.png in Resources */,
 				B5F79EA3164EA1000000CCF0 /* Default-568h@2x.png in Resources */,
+				B515D5131659C0E400FECEBA /* 23-bird.png in Resources */,
+				B515D5141659C0E400FECEBA /* 23-bird@2x.png in Resources */,
+				B515D5171659C0FA00FECEBA /* 19-gear@2x.png in Resources */,
+				B515D5181659C0FA00FECEBA /* 19-gear.png in Resources */,
+				B515D51B1659C1EE00FECEBA /* 02-redo.png in Resources */,
+				B515D51C1659C1EE00FECEBA /* 02-redo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +434,8 @@
 				B53731871619E78F00CD455D /* SavedDataManager.m in Sources */,
 				B537318A1619E7B400CD455D /* ServerConfiguration.m in Sources */,
 				B56824E2161A8B5700D6FE0F /* ServerConfigurationCell.m in Sources */,
+				B515D4B3165927C400FECEBA /* GraphViewController.m in Sources */,
+				B515D5101659334900FECEBA /* PCLineChartView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +516,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Coffeed/Coffeed-Prefix.pch";
 				INFOPLIST_FILE = "Coffeed/Coffeed-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Coffeed\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -511,6 +531,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Coffeed/Coffeed-Prefix.pch";
 				INFOPLIST_FILE = "Coffeed/Coffeed-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Coffeed\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

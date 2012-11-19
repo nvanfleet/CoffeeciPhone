@@ -142,7 +142,7 @@
 	int keyIndex = [[nm key]integerValue];
 	NSIndexPath *index = [NSIndexPath indexPathForRow:keyIndex inSection:0];
 	ServerConfigurationCell *cell = (ServerConfigurationCell *) [self.tableView cellForRowAtIndexPath:index];
-	cell.statusImage.image = [UIImage imageNamed:@"13-target"];
+	cell.statusImage.image = [UIImage imageNamed:@"23-bird"];
 }
 
 #pragma mark Basic

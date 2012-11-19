@@ -22,7 +22,7 @@
 
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
 {
-	self.statusImage.image = [UIImage imageNamed:@"13-target"];
+	self.statusImage.image = [UIImage imageNamed:@"23-bird"];
 	self.shutdownButton.enabled = TRUE;
 }
 
