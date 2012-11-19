@@ -45,7 +45,6 @@
 	[component setKey:@"POW"];
 	[component setLabelFormat:@"%.0f%%"];
 	[component setColour:PCColorOrange];
-//	[component setShouldLabelValues:YES];
 	[components addObject:component];
 	
 	// Setpoint
@@ -54,7 +53,6 @@
 	[component setKey:@"SETPOINT"];
 	[component setLabelFormat:@"%.1f"];
 	[component setColour:PCColorGreen];
-//	[component setShouldLabelValues:YES];
 	[components addObject:component];
 	
 	// Temperature
@@ -63,10 +61,10 @@
 	[component setKey:@"TPOINT"];
 	[component setLabelFormat:@"%.1f"];
 	[component setColour:PCColorRed];
-//	[component setShouldLabelValues:YES];
 	[components addObject:component];
 	
 	[_lineChartView setComponents:components];
+	[_lineChartView setAutoscaleYAxis:YES];
 }
 
 #pragma mark - Basic and Data

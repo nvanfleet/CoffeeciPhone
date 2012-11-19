@@ -49,6 +49,7 @@
 #define PCColorDefault [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0]
 
 @interface PCLineChartView : UIView
+@property (nonatomic, assign) float circle_diameter;
 @property (nonatomic, assign) float interval;
 @property (nonatomic, assign) float minValue;
 @property (nonatomic, assign) float maxValue;

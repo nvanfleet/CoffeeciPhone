@@ -43,6 +43,7 @@
     if (self)
     {
 		_shouldLabelValues = NO;
+
         _labelFormat = @"%.0f";
 		_key = @"unknown";
 		self.points = [NSMutableArray array];
@@ -79,11 +80,8 @@
 	if(pCount > MAXPOINTS)
 	{
 		[_components makeObjectsPerformSelector:@selector(trimPoints)];
-		[_xLabels removeObjectAtIndex:0];
 	}
 
-	[_xLabels addObject:[NSString stringWithFormat:@"-",newpointlabel]];
-	
 	[self setNeedsDisplay];
 }
 
@@ -99,6 +97,7 @@
 	_legendFont = [UIFont boldSystemFontOfSize:10];
 	_numYIntervals = 5;
 	_numXIntervals = 1;
+	_circle_diameter = 0.0f;
 	self.xLabels = [NSMutableArray array];
 }
 
@@ -115,6 +114,7 @@
     float bottom_margin = 25;
 	float x_label_height = 20;
 	
+	// Autoscale Y Axis
     if (self.autoscaleYAxis) {
         scale_min = 0.0;
         power = floor(log10(self.maxValue/5)); 
@@ -130,6 +130,7 @@
     n_div = (scale_max-scale_min)/self.interval + 1;
     div_height = (self.frame.size.height-top_margin-bottom_margin-x_label_height)/(n_div-1);
     
+	// Y Labels
     for (int i=0; i<n_div; i++)
     {
         float y_axis = scale_max - i*self.interval;
@@ -156,18 +157,20 @@
         CGContextStrokePath(ctx);
     }
     
+	// X Labels
     float margin = 45;
     float div_width;
-    if ([self.xLabels count] == 1)
+	int pointCount = [[self.components[0] points] count];
+    if (pointCount == 1)
     {
         div_width = 0;
     }
     else
     {
-        div_width = (self.frame.size.width-2*margin)/([self.xLabels count]-1);
+        div_width = (self.frame.size.width-2*margin)/(pointCount-1);
     }
     
-    for (NSUInteger i=0; i<[self.xLabels count]; i++)
+    for (NSUInteger i=0; i < [self.xLabels count]; i++)
     {
         if (i % self.numXIntervals == 1 || self.numXIntervals==1) {
             int x = (int) (margin + div_width * i);
@@ -186,10 +189,10 @@
 	
     NSMutableArray *legends = [NSMutableArray array];
     
-    float circle_diameter = 10;
     float circle_stroke_width = 3;
     float line_width = 4;
 	
+	// Output Components
     for (PCLineChartViewComponent *component in self.components)
     {
         int last_x = 0;
@@ -215,18 +218,20 @@
                 int x = margin + div_width*x_axis_index;
                 int y = top_margin + (scale_max-value)/self.interval*div_height;
                 
-                CGRect circleRect = CGRectMake(x-circle_diameter/2, y-circle_diameter/2, circle_diameter,circle_diameter);
+				// CIRCLE
+                CGRect circleRect = CGRectMake(x-_circle_diameter/2, y-_circle_diameter/2, _circle_diameter,_circle_diameter);
                 CGContextStrokeEllipseInRect(ctx, circleRect);
                 
 				CGContextSetFillColorWithColor(ctx, [component.colour CGColor]);
                 
+				// LINE
                 if (last_x!=0 && last_y!=0)
                 {
                     float distance = sqrt( pow(x-last_x, 2) + pow(y-last_y,2) );
-                    float last_x1 = last_x + (circle_diameter/2) / distance * (x-last_x);
-                    float last_y1 = last_y + (circle_diameter/2) / distance * (y-last_y);
-                    float x1 = x - (circle_diameter/2) / distance * (x-last_x);
-                    float y1 = y - (circle_diameter/2) / distance * (y-last_y);
+                    float last_x1 = last_x + (_circle_diameter/2) / distance * (x-last_x);
+                    float last_y1 = last_y + (_circle_diameter/2) / distance * (y-last_y);
+                    float x1 = x - (_circle_diameter/2) / distance * (x-last_x);
+                    float y1 = y - (_circle_diameter/2) / distance * (y-last_y);
                     
                     CGContextSetLineWidth(ctx, line_width);
                     CGContextMoveToPoint(ctx, last_x1, last_y1);
@@ -234,7 +239,6 @@
                     CGContextStrokePath(ctx);
                 }
                 
-				
                 if (x_axis_index==[component.points count]-1)
                 {
                     NSMutableDictionary *info = [NSMutableDictionary dictionary];
@@ -242,7 +246,7 @@
                     {
                         [info setObject:component.title forKey:@"title"];
                     }
-                    [info setObject:[NSNumber numberWithFloat:x+circle_diameter/2+15] forKey:@"x"];
+                    [info setObject:[NSNumber numberWithFloat:x+_circle_diameter/2+15] forKey:@"x"];
                     [info setObject:[NSNumber numberWithFloat:y-10] forKey:@"y"];
 					[info setObject:component.colour forKey:@"colour"];
                     [legends addObject:info];
@@ -255,7 +259,8 @@
         }
     }
 	
-    for (int i=0; i<[self.xLabels count]; i++)
+	// Lines
+    for (int i=0; i<[[self.components[0] points] count]; i++)
     {
         int y_level = top_margin;
 		
@@ -272,8 +277,8 @@
                 float value = [object floatValue];
                 int x = margin + div_width*i;
                 int y = top_margin + (scale_max-value)/self.interval*div_height;
-                int y1 = y - circle_diameter/2 - self.valueLabelFont.pointSize;
-                int y2 = y + circle_diameter/2;
+                int y1 = y - _circle_diameter/2 - self.valueLabelFont.pointSize;
+                int y2 = y + _circle_diameter/2;
                 
 				if ([[self.components objectAtIndex:j] shouldLabelValues]) {
 					if (y1 > y_level)
@@ -310,12 +315,13 @@
 						y_level = y1 + 20;
 					}
                 }
-                if (y+circle_diameter/2>y_level) y_level = y+circle_diameter/2;
+                if (y+_circle_diameter/2>y_level) y_level = y+_circle_diameter/2;
             }
             
         }
     }
     
+	// Component Labels
 	NSSortDescriptor *sortDesc = [NSSortDescriptor sortDescriptorWithKey:@"y" ascending:YES];
 	[legends sortUsingDescriptors:[NSArray arrayWithObject:sortDesc]];
 	
