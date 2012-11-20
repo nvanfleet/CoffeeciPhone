@@ -94,8 +94,10 @@
 	if(rdict[@"SMODE"] != nil)
 	{
 		if(!self.steamSwitch.enabled)
+		{
 			self.steamSwitch.enabled = TRUE;
-		else
+		}
+		else if(!self.steamSwitch.isHighlighted)
 		{
 			BOOL anim = TRUE;
 			BOOL status;
@@ -112,8 +114,10 @@
 	if(rdict[@"ACTIVE"] != nil)
 	{
 		if(!self.activeSwitch.enabled)
+		{
 			self.activeSwitch.enabled = TRUE;
-		else
+		}
+		else if(!self.activeSwitch.isHighlighted)
 		{
 			BOOL anim = TRUE;
 			BOOL status;
@@ -161,7 +165,7 @@
 -(IBAction)sleepSwitchChanged:(UISwitch *)sender
 {
 	NSString *command;
-	
+
 	sender.enabled = FALSE;
 	
 	if([sender isOn])
