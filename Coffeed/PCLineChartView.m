@@ -34,7 +34,7 @@
 #import "PCLineChartView.h"
 
 // 5 minutes
-#define MAXPOINTS 60*5
+#define MAXPOINTS 60*2
 
 @implementation PCLineChartViewComponent
 
