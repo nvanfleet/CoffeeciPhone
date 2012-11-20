@@ -74,9 +74,7 @@
 	}
 	
 	int pCount = [comp.points count];
-	
-	int newpointlabel = [[_xLabels lastObject] intValue] + 1;
-	
+
 	if(pCount > MAXPOINTS)
 	{
 		[_components makeObjectsPerformSelector:@selector(trimPoints)];
@@ -146,8 +144,8 @@
 
         [text drawInRect:textFrame 
 				withFont:self.yLabelFont 
-		   lineBreakMode:UILineBreakModeWordWrap 
-			   alignment:UITextAlignmentRight];
+		   lineBreakMode:NSLineBreakByWordWrapping
+			   alignment:NSTextAlignmentRight];
 		
 		// These are "grid" lines
         CGContextSetLineWidth(ctx, 1);
@@ -178,8 +176,8 @@
             CGRect textFrame = CGRectMake(x - 100, self.frame.size.height - x_label_height, 200, x_label_height);
             [x_label drawInRect:textFrame
                        withFont:self.xLabelFont
-                  lineBreakMode:UILineBreakModeWordWrap
-                      alignment:UITextAlignmentCenter];
+                  lineBreakMode:NSLineBreakByWordWrapping
+                      alignment:NSTextAlignmentRight];
         };
 
     }
@@ -288,8 +286,8 @@
 						CGRect textFrame = CGRectMake(x-25,y1, 50,20);
 						[perc_label drawInRect:textFrame 
 									  withFont:self.valueLabelFont 
-								 lineBreakMode:UILineBreakModeWordWrap 
-									 alignment:UITextAlignmentCenter];
+								 lineBreakMode:NSLineBreakByWordWrapping 
+									 alignment:NSTextAlignmentCenter];
 						y_level = y1 + 20;
 					}
 					else if (y2 < y_level+20 && y2 < self.frame.size.height-top_margin-bottom_margin)
@@ -299,8 +297,8 @@
 						CGRect textFrame = CGRectMake(x-25,y2, 50,20);
 						[perc_label drawInRect:textFrame 
 									  withFont:self.valueLabelFont 
-								 lineBreakMode:UILineBreakModeWordWrap 
-									 alignment:UITextAlignmentCenter];
+								 lineBreakMode:NSLineBreakByWordWrapping 
+									 alignment:NSTextAlignmentCenter];
 						y_level = y2 + 20;
 					}
 					else
@@ -310,8 +308,8 @@
 						CGRect textFrame = CGRectMake(x-50,y-10, 50,20);
 						[perc_label drawInRect:textFrame 
 									  withFont:self.valueLabelFont 
-								 lineBreakMode:UILineBreakModeWordWrap 
-									 alignment:UITextAlignmentCenter];
+								 lineBreakMode:NSLineBreakByWordWrapping 
+									 alignment:NSTextAlignmentCenter];
 						y_level = y1 + 20;
 					}
                 }

@@ -15,6 +15,9 @@
 		B515D5181659C0FA00FECEBA /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = B515D5161659C0FA00FECEBA /* 19-gear.png */; };
 		B515D51B1659C1EE00FECEBA /* 02-redo.png in Resources */ = {isa = PBXBuildFile; fileRef = B515D5191659C1ED00FECEBA /* 02-redo.png */; };
 		B515D51C1659C1EE00FECEBA /* 02-redo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B515D51A1659C1ED00FECEBA /* 02-redo@2x.png */; };
+		B515D52D165B2DBF00FECEBA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B515D52A165B2DBF00FECEBA /* Default.png */; };
+		B515D52E165B2DBF00FECEBA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B515D52B165B2DBF00FECEBA /* Default@2x.png */; };
+		B515D52F165B2DBF00FECEBA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B515D52C165B2DBF00FECEBA /* Default-568h@2x.png */; };
 		B52AD7F61614C08800D0939A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B52AD7F51614C08800D0939A /* UIKit.framework */; };
 		B52AD7F81614C08800D0939A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B52AD7F71614C08800D0939A /* Foundation.framework */; };
 		B52AD7FA1614C08800D0939A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B52AD7F91614C08800D0939A /* CoreGraphics.framework */; };
@@ -67,9 +70,6 @@
 		B5F79E94164E9C350000CCF0 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F79E8E164E9C350000CCF0 /* Icon-Small@2x.png */; };
 		B5F79E99164E9D0B0000CCF0 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F79E98164E9D0B0000CCF0 /* Icon.png */; };
 		B5F79E9B164E9D0E0000CCF0 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F79E9A164E9D0E0000CCF0 /* Icon@2x.png */; };
-		B5F79E9F164EA0F70000CCF0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F79E9E164EA0F70000CCF0 /* Default.png */; };
-		B5F79EA1164EA0FC0000CCF0 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F79EA0164EA0FC0000CCF0 /* Default@2x.png */; };
-		B5F79EA3164EA1000000CCF0 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5F79EA2164EA1000000CCF0 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +83,9 @@
 		B515D5161659C0FA00FECEBA /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "19-gear.png"; sourceTree = "<group>"; };
 		B515D5191659C1ED00FECEBA /* 02-redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-redo.png"; sourceTree = "<group>"; };
 		B515D51A1659C1ED00FECEBA /* 02-redo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "02-redo@2x.png"; sourceTree = "<group>"; };
+		B515D52A165B2DBF00FECEBA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		B515D52B165B2DBF00FECEBA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		B515D52C165B2DBF00FECEBA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		B52AD7F11614C08800D0939A /* Coffeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coffeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B52AD7F51614C08800D0939A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B52AD7F71614C08800D0939A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -148,9 +151,6 @@
 		B5F79E8E164E9C350000CCF0 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		B5F79E98164E9D0B0000CCF0 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		B5F79E9A164E9D0E0000CCF0 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
-		B5F79E9E164EA0F70000CCF0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
-		B5F79EA0164EA0FC0000CCF0 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
-		B5F79EA2164EA1000000CCF0 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,9 +225,9 @@
 		B52AD7FC1614C08800D0939A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B5F79EA2164EA1000000CCF0 /* Default-568h@2x.png */,
-				B5F79EA0164EA0FC0000CCF0 /* Default@2x.png */,
-				B5F79E9E164EA0F70000CCF0 /* Default.png */,
+				B515D52A165B2DBF00FECEBA /* Default.png */,
+				B515D52B165B2DBF00FECEBA /* Default@2x.png */,
+				B515D52C165B2DBF00FECEBA /* Default-568h@2x.png */,
 				B5F79E98164E9D0B0000CCF0 /* Icon.png */,
 				B5F79E9A164E9D0E0000CCF0 /* Icon@2x.png */,
 				B5F79E8B164E9C350000CCF0 /* Icon-72.png */,
@@ -404,15 +404,15 @@
 				B5F79E94164E9C350000CCF0 /* Icon-Small@2x.png in Resources */,
 				B5F79E99164E9D0B0000CCF0 /* Icon.png in Resources */,
 				B5F79E9B164E9D0E0000CCF0 /* Icon@2x.png in Resources */,
-				B5F79E9F164EA0F70000CCF0 /* Default.png in Resources */,
-				B5F79EA1164EA0FC0000CCF0 /* Default@2x.png in Resources */,
-				B5F79EA3164EA1000000CCF0 /* Default-568h@2x.png in Resources */,
 				B515D5131659C0E400FECEBA /* 23-bird.png in Resources */,
 				B515D5141659C0E400FECEBA /* 23-bird@2x.png in Resources */,
 				B515D5171659C0FA00FECEBA /* 19-gear@2x.png in Resources */,
 				B515D5181659C0FA00FECEBA /* 19-gear.png in Resources */,
 				B515D51B1659C1EE00FECEBA /* 02-redo.png in Resources */,
 				B515D51C1659C1EE00FECEBA /* 02-redo@2x.png in Resources */,
+				B515D52D165B2DBF00FECEBA /* Default.png in Resources */,
+				B515D52E165B2DBF00FECEBA /* Default@2x.png in Resources */,
+				B515D52F165B2DBF00FECEBA /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
