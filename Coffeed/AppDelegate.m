@@ -13,7 +13,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    return YES;
+
+	// Disable Screen Saver
+	application.idleTimerDisabled = YES;
+	
+	return YES;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
