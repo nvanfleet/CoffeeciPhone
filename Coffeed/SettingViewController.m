@@ -81,24 +81,24 @@
 	if(rdict[@"OFFSET"]!=nil)
 		self.boilerOffset.text = rdict[@"OFFSET"];
 	
-//	if(rdict[@"AUTOT"]!=nil)
-//	{
-//		int status = [rdict[@"AUTOT"] intValue];
-//		
-//		//If the autotune is in progress the button stays disabled.
-//		if(status == 1)
-//		{
-//			[self.autotuneButton setTitle:@"Stop PID Autotune" forState:UIControlStateNormal];
-//			[self.autotuneButton setTitle:@"Stop PID Autotune" forState:UIControlStateHighlighted];
-//			self.autotuneButton.tag = 0;
-//		}
-//		else
-//		{
-//			[self.autotuneButton setTitle:@"Start PID Autotune" forState:UIControlStateNormal];
-//			[self.autotuneButton setTitle:@"Start PID Autotune" forState:UIControlStateHighlighted];
-//			self.autotuneButton.tag = 1;
-//		}
-//	}
+	if(rdict[@"AUTOT"]!=nil)
+	{
+		int status = [rdict[@"AUTOT"] intValue];
+		
+		//If the autotune is in progress the button stays disabled.
+		if(status == 1)
+		{
+			[self.autotuneButton setTitle:@"Stop PID Autotune" forState:UIControlStateNormal];
+			[self.autotuneButton setTitle:@"Stop PID Autotune" forState:UIControlStateHighlighted];
+			self.autotuneButton.tag = 0;
+		}
+		else
+		{
+			[self.autotuneButton setTitle:@"Start PID Autotune" forState:UIControlStateNormal];
+			[self.autotuneButton setTitle:@"Start PID Autotune" forState:UIControlStateHighlighted];
+			self.autotuneButton.tag = 1;
+		}
+	}
 	
 	self.statusImage.image = [UIImage imageNamed:@"23-bird"];
 }

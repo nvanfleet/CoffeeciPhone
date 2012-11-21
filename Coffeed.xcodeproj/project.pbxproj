@@ -298,12 +298,12 @@
 				B52AD8361614C40900D0939A /* TempViewController.m */,
 				B52AD82F1614C26000D0939A /* SettingViewController.h */,
 				B52AD8301614C26000D0939A /* SettingViewController.m */,
+				B515D4B1165927C400FECEBA /* GraphViewController.h */,
+				B515D4B2165927C400FECEBA /* GraphViewController.m */,
 				B55E0ED81615F9B900DB2ED3 /* ServerViewController.h */,
 				B55E0ED91615F9B900DB2ED3 /* ServerViewController.m */,
 				B55E0EDC1615FAE300DB2ED3 /* ServerSettingViewController.h */,
 				B55E0EDD1615FAE300DB2ED3 /* ServerSettingViewController.m */,
-				B515D4B1165927C400FECEBA /* GraphViewController.h */,
-				B515D4B2165927C400FECEBA /* GraphViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

@@ -34,7 +34,7 @@
 		self.power.progress = 0.0f;
 	}
 	
-	[self setControls:set];
+//	[self setControls:set];
 }
 
 
@@ -63,8 +63,6 @@
 		[self scheduleUpdate];
 	
 	NSDictionary *rdict = object;
-	
-	[self enableDisplay:TRUE];
 	
 	if(rdict[@"SETPOINT"] != nil)
 		self.setLabel.text = rdict[@"SETPOINT"];
@@ -130,15 +128,17 @@
 			[self.activeSwitch setOn:status animated:anim];
 		}
 	}
+
+	// Control surface settings
+	self.statusImage.image = [UIImage imageNamed:@"23-bird"];
+	[self enableDisplay:TRUE];
 	
 	// Disable control surface if auto tuning
-//	if(rdict[@"AUTOT"] != nil)
-//	{
-//		if([rdict[@"AUTOT"] boolValue] == YES)
-//			[self setControls:FALSE];
-//	}
-	
-	self.statusImage.image = [UIImage imageNamed:@"23-bird"];
+	if(rdict[@"AUTOT"] != nil)
+	{
+		if([rdict[@"AUTOT"] boolValue] == YES)
+			[self setControls:FALSE];
+	}
 }
 
 #pragma mark Actions
@@ -147,15 +147,9 @@
 {
 	float currentValue = [self.setLabel.text floatValue];
 	
-	NSLog(@"current %f",currentValue);
-	
 	currentValue += (sender.value - 50)/4;
 	
-	NSLog(@"new value %f",currentValue);
-	
 	NSString *command = [NSString stringWithFormat:@"SETPOINT=%f",currentValue];
-	
-	NSLog(@"command %@",command);
 	
 	[[DataRequestManager sharedInstance] queueCommand:command caller:self key:@"sleep"];
 	
