@@ -87,7 +87,7 @@
 {
 	[self setBackgroundColor:[UIColor clearColor]];
 	_interval = 20;
-	_maxValue = 100;
+	_maxValue = 130;
 	_minValue = 0;
 	_yLabelFont = [UIFont boldSystemFontOfSize:14];
 	_xLabelFont = [UIFont boldSystemFontOfSize:12];
