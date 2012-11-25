@@ -39,6 +39,8 @@
 
 -(void) queueCommand:(NSString *)command caller:(id)caller key:(NSString *)key configuration:(ServerConfiguration *)configuration
 {
+//	NSLog(@"queue command %@",key);
+	
 	if(!configuration)
 	{
 		NSLog(@"no configuration so no sending request");
