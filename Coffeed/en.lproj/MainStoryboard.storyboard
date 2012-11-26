@@ -111,23 +111,6 @@
                                     <outlet property="delegate" destination="2" id="THy-n6-4Jl"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lW6-DP-f6x">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="nbU-bE-AN3"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Start PID Autotune">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="autotuneButtonPushed:" destination="2" eventType="touchUpInside" id="qUd-BF-9vi"/>
-                                    <action selector="okayButtonPushed:" destination="leq-8N-Nek" eventType="touchUpInside" id="lV0-9z-c2k"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -144,7 +127,6 @@
                             <constraint firstItem="OcK-RV-1vh" firstAttribute="top" secondItem="dK6-pM-Y66" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="HZ7-Z5-NoN"/>
                             <constraint firstItem="zNK-f5-Bft" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Jfs-Xk-mV5"/>
                             <constraint firstAttribute="trailing" secondItem="0w0-wg-2uo" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="JvM-HJ-wWK"/>
-                            <constraint firstAttribute="bottom" secondItem="lW6-DP-f6x" secondAttribute="bottom" constant="71" id="L4O-xv-9Y8"/>
                             <constraint firstItem="hUz-8f-vfi" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Lk5-xY-VG5"/>
                             <constraint firstItem="DwP-7R-Nyk" firstAttribute="top" secondItem="OcK-RV-1vh" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="NIn-FB-SUt"/>
                             <constraint firstItem="41y-1Y-XQw" firstAttribute="top" secondItem="16" secondAttribute="top" constant="59" id="OCK-o0-KQW"/>
@@ -153,13 +135,11 @@
                             <constraint firstItem="XPh-Aa-PbH" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="WZH-EM-jrK"/>
                             <constraint firstAttribute="trailing" secondItem="yxH-V3-JL4" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Ylq-94-FM5"/>
                             <constraint firstItem="dK6-pM-Y66" firstAttribute="leading" secondItem="0w0-wg-2uo" secondAttribute="leading" type="default" id="Zri-zg-0z3"/>
-                            <constraint firstAttribute="trailing" secondItem="lW6-DP-f6x" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="cop-MH-Fkg"/>
                             <constraint firstItem="yxH-V3-JL4" firstAttribute="leading" secondItem="DwP-7R-Nyk" secondAttribute="leading" type="default" id="d2P-zc-psV"/>
                             <constraint firstAttribute="trailing" secondItem="DwP-7R-Nyk" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="dMh-vv-i5q"/>
                             <constraint firstAttribute="trailing" secondItem="dK6-pM-Y66" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="fcb-mD-X3m"/>
                             <constraint firstItem="0w0-wg-2uo" firstAttribute="leading" secondItem="41y-1Y-XQw" secondAttribute="leading" type="default" id="fvP-fM-M51"/>
                             <constraint firstItem="OcK-RV-1vh" firstAttribute="leading" secondItem="dK6-pM-Y66" secondAttribute="leading" type="default" id="jgs-HY-m56"/>
-                            <constraint firstItem="lW6-DP-f6x" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="kly-bv-qWT"/>
                             <constraint firstItem="LPV-2z-2Oc" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="kty-Ot-Qp5"/>
                             <constraint firstItem="SME-st-Ecc" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="lHw-Ln-DiA"/>
                             <constraint firstItem="DwP-7R-Nyk" firstAttribute="leading" secondItem="XPh-Aa-PbH" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="mI3-Kh-BzI"/>
@@ -175,7 +155,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="19-gear.png" id="7"/>
                     <connections>
-                        <outlet property="autotuneButton" destination="lW6-DP-f6x" id="VEd-dB-0FU"/>
                         <outlet property="boilerOffset" destination="dK6-pM-Y66" id="eHV-zt-aI4"/>
                         <outlet property="brewPointField" destination="41y-1Y-XQw" id="FZj-aC-ayB"/>
                         <outlet property="dgainField" destination="yxH-V3-JL4" id="HYO-aB-6Fa"/>
@@ -686,6 +665,82 @@
         <image name="button-plus.png" width="54" height="55"/>
         <image name="disclosure_indicator_default.png" width="10" height="13"/>
     </resources>
+    <classes>
+        <class className="GraphViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="lineChartView" candidateClass="PCLineChartView"/>
+                <relationship kind="outlet" name="statusImage" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PCLineChartView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PCLineChartView.h"/>
+        </class>
+        <class className="ServerConfigurationCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ServerConfigurationCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="address" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="selectedButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="statusImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="title" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ServerSettingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ServerSettingViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButtonPushed:"/>
+                <relationship kind="action" name="okayButtonPushed:"/>
+                <relationship kind="action" name="shutdownSystem:"/>
+                <relationship kind="outlet" name="address" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="okayButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="port" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="serverName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="shutdownButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="statusImage" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="ServerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ServerViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="accessoryButtonTapped:withEvent:" candidateClass="UIControl"/>
+                <relationship kind="action" name="addServerEntry:"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SettingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="autotuneButtonPushed:"/>
+                <relationship kind="outlet" name="autotuneButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="boilerOffset" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="brewPointField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="dgainField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="igainField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="pgainField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="statusImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="steamPointField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="TempViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TempViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="sleepSwitchChanged:"/>
+                <relationship kind="action" name="steamSwitchChanged:"/>
+                <relationship kind="action" name="stepperChanged:"/>
+                <relationship kind="outlet" name="activeSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="power" candidateClass="UIProgressView"/>
+                <relationship kind="outlet" name="setLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="statusImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="steamSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="tempLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tempStepper" candidateClass="UIStepper"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

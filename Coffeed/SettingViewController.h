@@ -17,10 +17,7 @@
 @property (assign) IBOutlet UITextField *igainField;
 @property (assign) IBOutlet UITextField *dgainField;
 @property (assign) IBOutlet UITextField *boilerOffset;
-@property (assign) IBOutlet UIButton *autotuneButton;
 
 @property (assign) IBOutlet UIImageView *statusImage;
-
--(IBAction) autotuneButtonPushed:(id)sender;
 
 @end

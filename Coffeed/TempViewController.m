@@ -132,13 +132,6 @@
 	// Control surface settings
 	self.statusImage.image = [UIImage imageNamed:@"23-bird"];
 	[self enableDisplay:TRUE];
-	
-	// Disable control surface if auto tuning
-	if(rdict[@"AUTOT"] != nil)
-	{
-		if([rdict[@"AUTOT"] boolValue] == YES)
-			[self setControls:FALSE];
-	}
 }
 
 #pragma mark Actions
@@ -197,7 +190,7 @@
 
 -(void) updateViewData
 {
-	[[DataRequestManager sharedInstance] queueCommand:@"SETPOINT,TPOINT,SMODE,ACTIVE,POW,AUTOT" caller:self key:@"updateView"];
+	[[DataRequestManager sharedInstance] queueCommand:@"SETPOINT,TPOINT,SMODE,ACTIVE,POW" caller:self key:@"updateView"];
 }
 
 -(void) viewWillAppear:(BOOL)animated
