@@ -63,6 +63,30 @@
 	[component setColour:PCColorRed];
 	[components addObject:component];
 	
+	// Temperature
+	component = [[PCLineChartViewComponent alloc] init];
+	[component setTitle:@"Pt"];
+	[component setKey:@"PTERM"];
+	[component setLabelFormat:@"%.1f"];
+	[component setColour:[UIColor purpleColor]];
+	[components addObject:component];
+	
+	// Temperature
+	component = [[PCLineChartViewComponent alloc] init];
+	[component setTitle:@"It"];
+	[component setKey:@"ITERM"];
+	[component setLabelFormat:@"%.1f"];
+	[component setColour:[UIColor blueColor]];
+	[components addObject:component];
+	
+	// Temperature
+	component = [[PCLineChartViewComponent alloc] init];
+	[component setTitle:@"Dt"];
+	[component setKey:@"DTERM"];
+	[component setLabelFormat:@"%.1f"];
+	[component setColour:[UIColor yellowColor]];
+	[components addObject:component];
+	
 	[_lineChartView setComponents:components];
 	[_lineChartView setAutoscaleYAxis:YES];
 }
@@ -71,7 +95,7 @@
 
 -(void) updateGraphData
 {
-	[[DataRequestManager sharedInstance] queueCommand:@"SETPOINT,TPOINT,POW" caller:self key:@"graphdata"];
+	[[DataRequestManager sharedInstance] queueCommand:@"SETPOINT,TPOINT,POW,PTERM,ITERM,DTERM" caller:self key:@"graphdata"];
 }
 
 -(void) scheduleUpdate
