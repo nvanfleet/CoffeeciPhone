@@ -127,14 +127,14 @@
 	// Offsets
 	CGRect newFrame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height);
 	self.view.frame = newFrame;
+	
+	[self changeSetting:textField];
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-	
-	[self changeSetting:textField];
-	
+
     return YES;
 }
 
