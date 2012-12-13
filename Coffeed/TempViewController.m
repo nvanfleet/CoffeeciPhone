@@ -33,15 +33,13 @@
 		self.tempLabel.text = @"-";
 		self.power.progress = 0.0f;
 	}
-	
-//	[self setControls:set];
 }
 
 
 - (void) dataManagerDidFail:(DataRequest *)nm withObject:(id)object
 {
 	if([nm.key isEqualToString:@"updateView"])
-		[self scheduleUpdate];
+		[self scheduleUpdate:2.0f];
 	
 	if([nm.key isEqualToString:@"updateView"])
 	{
@@ -60,7 +58,7 @@
 - (void) dataManagerDidSucceed:(DataRequest *)nm withObject:(id)object
 {
 	if([nm.key isEqualToString:@"updateView"])
-		[self scheduleUpdate];
+		[self scheduleUpdate:1.0f];
 	
 	NSDictionary *rdict = object;
 	
@@ -179,12 +177,12 @@
 
 #pragma mark Basic
 
--(void) scheduleUpdate
+-(void) scheduleUpdate:(float)timeInterval
 {
 	if(self.isViewLoaded && self.view.window)
 	{
 		[self.timer invalidate];
-		self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateViewData) userInfo:nil repeats:NO];
+		self.timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(updateViewData) userInfo:nil repeats:NO];
 	}
 }
 
@@ -198,7 +196,7 @@
 	lastTemp = 0;
 	[self updateViewData];
 	
-	[self scheduleUpdate];
+	[self scheduleUpdate:1.0f];
 }
 
 -(void) viewWillDisappear:(BOOL)animated
