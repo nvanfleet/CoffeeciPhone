@@ -35,6 +35,12 @@
 		[self sendNextRequest];
 }
 
+-(void) flushAllRequests
+{
+	NSLog(@"flush all requests");
+	[self.queuedRequests removeAllObjects];
+}
+
 #pragma mark Coffee
 
 -(void) queueCommand:(NSString *)command caller:(id)caller key:(NSString *)key configuration:(ServerConfiguration *)configuration

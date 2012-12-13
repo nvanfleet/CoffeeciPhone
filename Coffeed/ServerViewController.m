@@ -177,6 +177,8 @@
 			scc.selectedButton.selected = isSelected;
 		}
 	}
+	
+	[[DataRequestManager sharedInstance] flushAllRequests];
 }
 
 -(void) updateViewData

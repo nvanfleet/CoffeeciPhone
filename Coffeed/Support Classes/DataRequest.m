@@ -144,7 +144,7 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 -(void) connect
 {
 	CFSocketError error;
-	CFTimeInterval timeout = 5;
+	CFTimeInterval timeout = 2;
 	struct sockaddr_in server_address;
 	
 	memset(&server_address, 0, sizeof(server_address));
@@ -163,6 +163,10 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 		[self failure:@"CONNECT kCFSocketTimeout"];
 	
 	CFRelease(address);
+	
+	
+	NSLog(@"Connect %@ %@ %@ %@", _server.address, _server.resolvedAddress, _server.port, _server.servername);
+	
 }
 
 -(void)resolveHost:(NSString *)hostname
