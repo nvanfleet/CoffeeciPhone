@@ -181,7 +181,7 @@
 		B52AD7E61614C08800D0939A = {
 			isa = PBXGroup;
 			children = (
-				B52AD7FB1614C08800D0939A /* Coffeed */,
+				B52AD7FB1614C08800D0939A /* CoffeeciPhone */,
 				B52AD7F41614C08800D0939A /* Frameworks */,
 				B52AD7F21614C08800D0939A /* Products */,
 			);
@@ -207,7 +207,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B52AD7FB1614C08800D0939A /* Coffeed */ = {
+		B52AD7FB1614C08800D0939A /* CoffeeciPhone */ = {
 			isa = PBXGroup;
 			children = (
 				B515D50D1659330C00FECEBA /* Line Chart */,
@@ -219,6 +219,7 @@
 				B52AD80D1614C08800D0939A /* MainStoryboard.storyboard */,
 				B52AD7FC1614C08800D0939A /* Supporting Files */,
 			);
+			name = CoffeeciPhone;
 			path = Coffeed;
 			sourceTree = "<group>";
 		};
