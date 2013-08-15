@@ -1,0 +1,9 @@
+# Copyright (C) 2013 Nathan Van Fleet
+#
+# This is free software, licensed under the GNU General Public License v2.
+# See /LICENSE for more information.
+#
+
+CoffeeciPhone is a iOS client to control coffeed over the network (or localhost). 
+
+This is a xCode project that will build an app binary that will be installable on iOS devices
