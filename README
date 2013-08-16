@@ -3,7 +3,66 @@
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
 #
+# version 1.1
 
-CoffeeciPhone is a iOS client to control coffeed over the network (or localhost). 
+ ============================ 
+|                            |
+|   What does package do?    |
+|                            |
+ ============================ 
+
+CoffeeciPhone is a iOS client to control coffeed over your home wireless network or even remotely if you setup a DDNS address with port forwarding.
 
 This is a xCode project that will build an app binary that will be installable on iOS devices
+ ===============
+|               |
+|   Overview    |
+|               |
+ ===============
+
+Coffeed is a PID written in C++ for the OpenWRT router firmware platform. It is a package that can be built in the OpenWRT build system. It creates a .opk file that is installable on a OpenWRT device.
+
+This system measures the temperature of something with a thermocouple (the boiler of an espresso machine) and then controls a heating element to keep the temperature at a stable point (set by the user). It makes it easier to make good espresso when you have reliable temperature.
+
+Having just the basic coffeed package means that you have a linux daemon that can be configured to control your espresso machine. Installing clients will allow you to control the server via CLI on Mac/Linux or a included iPhone App. Having a CLI client installed locally on the same router allows you to create cron scripts to activate your server at different intervals.
+
+You can control your espresso machine over the network and even when you're not at home! 
+
+ ===============
+|               |
+|    Router     |
+|               |
+ ===============
+
+It is targeted to a Meraki Mini or Fonera platforms. But it wouldn't take much configuration to work on other OpenWRT firmware. Work would have to be put in to make it build on another device however and I never had to do so.
+
+ ===============
+|               |
+|   Firmware    |
+|               |
+ ===============
+
+You will probably have to custom-compile OpenWRT for your device. You will need kernel modules built in for GPIOs, i2C-GPIO and PWM-GPIO to make it work. I used to not use PWM but it made it difficult to reliably control the heating element.
+
+ ===============
+|               |
+|   Software    |
+|               |
+ ===============
+
+coffeed - software daemon for OpenWRT
+coffeec - CLI software binary to control server for OpenWRT
+coffeeciPhone - App to control server for iOS
+coffeecMac - CLI software binary to control server for Mac
+
+ ===============
+|               |
+|    Hardware   |
+|               |
+ ===============
+
+You need to interface the GPIOs to several different things. Please consult the included Gerber and .brd files for the circuit boards in coffeedHardware. I'll have more information later.
+
+Microchip MCSP4322	- 	i2C ADC for thermocouple
+Microchip MCP9800	-	i2c Ambient temperature sensor
+Transistor		-	GPIO PWM-controlled pin to control heater
