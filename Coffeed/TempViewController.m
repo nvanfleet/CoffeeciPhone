@@ -97,7 +97,7 @@
 		{
 			self.steamSwitch.enabled = TRUE;
 		}
-		else if(!self.steamSwitch.isHighlighted)
+		else if(!self.steamSwitch.isHighlighted && !self.steamSwitch.isTracking)
 		{
 			BOOL anim = TRUE;
 			BOOL status;
@@ -117,7 +117,7 @@
 		{
 			self.activeSwitch.enabled = TRUE;
 		}
-		else if(!self.activeSwitch.isHighlighted)
+		else if(!self.activeSwitch.isHighlighted && !self.activeSwitch.isTracking)
 		{
 			BOOL anim = TRUE;
 			BOOL status;

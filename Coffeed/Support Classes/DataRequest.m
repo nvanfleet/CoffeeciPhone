@@ -167,10 +167,8 @@ static void socketCallback(CFSocketRef s, CFSocketCallBackType type, CFDataRef a
 		[self failure:@"CONNECT kCFSocketTimeout"];
 	
 	CFRelease(address);
-	
-	
-	NSLog(@"Connect %@ %@ %@ %@", _server.address, _server.resolvedAddress, _server.port, _server.servername);
-	
+
+//	NSLog(@"Connect %@ %@ %@ %@", _server.address, _server.resolvedAddress, _server.port, _server.servername);	
 }
 
 -(void)resolveHost:(NSString *)hostname
